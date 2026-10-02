@@ -1,0 +1,593 @@
+{% extends "base.html" %}
+
+{% block title %}
+Appointment Details | OpenHealth
+{% endblock %}
+
+{% block content %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/my_appointment_details.css') }}"
+>
+
+<div class="appointment-details-page">
+
+    <!-- Back Button -->
+    <div class="appointment-details-container">
+
+        <a
+            href="/my-appointments"
+            class="back-appointments-btn"
+        >
+            <i class="fas fa-arrow-left"></i>
+            Back to My Appointments
+        </a>
+
+
+        <!-- Page Header -->
+        <div class="appointment-details-header">
+
+            <div>
+                <span class="page-label">
+                    APPOINTMENT DETAILS
+                </span>
+
+                <h1>
+                    Your Appointment
+                </h1>
+
+                <p>
+                    View all details related to your booked appointment.
+                </p>
+            </div>
+
+            <div class="appointment-status-badge
+                {{ appointment.status|lower }}">
+                {{ appointment.status }}
+            </div>
+
+        </div>
+
+
+        <!-- Appointment ID -->
+        <div class="appointment-id-card">
+
+            <div class="appointment-id-icon">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+
+            <div>
+
+                <span>
+                    Appointment ID
+                </span>
+
+                <strong>
+                    {{ appointment.appointment_id }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- Doctor Section -->
+        <section class="details-card">
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    <i class="fas fa-user-doctor"></i>
+                </div>
+
+                <div>
+                    <h2>Doctor Information</h2>
+                    <p>Your selected healthcare provider</p>
+                </div>
+
+            </div>
+
+
+            <div class="doctor-details">
+
+                <div class="doctor-avatar">
+                    {% if doctor and doctor.image %}
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='images/doctors/' + doctor.image
+                            ) }}"
+                            alt="{{ doctor.name }}"
+                        >
+                    {% else %}
+                        <i class="fas fa-user-doctor"></i>
+                    {% endif %}
+                </div>
+
+
+                <div class="doctor-info">
+
+                    <h3>
+                        {{ doctor.name if doctor else "Doctor" }}
+                    </h3>
+
+                    {% if doctor and doctor.specialty %}
+                        <p class="doctor-specialty">
+                            {{ doctor.specialty }}
+                        </p>
+                    {% endif %}
+
+                    {% if doctor and doctor.qualification %}
+                        <p>
+                            <i class="fas fa-graduation-cap"></i>
+                            {{ doctor.qualification }}
+                        </p>
+                    {% endif %}
+
+                    {% if doctor and doctor.experience %}
+                        <p>
+                            <i class="fas fa-briefcase"></i>
+                            {{ doctor.experience }} Experience
+                        </p>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            {% if doctor %}
+
+            <div class="doctor-location-grid">
+
+                {% if doctor.clinic %}
+                <div class="location-item">
+
+                    <i class="fas fa-hospital"></i>
+
+                    <div>
+                        <span>Clinic / Hospital</span>
+                        <strong>{{ doctor.clinic }}</strong>
+                    </div>
+
+                </div>
+                {% endif %}
+
+
+                {% if doctor.location %}
+                <div class="location-item">
+
+                    <i class="fas fa-location-dot"></i>
+
+                    <div>
+                        <span>Location</span>
+                        <strong>{{ doctor.location }}</strong>
+                    </div>
+
+                </div>
+                {% endif %}
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- Appointment Information -->
+        <section class="details-card">
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    <i class="fas fa-calendar-days"></i>
+                </div>
+
+                <div>
+                    <h2>Appointment Information</h2>
+                    <p>Your scheduled consultation details</p>
+                </div>
+
+            </div>
+
+
+            <div class="appointment-info-grid">
+
+                <div class="info-item">
+
+                    <span>
+                        <i class="fas fa-calendar"></i>
+                        Date
+                    </span>
+
+                    <strong>
+                        {{ appointment.appointment_date }}
+                    </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span>
+                        <i class="fas fa-clock"></i>
+                        Time
+                    </span>
+
+                    <strong>
+                        {{ appointment.appointment_time }}
+                    </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span>
+                        <i class="fas fa-video"></i>
+                        Consultation Type
+                    </span>
+
+                    <strong>
+                        {{ appointment.consultation_type }}
+                    </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span>
+                        <i class="fas fa-circle-check"></i>
+                        Status
+                    </span>
+
+                    <strong class="status-text
+                        {{ appointment.status|lower }}">
+                        {{ appointment.status }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Reason -->
+        <section class="details-card">
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    <i class="fas fa-notes-medical"></i>
+                </div>
+
+                <div>
+                    <h2>Appointment Reason</h2>
+                    <p>Information provided during booking</p>
+                </div>
+
+            </div>
+
+
+            <div class="reason-box">
+
+                {% if appointment.reason %}
+                    {{ appointment.reason }}
+                {% else %}
+                    No reason was provided during booking.
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+        <!-- Booking Information -->
+        <section class="details-card">
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    <i class="fas fa-clock-rotate-left"></i>
+                </div>
+
+                <div>
+                    <h2>Booking Information</h2>
+                    <p>Appointment booking record</p>
+                </div>
+
+            </div>
+
+
+            <div class="booking-record">
+
+                <div>
+                    <span>Booked On</span>
+
+                    <strong>
+                        {{ appointment.booking_created_at }}
+                    </strong>
+                </div>
+
+
+                {% if appointment.cancellation_reason %}
+
+                <div class="cancellation-record">
+
+                    <span>
+                        Cancellation Reason
+                    </span>
+
+                    <strong>
+                        {{ appointment.cancellation_reason }}
+                    </strong>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+        <!-- Actions -->
+        <div class="appointment-actions">
+
+            <a
+                href="/my-appointments"
+                class="secondary-action-btn"
+            >
+                <i class="fas fa-arrow-left"></i>
+                My Appointments
+            </a>
+        
+        
+            {% if appointment.status == "Confirmed" %}
+        
+            <!-- Reschedule -->
+            <button
+                type="button"
+                class="reschedule-detail-btn"
+                onclick="openRescheduleForm()"
+            >
+                <i class="fas fa-calendar-days"></i>
+                Reschedule
+            </button>
+        
+        
+            <!-- Cancel -->
+            <form
+                method="POST"
+                action="/my-appointments/cancel"
+                onsubmit="
+                    return confirm(
+                        'Are you sure you want to cancel this appointment?'
+                    );
+                "
+            >
+        
+                <input
+                    type="hidden"
+                    name="appointment_id"
+                    value="{{ appointment.appointment_id }}"
+                >
+        
+                <button
+                    type="submit"
+                    class="cancel-detail-btn"
+                >
+                    <i class="fas fa-calendar-xmark"></i>
+                    Cancel Appointment
+                </button>
+            
+            </form>
+        
+            {% endif %}
+        
+        </div>
+
+        <!-- Reschedule Form -->
+        <div
+            id="rescheduleForm"
+            class="reschedule-form-container"
+            style="display: none;"
+        >
+            
+            <div class="reschedule-form-header">
+            
+                <div>
+                    <span class="page-label">
+                        RESCHEDULE APPOINTMENT
+                    </span>
+                
+                    <h2>
+                        Choose a New Date & Time
+                    </h2>
+                
+                    <p>
+                        Select a new date and time for your appointment.
+                    </p>
+                </div>
+            
+                <button
+                    type="button"
+                    class="close-reschedule-btn"
+                    onclick="closeRescheduleForm()"
+                    aria-label="Close"
+                >
+                    <i class="fas fa-xmark"></i>
+                </button>
+            
+            </div>
+        
+        
+            <form
+                method="POST"
+                action="/my-appointments/reschedule"
+                class="reschedule-form"
+            >
+        
+                <input
+                    type="hidden"
+                    name="appointment_id"
+                    value="{{ appointment.appointment_id }}"
+                >
+        
+        
+                <div class="reschedule-fields">
+                
+                    <!-- New Date -->
+                    <div class="reschedule-field">
+                    
+                        <label for="appointment_date">
+                            New Date
+                        </label>
+                    
+                        <input
+                            type="date"
+                            id="appointment_date"
+                            name="appointment_date"
+                            required
+                        >
+                    
+                    </div>
+                
+                
+                    <!-- New Time -->
+                    <div class="reschedule-field">
+                    
+                        <label for="appointment_time">
+                            New Time
+                        </label>
+                    
+                        <select
+                            id="appointment_time"
+                            name="appointment_time"
+                            required
+                        >
+                    
+                            <option value="">
+                                Select a time
+                            </option>
+                        
+                            <option value="09:00 AM">
+                                09:00 AM
+                            </option>
+                        
+                            <option value="09:30 AM">
+                                09:30 AM
+                            </option>
+                        
+                            <option value="10:00 AM">
+                                10:00 AM
+                            </option>
+                        
+                            <option value="10:30 AM">
+                                10:30 AM
+                            </option>
+                        
+                            <option value="11:00 AM">
+                                11:00 AM
+                            </option>
+                        
+                            <option value="11:30 AM">
+                                11:30 AM
+                            </option>
+                        
+                            <option value="12:00 PM">
+                                12:00 PM
+                            </option>
+                        
+                            <option value="12:30 PM">
+                                12:30 PM
+                            </option>
+                        
+                            <option value="02:00 PM">
+                                02:00 PM
+                            </option>
+                        
+                            <option value="02:30 PM">
+                                02:30 PM
+                            </option>
+                        
+                            <option value="03:00 PM">
+                                03:00 PM
+                            </option>
+                        
+                            <option value="03:30 PM">
+                                03:30 PM
+                            </option>
+                        
+                            <option value="04:00 PM">
+                                04:00 PM
+                            </option>
+                        
+                            <option value="04:30 PM">
+                                04:30 PM
+                            </option>
+                        
+                            <option value="05:00 PM">
+                                05:00 PM
+                            </option>
+                        
+                        </select>
+                    
+                    </div>
+                
+                </div>
+            
+            
+                <div class="reschedule-form-actions">
+                
+                    <button
+                        type="button"
+                        class="reschedule-cancel-btn"
+                        onclick="closeRescheduleForm()"
+                    >
+                        Cancel
+                    </button>
+                
+                    <button
+                        type="submit"
+                        class="reschedule-submit-btn"
+                    >
+                        <i class="fas fa-calendar-check"></i>
+                        Confirm Reschedule
+                    </button>
+                
+                </div>
+            
+            </form>
+        
+        </div>
+
+
+        <!-- Disclaimer -->
+        <div class="appointment-note">
+
+            <i class="fas fa-circle-info"></i>
+
+            <p>
+                Please arrive on time for your appointment.
+                For any changes, cancellations, or additional
+                assistance, use the appointment options available
+                in your OpenHealth account.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="{{ url_for(
+    'static',
+    filename='js/my_appointment_details.js'
+) }}"></script>
+
+{% endblock %}

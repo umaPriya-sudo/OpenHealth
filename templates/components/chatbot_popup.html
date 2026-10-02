@@ -1,0 +1,183 @@
+<!-- ============================= -->
+<!-- OpenHealth Floating Chatbot -->
+<!-- ============================= -->
+
+<div class="chatbot-widget">
+
+    <!-- Floating Button -->
+    <button
+        type="button"
+        id="chatbot-toggle"
+        class="chatbot-floating-btn"
+        aria-label="Open OpenHealth Assistant"
+    >
+        <i class="fas fa-robot"></i>
+        <span class="chatbot-online-dot"></span>
+    </button>
+
+
+    <!-- Chatbot Panel -->
+    <div
+        id="chatbot-panel"
+        class="chatbot-panel"
+        aria-hidden="true"
+    >
+
+        <!-- Header -->
+        <div class="chatbot-panel-header">
+
+            <div class="chatbot-header-info">
+
+                <div class="chatbot-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+
+                <div>
+                    <h3>OpenHealth Assistant</h3>
+
+                    <span class="chatbot-status">
+                        <span class="status-dot"></span>
+                        Online
+                    </span>
+                </div>
+
+            </div>
+
+            <button
+                type="button"
+                id="chatbot-close"
+                class="chatbot-close-btn"
+                aria-label="Close chatbot"
+            >
+                <i class="fas fa-times"></i>
+            </button>
+
+        </div>
+
+
+        <!-- Chat Messages -->
+        <div
+            id="chatbot-popup-messages"
+            class="chatbot-panel-body"
+        >
+
+            <div class="chatbot-welcome-message">
+
+                <div class="chatbot-message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+            
+                <div class="chatbot-welcome-bubble">
+                    👋 Hi! I'm your OpenHealth Assistant.
+                    <br>
+                    How can I help you today?
+                </div>
+            
+            </div>
+
+
+            <!-- Quick Actions -->
+            
+            <div class="chatbot-quick-actions">
+            
+                <a
+                    href="/symptom-checker"
+                    class="chatbot-quick-action"
+                >
+                    <span class="quick-action-icon symptoms">
+                        <i class="fas fa-stethoscope"></i>
+                    </span>
+                
+                    <span class="quick-action-text">
+                        <strong>Check Symptoms</strong>
+                        <small>Explore your symptoms</small>
+                    </span>
+                </a>
+            
+            
+                <a
+                    href="/doctor-appointment"
+                    class="chatbot-quick-action"
+                >
+                    <span class="quick-action-icon doctor">
+                        <i class="fas fa-user-doctor"></i>
+                    </span>
+                
+                    <span class="quick-action-text">
+                        <strong>Find a Doctor</strong>
+                        <small>Find available doctors</small>
+                    </span>
+                </a>
+            
+            
+                <a
+                    href="/recognition"
+                    class="chatbot-quick-action"
+                >
+                    <span class="quick-action-icon medicine">
+                        <i class="fas fa-pills"></i>
+                    </span>
+                
+                    <span class="quick-action-text">
+                        <strong>Identify Medicine</strong>
+                        <small>Recognize a medicine</small>
+                    </span>
+                </a>
+            
+            
+                <a
+                    href="/doctor-appointment"
+                    class="chatbot-quick-action"
+                >
+                    <span class="quick-action-icon appointment">
+                        <i class="fas fa-calendar-check"></i>
+                    </span>
+                
+                    <span class="quick-action-text">
+                        <strong>Book Appointment</strong>
+                        <small>Schedule a consultation</small>
+                    </span>
+                </a>
+
+                <a
+                    href="/services"
+                    class="chatbot-quick-action chatbot-quick-action-wide"
+                >
+                    <span class="quick-action-icon prediction">
+                        <i class="fas fa-heart-pulse"></i>
+                    </span>
+                
+                    <span class="quick-action-text">
+                        <strong>Disease Prediction</strong>
+                        <small>Explore AI-powered disease prediction</small>
+                    </span>
+                </a>
+            
+            </div>
+
+        </div>
+
+
+        <!-- Input -->
+        <div class="chatbot-panel-input">
+
+            <input
+                type="text"
+                id="chatbot-popup-input"
+                placeholder="Ask me anything..."
+                autocomplete="off"
+            >
+
+            <button
+                type="button"
+                id="chatbot-popup-send"
+                aria-label="Send message"
+            >
+                <i class="fas fa-paper-plane"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,736 @@
+/* =========================================================
+   OpenHealth - My Appointment Details
+   ========================================================= */
+
+.appointment-details-page {
+    min-height: 100vh;
+    padding: 40px 20px 70px;
+    background: #f7faff;
+}
+
+.appointment-details-container {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   Back Button
+   ========================================================= */
+
+.back-appointments-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 28px;
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.back-appointments-btn:hover {
+    color: #1d4ed8;
+    transform: translateX(-3px);
+}
+
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+.appointment-details-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.page-label {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+.appointment-details-header h1 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.appointment-details-header p {
+    margin: 8px 0 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   Status Badge
+   ========================================================= */
+
+.appointment-status-badge {
+    padding: 9px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.appointment-status-badge.confirmed {
+    color: #15803d;
+    background: #dcfce7;
+}
+
+.appointment-status-badge.cancelled {
+    color: #b91c1c;
+    background: #fee2e2;
+}
+
+.appointment-status-badge.completed {
+    color: #1d4ed8;
+    background: #dbeafe;
+}
+
+
+/* =========================================================
+   Appointment ID
+   ========================================================= */
+
+.appointment-id-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+}
+
+.appointment-id-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: #2563eb;
+    background: #eff6ff;
+    font-size: 18px;
+}
+
+.appointment-id-card span {
+    display: block;
+    margin-bottom: 4px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.appointment-id-card strong {
+    color: #0f172a;
+    font-size: 15px;
+    letter-spacing: 0.4px;
+}
+
+
+/* =========================================================
+   Main Cards
+   ========================================================= */
+
+.details-card {
+    margin-bottom: 20px;
+    padding: 26px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(15, 23, 42, 0.045);
+}
+
+
+/* =========================================================
+   Section Heading
+   ========================================================= */
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 23px;
+}
+
+.section-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 11px;
+    color: #2563eb;
+    background: #eff6ff;
+    font-size: 17px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 18px;
+    font-weight: 750;
+}
+
+.section-heading p {
+    margin: 4px 0 0;
+    color: #64748b;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   Doctor Details
+   ========================================================= */
+
+.doctor-details {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.doctor-avatar {
+    width: 82px;
+    height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    color: #2563eb;
+    background: #eff6ff;
+    font-size: 30px;
+}
+
+.doctor-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.doctor-info h3 {
+    margin: 0 0 5px;
+    color: #0f172a;
+    font-size: 20px;
+    font-weight: 750;
+}
+
+.doctor-info p {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 6px 0 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.doctor-info p i {
+    width: 15px;
+    color: #64748b;
+}
+
+.doctor-info .doctor-specialty {
+    color: #2563eb;
+    font-weight: 650;
+}
+
+
+/* =========================================================
+   Doctor Location
+   ========================================================= */
+
+.doctor-location-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.location-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 15px;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.location-item > i {
+    margin-top: 2px;
+    color: #2563eb;
+    font-size: 16px;
+}
+
+.location-item span {
+    display: block;
+    margin-bottom: 4px;
+    color: #64748b;
+    font-size: 11px;
+}
+
+.location-item strong {
+    color: #0f172a;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+
+/* =========================================================
+   Appointment Information
+   ========================================================= */
+
+.appointment-info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.info-item {
+    padding: 16px;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.info-item span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 8px;
+    color: #64748b;
+    font-size: 11px;
+}
+
+.info-item span i {
+    color: #2563eb;
+}
+
+.info-item strong {
+    color: #0f172a;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.info-item strong.confirmed {
+    color: #15803d;
+}
+
+.info-item strong.cancelled {
+    color: #b91c1c;
+}
+
+.info-item strong.completed {
+    color: #2563eb;
+}
+
+
+/* =========================================================
+   Reason
+   ========================================================= */
+
+.reason-box {
+    padding: 17px;
+    min-height: 65px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    color: #475569;
+    background: #f8fafc;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   Booking Record
+   ========================================================= */
+
+.booking-record {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.booking-record > div {
+    padding: 16px;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.booking-record span {
+    display: block;
+    margin-bottom: 7px;
+    color: #64748b;
+    font-size: 11px;
+}
+
+.booking-record strong {
+    color: #0f172a;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.cancellation-record strong {
+    color: #b91c1c;
+}
+
+
+/* =========================================================
+   Actions
+   ========================================================= */
+
+.appointment-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.appointment-actions form {
+    margin: 0;
+}
+
+.secondary-action-btn,
+.cancel-detail-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 650;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.secondary-action-btn {
+    color: #334155;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+}
+
+.secondary-action-btn:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+}
+
+.cancel-detail-btn {
+    color: #b91c1c;
+    background: #ffffff;
+    border: 1px solid #fecaca;
+}
+
+.cancel-detail-btn:hover {
+    background: #fef2f2;
+    border-color: #fca5a5;
+}
+
+
+/* =========================================================
+   Note
+   ========================================================= */
+
+.appointment-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    margin-top: 22px;
+    padding: 15px 17px;
+    border: 1px solid #dbeafe;
+    border-radius: 12px;
+    background: #eff6ff;
+}
+
+.appointment-note > i {
+    margin-top: 2px;
+    color: #2563eb;
+}
+
+.appointment-note p {
+    margin: 0;
+    color: #475569;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .appointment-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .appointment-details-page {
+        padding: 25px 15px 50px;
+    }
+
+    .appointment-details-header {
+        flex-direction: column;
+    }
+
+    .appointment-details-header h1 {
+        font-size: 27px;
+    }
+
+    .details-card {
+        padding: 20px;
+    }
+
+    .doctor-location-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .appointment-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-record {
+        grid-template-columns: 1fr;
+    }
+
+    .appointment-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .secondary-action-btn,
+    .cancel-detail-btn {
+        width: 100%;
+    }
+
+}
+
+/* =========================================================
+   Reschedule Form
+   ========================================================= */
+
+.reschedule-form-container {
+    margin-top: 20px;
+    padding: 26px;
+    background: #ffffff;
+    border: 1px solid #dbe3ef;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(15, 23, 42, 0.045);
+}
+
+.reschedule-form-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.reschedule-form-header h2 {
+    margin: 5px 0 0;
+    color: #0f172a;
+    font-size: 20px;
+    font-weight: 750;
+}
+
+.reschedule-form-header p {
+    margin: 6px 0 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.close-reschedule-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    color: #64748b;
+    background: #ffffff;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.close-reschedule-btn:hover {
+    color: #0f172a;
+    background: #f8fafc;
+}
+
+
+/* =========================================================
+   Reschedule Fields
+   ========================================================= */
+
+.reschedule-form {
+    padding-top: 22px;
+}
+
+.reschedule-fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.reschedule-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.reschedule-field label {
+    color: #334155;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.reschedule-field input,
+.reschedule-field select {
+    width: 100%;
+    height: 46px;
+    padding: 0 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    outline: none;
+    color: #0f172a;
+    background: #ffffff;
+    font-family: inherit;
+    font-size: 13px;
+    transition: 0.2s ease;
+    box-sizing: border-box;
+}
+
+.reschedule-field input:focus,
+.reschedule-field select:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+
+/* =========================================================
+   Reschedule Actions
+   ========================================================= */
+
+.reschedule-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 11px;
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.reschedule-cancel-btn,
+.reschedule-submit-btn {
+    min-height: 43px;
+    padding: 0 17px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.reschedule-cancel-btn {
+    color: #475569;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+}
+
+.reschedule-cancel-btn:hover {
+    background: #f8fafc;
+}
+
+.reschedule-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #ffffff;
+    background: #2563eb;
+    border: 1px solid #2563eb;
+}
+
+.reschedule-submit-btn:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+
+/* =========================================================
+   Reschedule Button
+   ========================================================= */
+
+.reschedule-detail-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 18px;
+    border: 1px solid #bfdbfe;
+    border-radius: 10px;
+    color: #2563eb;
+    background: #eff6ff;
+    font-size: 13px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.reschedule-detail-btn:hover {
+    background: #dbeafe;
+    border-color: #93c5fd;
+}
+
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .reschedule-form-container {
+        padding: 20px;
+    }
+
+    .reschedule-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .reschedule-form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .reschedule-cancel-btn,
+    .reschedule-submit-btn {
+        width: 100%;
+    }
+
+}

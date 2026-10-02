@@ -1,0 +1,377 @@
+{% extends "base.html" %}
+
+{% block title %}
+My Appointments | OpenHealth
+{% endblock %}
+
+{% block extra_css %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/my_appointments.css') }}"
+>
+{% endblock %}
+
+{% block content %}
+
+<section class="my-appointments-page">
+
+    <div class="appointments-container">
+
+        <!-- Page Header -->
+
+        <div class="appointments-header">
+
+            <div>
+
+                <span class="appointments-eyebrow">
+                    OPENHEALTH
+                </span>
+
+                <h1>
+                    My Appointments
+                </h1>
+
+                <p>
+                    View and manage your scheduled healthcare appointments.
+                </p>
+
+            </div>
+
+            <a
+                href="/doctor-appointment"
+                class="book-appointment-btn"
+            >
+                <i class="fas fa-calendar-plus"></i>
+                Book Appointment
+            </a>
+
+        </div>
+
+        <!-- Appointment Filters -->
+
+        <div class="appointment-filters">
+        
+            <button
+                type="button"
+                class="appointment-filter active"
+                data-filter="all"
+            >
+                All
+            </button>
+        
+            <button
+                type="button"
+                class="appointment-filter"
+                data-filter="confirmed"
+            >
+                Upcoming
+            </button>
+        
+            <button
+                type="button"
+                class="appointment-filter"
+                data-filter="completed"
+            >
+                Completed
+            </button>
+        
+            <button
+                type="button"
+                class="appointment-filter"
+                data-filter="cancelled"
+            >
+                Cancelled
+            </button>
+        
+        </div>
+
+
+        <!-- Appointment List -->
+
+        {% if appointments %}
+
+            <div class="appointments-list">
+
+                {% for appointment in appointments %}
+
+                    <article class="appointment-card" data-status="{{ appointment.status|lower }}">
+
+                        <!-- Card Header -->
+
+                        <div class="appointment-card-header">
+
+                            <div class="appointment-doctor">
+
+                                <div class="appointment-doctor-icon">
+                                    <i class="fas fa-user-doctor"></i>
+                                </div>
+                            
+                                <div>
+                                
+                                    <span class="appointment-label">
+                                        DOCTOR
+                                    </span>
+                                
+                                    <h2>
+                                        {{ appointment.doctor.name }}
+                                    </h2>
+                                
+                                    {% if appointment.doctor.specialty %}
+
+                                        <p class="appointment-doctor-specialty">
+                                            {{ appointment.doctor.specialty }}
+                                        </p>
+                                    
+                                    {% endif %}
+                                    
+                                    {% if appointment.doctor.clinic %}
+                                    
+                                        <p class="appointment-doctor-clinic">
+                                            <i class="fas fa-hospital"></i>
+                                            {{ appointment.doctor.clinic }}
+                                        </p>
+                                    
+                                    {% endif %}
+                                    
+                                    {% if appointment.doctor.location %}
+                                    
+                                        <p class="appointment-doctor-location">
+                                            <i class="fas fa-location-dot"></i>
+                                            {{ appointment.doctor.location }}
+                                        </p>
+                                    
+                                    {% endif %}
+                                    
+                                </div>
+                            
+                            </div>
+
+
+                            <span
+                                class="appointment-status
+                                {% if appointment.status == 'Confirmed' %}
+                                    status-confirmed
+                                {% elif appointment.status == 'Cancelled' %}
+                                    status-cancelled
+                                {% else %}
+                                    status-default
+                                {% endif %}"
+                            >
+                                {{ appointment.status }}
+                            </span>
+
+                        </div>
+
+
+                        <!-- Appointment Information -->
+
+                        <div class="appointment-info-grid">
+
+                            <div class="appointment-info-item">
+
+                                <div class="info-icon">
+                                    <i class="fas fa-calendar"></i>
+                                </div>
+
+                                <div>
+
+                                    <span>
+                                        DATE
+                                    </span>
+
+                                    <strong>
+                                        {{ appointment.appointment_date }}
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="appointment-info-item">
+
+                                <div class="info-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+
+                                <div>
+
+                                    <span>
+                                        TIME
+                                    </span>
+
+                                    <strong>
+                                        {{ appointment.appointment_time }}
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="appointment-info-item">
+
+                                <div class="info-icon">
+                                    <i class="fas fa-video"></i>
+                                </div>
+
+                                <div>
+
+                                    <span>
+                                        CONSULTATION
+                                    </span>
+
+                                    <strong>
+                                        {{ appointment.consultation_type }}
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="appointment-info-item">
+
+                                <div class="info-icon">
+                                    <i class="fas fa-hashtag"></i>
+                                </div>
+
+                                <div>
+
+                                    <span>
+                                        APPOINTMENT ID
+                                    </span>
+
+                                    <strong>
+                                        {{ appointment.appointment_id }}
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Reason -->
+
+                        {% if appointment.reason %}
+
+                            <div class="appointment-reason">
+
+                                <span>
+                                    <i class="fas fa-notes-medical"></i>
+                                    Reason for Visit
+                                </span>
+
+                                <p>
+                                    {{ appointment.reason }}
+                                </p>
+
+                            </div>
+
+                        {% endif %}
+
+
+                        <!-- Footer -->
+
+                        <div class="appointment-card-footer">
+
+                            <span>
+                                <i class="fas fa-shield-heart"></i>
+                                OpenHealth Appointment
+                            </span>
+                        
+                            <div class="appointment-footer-right">
+                            
+                                <span>
+                                    Booked:
+                                    {{ appointment.booking_created_at }}
+                                </span>
+
+                                <a
+                                    href="/my-appointments/{{ appointment.appointment_id }}"
+                                    class="view-appointment-details-btn"
+                                >
+                                    <i class="fas fa-eye"></i>
+                                    View Details
+                                </a>
+                            
+                                {% if appointment.status == "Confirmed" %}
+                            
+                                    <form
+                                        method="POST"
+                                        action="/my-appointments/cancel"
+                                        class="cancel-appointment-form"
+                                        onsubmit="return confirm('Are you sure you want to cancel this appointment?');"
+                                    >
+                            
+                                        <input
+                                            type="hidden"
+                                            name="appointment_id"
+                                            value="{{ appointment.appointment_id }}"
+                                        >
+                            
+                                        <button
+                                            type="submit"
+                                            class="cancel-appointment-btn"
+                                        >
+                                            <i class="fas fa-calendar-xmark"></i>
+                                            Cancel
+                                        </button>
+                                    
+                                    </form>
+                                
+                                {% endif %}
+                                
+                            </div>
+                        
+                        </div>
+
+                    </article>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <!-- Empty State -->
+
+            <div class="appointments-empty">
+
+                <div class="empty-icon">
+                    <i class="fas fa-calendar-xmark"></i>
+                </div>
+
+                <h2>
+                    No Appointments Yet
+                </h2>
+
+                <p>
+                    You don't have any scheduled appointments.
+                    Book an appointment with a doctor to get started.
+                </p>
+
+                <a
+                    href="/doctor-appointment"
+                    class="book-appointment-btn"
+                >
+                    <i class="fas fa-calendar-plus"></i>
+                    Find a Doctor
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script
+    src="{{ url_for('static', filename='js/my_appointments.js') }}"
+></script>
+{% endblock %}

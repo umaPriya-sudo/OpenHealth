@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block title %}
+Appointment Confirmed | OpenHealth
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/appointment_success.css') }}">
+
+<section class="appointment-success-page">
+
+    <div class="success-card">
+
+        <!-- SUCCESS ICON -->
+        <div class="success-icon-wrapper">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+        </div>
+
+
+        <!-- SUCCESS MESSAGE -->
+        <span class="success-eyebrow">
+            APPOINTMENT CONFIRMED
+        </span>
+
+        <h1>
+            Your Appointment Has Been Confirmed
+        </h1>
+
+        <p class="success-message">
+            Your appointment has been successfully booked
+            through the OpenHealth appointment system.
+        </p>
+
+
+        <!-- APPOINTMENT ID -->
+        <div class="appointment-id-box">
+
+            <span>
+                Appointment ID
+            </span>
+
+            <strong>
+                {{ appointment_id }}
+            </strong>
+
+        </div>
+
+
+        <!-- APPOINTMENT SUMMARY -->
+        <div class="success-summary">
+
+            <div class="success-summary-item">
+
+                <div class="success-summary-icon">
+                    <i class="fas fa-user-doctor"></i>
+                </div>
+
+                <div>
+                    <span>Doctor</span>
+
+                    <strong>
+                        {{ doctor.name }}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="success-summary-item">
+
+                <div class="success-summary-icon">
+                    <i class="fas fa-calendar"></i>
+                </div>
+
+                <div>
+                    <span>Date</span>
+
+                    <strong>
+                        {{ appointment_date }}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="success-summary-item">
+
+                <div class="success-summary-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+
+                <div>
+                    <span>Time</span>
+
+                    <strong>
+                        {{ appointment_time }}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="success-summary-item">
+
+                <div class="success-summary-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+
+                <div>
+                    <span>Consultation</span>
+
+                    <strong>
+                        {{ consultation_type }}
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+        <div class="success-actions">
+
+            <a
+                href="/doctor-appointment"
+                class="success-primary-btn"
+            >
+                <i class="fas fa-calendar-plus"></i>
+                Book Another Appointment
+            </a>
+
+
+            <a
+                href="{{ url_for('patient_dashboard.patient_dashboard') }}"
+                class="success-secondary-btn"
+            >
+                <i class="fas fa-house"></i>
+                Back to Home
+            </a>
+
+        </div>
+
+
+        <!-- NOTE -->
+        <div class="success-note">
+
+            <i class="fas fa-circle-info"></i>
+
+            <p>
+                This is an academic/demo appointment booking system.
+                The appointment shown here is not a real-world medical
+                appointment.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

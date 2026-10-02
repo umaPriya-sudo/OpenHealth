@@ -1,0 +1,448 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Professional Profile - OpenHealth
+{% endblock %}
+
+{% block extra_css %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/doctor_profile_edit.css') }}"
+>
+{% endblock %}
+
+{% block content %}
+
+<div class="doctor-profile-page">
+
+    <!-- HEADER -->
+    <div class="profile-page-header">
+
+        <div>
+            <a
+                href="{{ url_for('doctor.doctor_dashboard') }}"
+                class="back-link"
+            >
+                <i class="fas fa-arrow-left"></i>
+                Back to Dashboard
+            </a>
+
+            <h1>
+                Edit Professional Profile
+            </h1>
+
+            <p>
+                Keep your professional and clinic information up to date.
+            </p>
+        </div>
+
+        <div class="verification-badge">
+            <i class="fas fa-circle-check"></i>
+
+            {{ doctor.verification_status }}
+        </div>
+
+    </div>
+
+
+    <!-- PROFILE CARD -->
+    <div class="profile-card">
+
+        <div class="profile-card-header">
+
+            <div class="profile-icon">
+                <i class="fas fa-user-doctor"></i>
+            </div>
+
+            <div>
+                <h2>
+                    Professional Information
+                </h2>
+
+                <p>
+                    Update the information patients see about you.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+        <div
+            id="profileMessage"
+            class="profile-message"
+            style="display: none;"
+        ></div>
+
+
+        <!-- FORM -->
+        <form
+            id="doctorProfileForm"
+            class="doctor-profile-form"
+        >
+
+            <!-- REGISTRATION NUMBER -->
+            <div class="form-group">
+
+                <label>
+                    Registration Number
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="fas fa-id-card"></i>
+
+                    <input
+                        type="text"
+                        value="{{ doctor.registration_number }}"
+                        readonly
+                    >
+
+                </div>
+
+                <small>
+                    Registration number cannot be changed.
+                </small>
+
+            </div>
+
+
+            <!-- QUALIFICATION -->
+            <div class="form-group">
+
+                <label for="qualification">
+                    Qualification
+                    <span>*</span>
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="fas fa-graduation-cap"></i>
+
+                    <input
+                        type="text"
+                        id="qualification"
+                        name="qualification"
+                        value="{{ doctor.qualification or '' }}"
+                        placeholder="e.g. MBBS, MD"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- SPECIALIZATION -->
+            <div class="form-group">
+
+                <label for="specialization">
+                    Specialization
+                    <span>*</span>
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="fas fa-stethoscope"></i>
+
+                    <input
+                        type="text"
+                        id="specialization"
+                        name="specialization"
+                        value="{{ doctor.specialization or '' }}"
+                        placeholder="e.g. Pediatrics"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- EXPERIENCE -->
+            <div class="form-group">
+
+                <label for="experienceYears">
+                    Experience
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="fas fa-briefcase"></i>
+
+                    <input
+                        type="number"
+                        id="experienceYears"
+                        name="experience_years"
+                        value="{{ doctor.experience_years or 0 }}"
+                        min="0"
+                        placeholder="Years of experience"
+                    >
+
+                    <span class="input-suffix">
+                        Years
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- BIO -->
+            <div class="form-group full-width">
+
+                <label for="bio">
+                    Professional Bio
+                </label>
+
+                <div class="textarea-wrapper">
+
+                    <i class="fas fa-file-lines"></i>
+
+                    <textarea
+                        id="bio"
+                        name="bio"
+                        rows="5"
+                        placeholder="Tell patients about your professional experience..."
+                    >{{ doctor.bio or '' }}</textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- CLINIC SECTION -->
+            <div class="section-divider full-width">
+
+                <div>
+                    <i class="fas fa-hospital"></i>
+
+                    <div>
+                        <h3>
+                            Clinic Information
+                        </h3>
+
+                        <p>
+                            Add your clinic or consultation location details.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- CLINIC NAME -->
+            <div class="form-group">
+
+                <label for="clinicName">
+                    Clinic Name
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="fas fa-hospital"></i>
+
+                    <input
+                        type="text"
+                        id="clinicName"
+                        name="clinic_name"
+                        value="{{ doctor.clinic_name or '' }}"
+                        placeholder="e.g. City Care Clinic"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- CITY -->
+            <div class="form-group">
+
+                <label for="city">
+                    City
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="fas fa-location-dot"></i>
+
+                    <input
+                        type="text"
+                        id="city"
+                        name="city"
+                        value="{{ doctor.city or '' }}"
+                        placeholder="e.g. Dehradun"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- CLINIC ADDRESS -->
+            <div class="form-group full-width">
+
+                <label for="clinicAddress">
+                    Clinic Address
+                </label>
+
+                <div class="textarea-wrapper">
+
+                    <i class="fas fa-map-location-dot"></i>
+
+                    <textarea
+                        id="clinicAddress"
+                        name="clinic_address"
+                        rows="3"
+                        placeholder="Enter complete clinic address"
+                    >{{ doctor.clinic_address or '' }}</textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONSULTATION SECTION -->
+            <div class="section-divider full-width">
+
+                <div>
+                    <i class="fas fa-calendar-check"></i>
+
+                    <div>
+                        <h3>
+                            Consultation Details
+                        </h3>
+
+                        <p>
+                            Set your consultation charges and available modes.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- CONSULTATION FEE -->
+            <div class="form-group">
+
+                <label for="consultationFee">
+                    Consultation Fee
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="currency-symbol">
+                        ₹
+                    </span>
+
+                    <input
+                        type="number"
+                        id="consultationFee"
+                        name="consultation_fee"
+                        value="{{ doctor.consultation_fee or '' }}"
+                        min="0"
+                        step="0.01"
+                        placeholder="e.g. 500"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- CONSULTATION TYPE -->
+            <div class="form-group">
+
+                <label for="consultationTypes">
+                    Consultation Type
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="fas fa-video"></i>
+
+                    <select
+                        id="consultationTypes"
+                        name="consultation_types"
+                    >
+
+                        <option
+                            value=""
+                            {% if not doctor.consultation_types %}
+                                selected
+                            {% endif %}
+                        >
+                            Select consultation type
+                        </option>
+
+                        <option
+                            value="Both"
+                            {% if doctor.consultation_types == "Both" %}
+                                selected
+                            {% endif %}
+                        >
+                            Both
+                        </option>
+
+                        <option
+                            value="In-person"
+                            {% if doctor.consultation_types == "In-person" %}
+                                selected
+                            {% endif %}
+                        >
+                            In-person
+                        </option>
+
+                        <option
+                            value="Video Consultation"
+                            {% if doctor.consultation_types == "Video Consultation" %}
+                                selected
+                            {% endif %}
+                        >
+                            Video Consultation
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+            <div class="form-actions full-width">
+
+                <a
+                    href="{{ url_for('doctor.doctor_dashboard') }}"
+                    class="cancel-btn"
+                >
+                    Cancel
+                </a>
+
+                <button
+                    type="submit"
+                    class="save-profile-btn"
+                    id="saveProfileBtn"
+                >
+                    <i class="fas fa-save"></i>
+                    Save Changes
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script
+    src="{{ url_for('static', filename='js/doctor_profile_edit.js') }}"
+></script>
+
+{% endblock %}

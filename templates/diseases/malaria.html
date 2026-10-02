@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block title %} OpenHealth - Breast Cancer Detection {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/diseases.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="malaria-page">
+
+    <!-- ================= HEADER ================= -->
+    <div class="malaria-header">
+        <div class="malaria-title-area">
+            <div class="malaria-title-icon"><i class="fas fa-bug"></i></div>
+            <div>
+                <h1>Malaria Detection</h1>
+                <p>AI-powered blood-cell image classification</p>
+            </div>
+        </div>
+
+        <div class="malaria-badge">
+            <strong><i class="fas fa-microchip"></i>CNN Model</strong>
+            <span> 128 × 128 RGB</span>
+        </div>
+    </div>
+
+    <!-- ================= MAIN GRID ================= -->
+    <div class="malaria-grid">
+
+        <!-- ======= LEFT SIDE — IMAGE UPLOAD ============== -->
+        <div class="malaria-card">
+            <div class="malaria-card-heading">
+                <div class="malaria-heading-icon"><i class="fas fa-image"></i></div>
+
+                <div>
+                    <h2>Upload Blood Cell Image</h2>
+                    <p> Upload a clear malaria blood-smear cell image</p>
+                </div>
+            </div>
+
+            <!-- Error -->
+            {% if error %}
+            <div class="malaria-error">
+                <i class="fas fa-circle-exclamation"></i>
+                <strong>Error:</strong>
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <!-- Upload Form -->
+            <form method="POST" enctype="multipart/form-data" id="malariaForm">
+                <div class="malaria-upload-area">
+                    <div class="malaria-upload-icon"><i class="fas fa-cloud-arrow-up"></i></div>
+                    <h3> Choose a Blood Cell Image</h3>
+                    <p> Supported formats: JPG, JPEG, PNG</p>
+                    <input name="file" id="malaria_image" class="malaria-file-input" accept=".jpg,.jpeg,.png" required type="file" >
+                </div>
+
+                <!-- Image Preview -->
+                <div class="malaria-preview-container" id="malaria-preview-container">
+                    <span class="malaria-preview-label"> Image Preview</span>
+                    <img id="malaria-preview" class="malaria-preview-image" alt="Selected malaria blood cell image">
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="malaria-submit-btn" id="malariaDetectBtn">
+                    <i class="fas fa-microscope"></i> Analyze Blood Cell
+                </button>
+            </form>
+
+            <!-- Small information -->
+            <div class="malaria-disclaimer">
+                <strong> <i class="fas fa-circle-info"></i> Important</strong>
+                <br>
+                This AI system analyzes the uploaded cell image using a trained CNN model. The result is intended for educational and research purposes and is not a medical diagnosis.
+            </div>
+        </div>
+
+        <!-- ============ RIGHT SIDE — RESULT ================ -->
+        <div class="malaria-card malaria-result-card">
+            <div class="malaria-result-header"><h2><i class="fas fa-chart-pie"></i> Analysis Result</h2></div>
+
+            <div class="malaria-result-content">
+
+                {% if show_result and prediction %}
+                <!-- ================= RESULT STATUS ================= -->
+                <div class="malaria-status">
+                    <div class="malaria-status-icon">
+                        {% if prediction == "Parasitized" %}🦠
+                        {% else %}🧬
+                        {% endif %}
+                    </div>
+                    <h3>{{ prediction }}</h3>
+                </div>
+
+                <!-- ================= CONFIDENCE ================= -->
+                <div class="malaria-confidence">
+                    <div class="malaria-confidence-value">{{ "%.2f"|format(confidence) }}%</div>
+                    <span class="malaria-confidence-label"> Prediction Confidence</span>
+                </div>
+
+                <!-- ================= PROGRESS ================= -->
+                <div class="malaria-progress">
+                    <div class="malaria-progress-bar" style="width: {{ confidence|default(0) }}%;" ></div>
+                </div>
+
+                <!-- ================= CLASS SCORES ================= -->
+                <div>
+                    <div class="malaria-probability-row">
+                        <span><i class="fas fa-virus"></i> Parasitized</span>
+                        <strong> {{ "%.2f"|format(probabilities['Parasitized']) }}% </strong>
+                    </div>
+
+                    <div class="malaria-probability-row">
+                        <span> <i class="fas fa-circle-check"></i> Uninfected</span>
+                        <strong> {{ "%.2f"|format(probabilities['Uninfected']) }}%</strong>
+                    </div>
+                </div>
+
+                <!-- ================= UPLOADED IMAGE ================= -->
+                {% if uploaded_image %}
+                <img src="{{ url_for('upload.uploaded_file', filename=uploaded_image) }}" class="malaria-result-image" alt="Uploaded blood cell image">
+                {% endif %}
+
+                <!-- ================= DISCLAIMER ================= -->
+                <div class="malaria-disclaimer">
+                    <strong> <i class="fas fa-triangle-exclamation"></i> Medical Disclaimer</strong>
+                    <br>
+                    This prediction is generated by an AI image classification model and should not be used as a substitute for professional medical diagnosis or laboratory testing.
+                </div>
+
+                {% else %}
+                <!-- ================= EMPTY STATE ================= -->
+                <div class="malaria-empty">
+                    <div class="malaria-empty-icon"> <i class="fas fa-microscope"></i> </div>
+                    <h3> Ready for Analysis </h3>
+                    <p> Upload a blood-cell image and click <strong>Analyze Blood Cell</strong> to run the Malaria CNN mode </p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

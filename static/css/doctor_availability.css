@@ -1,0 +1,487 @@
+/* =========================================================
+   DOCTOR AVAILABILITY PAGE
+   ========================================================= */
+
+.doctor-availability-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 42px 28px 70px;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+   ========================================================= */
+
+.availability-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.page-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.availability-header h1 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+}
+
+.availability-header p {
+    margin: 9px 0 0;
+    color: #64748b;
+    font-size: 15px;
+}
+
+.back-dashboard-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 17px;
+    border: 1px solid #dbe4f0;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.back-dashboard-btn:hover {
+    border-color: #bfdbfe;
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.availability-card {
+    overflow: hidden;
+    margin-bottom: 22px;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
+}
+
+.availability-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px 27px;
+    border-bottom: 1px solid #eef2f7;
+}
+
+.availability-card-header h2 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.availability-card-header p {
+    margin: 6px 0 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.header-icon {
+    width: 43px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 17px;
+}
+
+.availability-count {
+    flex-shrink: 0;
+    padding: 8px 13px;
+    border-radius: 9px;
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.availability-count span {
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.availability-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    padding: 27px;
+}
+
+.form-group {
+    min-width: 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper > i {
+    position: absolute;
+    left: 14px;
+    z-index: 1;
+    color: #94a3b8;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+.input-wrapper input,
+.input-wrapper select {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px 0 40px;
+    border: 1px solid #dbe4f0;
+    border-radius: 10px;
+    outline: none;
+    background: #ffffff;
+    color: #334155;
+    font-family: inherit;
+    font-size: 14px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.input-wrapper input::placeholder {
+    color: #94a3b8;
+}
+
+.input-wrapper input:focus,
+.input-wrapper select:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.10);
+}
+
+.form-submit {
+    display: flex;
+    align-items: flex-end;
+}
+
+.add-availability-btn {
+    width: 100%;
+    height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 750;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.add-availability-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.add-availability-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.availability-message {
+    margin: 0 27px 25px;
+    padding: 12px 15px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.availability-message.success {
+    border: 1px solid #bbf7d0;
+    background: #f0fdf4;
+    color: #15803d;
+}
+
+.availability-message.error {
+    border: 1px solid #fecaca;
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+
+/* =========================================================
+   STATES
+   ========================================================= */
+
+.availability-state {
+    min-height: 250px;
+    padding: 55px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.availability-state h3 {
+    margin: 16px 0 6px;
+    color: #1e293b;
+    font-size: 17px;
+    font-weight: 750;
+}
+
+.availability-state p {
+    max-width: 400px;
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.empty-icon {
+    width: 62px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: #eff6ff;
+    color: #3b82f6;
+    font-size: 24px;
+}
+
+.loading-spinner {
+    width: 37px;
+    height: 37px;
+    border: 3px solid #dbeafe;
+    border-top-color: #2563eb;
+    border-radius: 50%;
+    animation: availabilitySpin 0.8s linear infinite;
+}
+
+@keyframes availabilitySpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   AVAILABILITY LIST
+   ========================================================= */
+
+.availability-list {
+    width: 100%;
+}
+
+.availability-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 27px;
+    border-bottom: 1px solid #eef2f7;
+}
+
+.availability-item:last-child {
+    border-bottom: none;
+}
+
+.availability-item:hover {
+    background: #f8fafc;
+}
+
+.availability-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 0;
+}
+
+.availability-day-icon {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.availability-details h3 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 15px;
+    font-weight: 750;
+}
+
+.availability-details p {
+    margin: 5px 0 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.consultation-badge {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 7px;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.delete-availability-btn {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #fecaca;
+    border-radius: 9px;
+    background: #fef2f2;
+    color: #dc2626;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.delete-availability-btn:hover {
+    border-color: #fca5a5;
+    background: #fee2e2;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 750px) {
+
+    .doctor-availability-page {
+        padding: 30px 18px 55px;
+    }
+
+    .availability-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .availability-header h1 {
+        font-size: 29px;
+    }
+
+    .back-dashboard-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .availability-form {
+        grid-template-columns: 1fr;
+    }
+
+    .form-submit {
+        align-items: stretch;
+    }
+
+    .availability-card-header {
+        align-items: flex-start;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .doctor-availability-page {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .availability-header h1 {
+        font-size: 25px;
+    }
+
+    .availability-card-header,
+    .availability-form {
+        padding: 20px;
+    }
+
+    .availability-item {
+        align-items: flex-start;
+    }
+}
+
+.availability-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: #eff6ff;
+    border: 1px solid #dbeafe;
+    border-radius: 8px;
+    color: #475569;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.availability-info i {
+    color: #2563eb;
+    margin-top: 2px;
+}
+
+.availability-info strong {
+    color: #1d4ed8;
+}

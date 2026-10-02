@@ -1,0 +1,333 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manage Availability | OpenHealth
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/doctor_availability.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="doctor-availability-page">
+
+    <!-- PAGE HEADER -->
+    <div class="availability-header">
+
+        <div>
+            <span class="page-eyebrow">
+                <i class="fas fa-clock"></i>
+                DOCTOR PORTAL
+            </span>
+
+            <h1>
+                Manage Availability
+            </h1>
+
+            <p>
+                Set your consultation days and available hours.
+            </p>
+        </div>
+
+        <a
+            href="{{ url_for('doctor.doctor_dashboard') }}"
+            class="back-dashboard-btn"
+        >
+            <i class="fas fa-arrow-left"></i>
+            Back to Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- ADD AVAILABILITY -->
+    <section class="availability-card">
+
+        <div class="availability-card-header">
+
+            <div>
+                <h2>
+                    Add Availability
+                </h2>
+
+                <p>
+                    Set when patients can book consultations with you.
+                </p>
+                
+                <div class="availability-info">
+                    <i class="fas fa-info-circle"></i>
+
+                    <span>
+                        Patients can book appointments from
+                        <strong>
+                            {{ booking_window_start.strftime('%d %b %Y') }}
+                        </strong>
+                        to
+                        <strong>
+                            {{ booking_window_end.strftime('%d %b %Y') }}
+                        </strong>
+                        based on your selected day and time.
+                    </span>
+                </div>
+            </div>
+
+            <div class="header-icon">
+                <i class="fas fa-calendar-plus"></i>
+            </div>
+
+        </div>
+
+
+        <form
+            id="availabilityForm"
+            class="availability-form"
+        >
+
+            <!-- DAY -->
+            <div class="form-group">
+
+                <label for="dayOfWeek">
+                    Day
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="fas fa-calendar-day"></i>
+
+                    <select
+                        id="dayOfWeek"
+                        name="day_of_week"
+                        required
+                    >
+                        <option value="">
+                            Select day
+                        </option>
+
+                        <option value="Monday">
+                            Monday
+                        </option>
+
+                        <option value="Tuesday">
+                            Tuesday
+                        </option>
+
+                        <option value="Wednesday">
+                            Wednesday
+                        </option>
+
+                        <option value="Thursday">
+                            Thursday
+                        </option>
+
+                        <option value="Friday">
+                            Friday
+                        </option>
+
+                        <option value="Saturday">
+                            Saturday
+                        </option>
+
+                        <option value="Sunday">
+                            Sunday
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- START TIME -->
+            <div class="form-group">
+
+                <label for="startTime">
+                    Start Time
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="fas fa-clock"></i>
+
+                    <input
+                        type="time"
+                        id="startTime"
+                        name="start_time"
+                        step="1800"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- END TIME -->
+            <div class="form-group">
+
+                <label for="endTime">
+                    End Time
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="fas fa-clock"></i>
+
+                    <input
+                        type="time"
+                        id="endTime"
+                        name="end_time"
+                        step="1800"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- CONSULTATION TYPE -->
+            <div class="form-group">
+
+                <label for="consultationType">
+                    Consultation Type
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="fas fa-stethoscope"></i>
+
+                    <select
+                        id="consultationType"
+                        name="consultation_type"
+                    >
+
+                        <option value="Both">
+                            Both
+                        </option>
+
+                        <option value="In-person">
+                            In-person
+                        </option>
+
+                        <option value="Video Consultation">
+                            Video Consultation
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+            <div class="form-submit">
+
+                <button
+                    type="submit"
+                    class="add-availability-btn"
+                    id="addAvailabilityBtn"
+                >
+                    <i class="fas fa-plus"></i>
+                    Add Availability
+                </button>
+
+            </div>
+
+        </form>
+
+
+        <!-- MESSAGE -->
+        <div
+            id="availabilityMessage"
+            class="availability-message"
+            style="display: none;"
+        ></div>
+
+    </section>
+
+
+    <!-- CURRENT AVAILABILITY -->
+    <section class="availability-card">
+
+        <div class="availability-card-header">
+
+            <div>
+                <h2>
+                    Your Availability
+                </h2>
+
+                <p>
+                    Your current consultation schedule.
+                </p>
+            </div>
+
+            <div class="availability-count">
+                <span id="availabilityCount">
+                    0
+                </span>
+                Slots
+            </div>
+
+        </div>
+
+
+        <!-- LOADING -->
+        <div
+            id="availabilityLoading"
+            class="availability-state"
+        >
+
+            <div class="loading-spinner"></div>
+
+            <h3>
+                Loading availability...
+            </h3>
+
+        </div>
+
+
+        <!-- EMPTY -->
+        <div
+            id="availabilityEmpty"
+            class="availability-state"
+            style="display: none;"
+        >
+
+            <div class="empty-icon">
+                <i class="fas fa-calendar-xmark"></i>
+            </div>
+
+            <h3>
+                No availability added
+            </h3>
+
+            <p>
+                Add your consultation days and hours above.
+            </p>
+
+        </div>
+
+
+        <!-- LIST -->
+        <div
+            id="availabilityList"
+            class="availability-list"
+            style="display: none;"
+        ></div>
+
+    </section>
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script src="{{ url_for('static', filename='js/doctor_availability.js') }}"></script>
+
+{% endblock %}

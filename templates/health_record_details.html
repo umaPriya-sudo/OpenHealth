@@ -1,0 +1,283 @@
+{% extends "base.html" %}
+
+{% block title %}
+Prediction Details | OpenHealth
+{% endblock %}
+
+{% block content %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/health_record_details.css') }}"
+>
+
+<div class="health-record-details-page">
+
+    <div class="health-record-details-container">
+
+        <!-- Back -->
+        <a
+            href="/my-health-records"
+            class="back-to-records-btn"
+        >
+            <i class="fas fa-arrow-left"></i>
+            Back to My Health Records
+        </a>
+
+
+        <!-- Header -->
+        <div class="record-details-header">
+
+            <div>
+
+                <span class="record-details-label">
+                    HEALTH RECORD
+                </span>
+
+                <h1>
+                    Prediction Details
+                </h1>
+
+                <p>
+                    Detailed information about your AI-based
+                    health prediction.
+                </p>
+
+            </div>
+
+            <div class="record-details-header-icon">
+                <i class="fas fa-file-medical"></i>
+            </div>
+
+        </div>
+
+
+        <!-- Main Result Card -->
+        <section class="prediction-result-card">
+
+            <div class="prediction-result-top">
+
+                <div class="prediction-disease-icon">
+                    <i class="fas fa-stethoscope"></i>
+                </div>
+
+                <div>
+
+                    <span class="prediction-type">
+                        {{ record.prediction_type }}
+                    </span>
+
+                    <h2>
+                        {{ record.disease_name }}
+                    </h2>
+
+                    <span class="record-id">
+                        Record ID:
+                        {{ record.record_id }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="prediction-result-summary">
+
+                                <div class="result-summary-item">
+                                
+                    <span>
+                        Prediction Result
+                    </span>
+                
+                    <strong>
+                    
+                        {% if record.prediction_result is mapping %}
+                    
+                            Prediction:
+                            {{ record.prediction_result.get("prediction", "—") }}
+                    
+                            <br>
+                    
+                            Risk Level:
+                            {{ record.prediction_result.get("risk_level", "—") }}
+                    
+                        {% else %}
+                    
+                            {{ record.prediction_result or "—" }}
+                    
+                        {% endif %}
+                    
+                    </strong>
+                
+                </div>
+
+
+                <div class="result-summary-item">
+
+                    <span>
+                        Confidence
+                    </span>
+
+                    <strong>
+                        {% if record.confidence is not none %}
+                            {{ record.confidence }}%
+                        {% else %}
+                            Not available
+                        {% endif %}
+                    </strong>
+
+                </div>
+
+
+                <div class="result-summary-item">
+
+                    <span>
+                        Date
+                    </span>
+
+                    <strong>
+                        {{ record.created_at.strftime(
+                            "%d %b %Y"
+                        ) if record.created_at else "—" }}
+                    </strong>
+
+                </div>
+
+
+                <div class="result-summary-item">
+
+                    <span>
+                        Time
+                    </span>
+
+                    <strong>
+                        {{ record.created_at.strftime(
+                            "%I:%M %p"
+                        ) if record.created_at else "—" }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Input Information -->
+        <section class="record-information-card">
+
+            <div class="record-section-header">
+
+                <div class="record-section-icon">
+                    <i class="fas fa-list-check"></i>
+                </div>
+
+                <div>
+
+                    <h2>
+                        Input Information
+                    </h2>
+
+                    <p>
+                        Information used during this prediction.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="inputDataContainer"
+                class="record-data-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- Result Details -->
+        <section class="record-information-card">
+
+            <div class="record-section-header">
+
+                <div class="record-section-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+
+                <div>
+
+                    <h2>
+                        Prediction Details
+                    </h2>
+
+                    <p>
+                        Additional information returned by
+                        the prediction model.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="resultDetailsContainer"
+                class="record-data-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- Information Note -->
+        <div class="health-record-details-note">
+
+            <i class="fas fa-circle-info"></i>
+
+            <p>
+                AI prediction results are provided for
+                informational purposes only and should not
+                replace professional medical advice,
+                diagnosis or treatment.
+            </p>
+
+        </div>
+
+
+        <!-- Actions -->
+        <div class="health-record-details-actions">
+
+            <a
+                href="/my-health-records"
+                class="secondary-record-action"
+            >
+                <i class="fas fa-arrow-left"></i>
+                My Health Records
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script
+    id="recordInputData"
+    type="application/json"
+>
+{{ record.input_data | tojson }}
+</script>
+
+<script
+    id="recordResultDetails"
+    type="application/json"
+>
+{{ record.result_details | tojson }}
+</script>
+
+<script src="{{ url_for(
+    'static',
+    filename='js/health_record_details.js'
+) }}"></script>
+
+{% endblock %}

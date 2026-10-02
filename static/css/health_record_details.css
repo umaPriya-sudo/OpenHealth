@@ -1,0 +1,383 @@
+/* =========================================================
+   OpenHealth - Health Record Details
+   ========================================================= */
+
+.health-record-details-page {
+    min-height: 100vh;
+    padding: 35px 20px 70px;
+    background: #f7faff;
+}
+
+.health-record-details-container {
+    width: min(1050px, 100%);
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   Back Button
+   ========================================================= */
+
+.back-to-records-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    color: #475569;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 650;
+    transition: 0.2s ease;
+}
+
+.back-to-records-btn:hover {
+    color: #2563eb;
+}
+
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+.record-details-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    margin-bottom: 27px;
+}
+
+.record-details-label {
+    display: inline-block;
+    color: #2563eb;
+    font-size: 11px;
+    font-weight: 750;
+    letter-spacing: 1.2px;
+}
+
+.record-details-header h1 {
+    margin: 7px 0 7px;
+    color: #0f172a;
+    font-size: 31px;
+    font-weight: 800;
+}
+
+.record-details-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.record-details-header-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 17px;
+    color: #2563eb;
+    background: #eff6ff;
+    font-size: 24px;
+}
+
+
+/* =========================================================
+   Main Prediction Result
+   ========================================================= */
+
+.prediction-result-card {
+    padding: 25px;
+    margin-bottom: 18px;
+    background: #ffffff;
+    border: 1px solid #dbeafe;
+    border-radius: 18px;
+    box-shadow: 0 6px 22px rgba(15, 23, 42, 0.045);
+}
+
+.prediction-result-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.prediction-disease-icon {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 15px;
+    color: #2563eb;
+    background: #eff6ff;
+    font-size: 21px;
+}
+
+.prediction-type {
+    display: block;
+    margin-bottom: 4px;
+    color: #64748b;
+    font-size: 10px;
+    font-weight: 650;
+}
+
+.prediction-result-top h2 {
+    margin: 0 0 5px;
+    color: #0f172a;
+    font-size: 22px;
+    font-weight: 750;
+}
+
+.record-id {
+    color: #94a3b8;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   Result Summary
+   ========================================================= */
+
+.prediction-result-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding-top: 21px;
+}
+
+.result-summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 13px;
+    border-radius: 11px;
+    background: #f8fafc;
+}
+
+.result-summary-item span {
+    color: #94a3b8;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.result-summary-item strong {
+    color: #0f172a;
+    font-size: 13px;
+    font-weight: 700;
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   Information Cards
+   ========================================================= */
+
+.record-information-card {
+    padding: 24px;
+    margin-bottom: 18px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(15, 23, 42, 0.04);
+}
+
+.record-section-header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 20px;
+}
+
+.record-section-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 11px;
+    color: #2563eb;
+    background: #eff6ff;
+    font-size: 16px;
+}
+
+.record-section-header h2 {
+    margin: 0 0 4px;
+    color: #0f172a;
+    font-size: 17px;
+    font-weight: 750;
+}
+
+.record-section-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   Dynamic Data Grid
+   ========================================================= */
+
+.record-data-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 11px;
+}
+
+.record-data-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    min-height: 48px;
+    padding: 10px 13px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+.record-data-label {
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.record-data-value {
+    color: #0f172a;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: right;
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   Information Note
+   ========================================================= */
+
+.health-record-details-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 14px 16px;
+    border: 1px solid #dbeafe;
+    border-radius: 12px;
+    background: #eff6ff;
+}
+
+.health-record-details-note > i {
+    margin-top: 2px;
+    color: #2563eb;
+}
+
+.health-record-details-note p {
+    margin: 0;
+    color: #475569;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   Actions
+   ========================================================= */
+
+.health-record-details-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.secondary-record-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 0 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    color: #475569;
+    background: #ffffff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 650;
+    transition: 0.2s ease;
+}
+
+.secondary-record-action:hover {
+    color: #2563eb;
+    border-color: #bfdbfe;
+    background: #eff6ff;
+}
+
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .prediction-result-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .record-data-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .health-record-details-page {
+        padding: 28px 15px 50px;
+    }
+
+    .record-details-header h1 {
+        font-size: 27px;
+    }
+
+    .record-details-header-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .prediction-result-card,
+    .record-information-card {
+        padding: 20px;
+    }
+
+    .prediction-result-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .prediction-result-top {
+        align-items: flex-start;
+    }
+
+}
+
+
+@media (max-width: 430px) {
+
+    .record-details-header-icon {
+        display: none;
+    }
+
+    .health-record-details-actions {
+        justify-content: stretch;
+    }
+
+    .secondary-record-action {
+        width: 100%;
+        justify-content: center;
+    }
+
+}

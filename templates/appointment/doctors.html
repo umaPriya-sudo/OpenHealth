@@ -1,0 +1,298 @@
+{% extends "base.html" %}
+
+{% block title %}Find a Doctor | OpenHealth{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/doctors.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="doctors-page">
+
+    <!-- Page Header -->
+    <section class="doctors-header">
+
+        <div class="doctors-header-content">
+
+            <a
+                href="/doctor-appointment"
+                class="back-to-appointment"
+            >
+                <i class="fas fa-arrow-left"></i>
+                Doctor Appointment
+            </a>
+
+            <span class="doctors-eyebrow">
+                FIND YOUR DOCTOR
+            </span>
+
+            <h1>
+                {{ specialty }}
+            </h1>
+
+            <p>
+                Explore healthcare professionals specializing
+                in {{ specialty }}.
+            </p>
+
+        </div>
+
+        <div class="header-icon">
+            <i class="fas fa-user-doctor"></i>
+        </div>
+
+    </section>
+
+
+    <!-- Search & Filter -->
+    <section class="doctor-controls">
+
+        <div class="doctor-list-search">
+
+            <i class="fas fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="doctorListSearch"
+                placeholder="Search doctor by name..."
+            >
+
+        </div>
+
+        <div class="doctor-count">
+            <i class="fas fa-user-doctor"></i>
+
+            <span>
+                {{ doctors|length }}
+                {% if doctors|length == 1 %}
+                    Doctor
+                {% else %}
+                    Doctors
+                {% endif %}
+            </span>
+        </div>
+
+    </section>
+
+
+    <!-- Doctor Cards -->
+    <section class="doctor-list-section">
+
+        {% if doctors %}
+
+            <div class="doctor-grid" id="doctorGrid">
+
+                {% for doctor in doctors %}
+
+                <article
+                    class="doctor-card"
+                    data-doctor-name="{{ doctor.name|lower }}"
+                >
+
+                    <!-- Doctor Image -->
+                    <div class="doctor-card-top">
+
+                        <div class="doctor-avatar">
+
+                            {% if doctor.image %}
+                                <img
+                                    src="{{ url_for(
+                                        'static',
+                                        filename='images/' + doctor.image
+                                    ) }}"
+                                    alt="{{ doctor.name }}"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                >
+
+                                <div class="doctor-avatar-fallback">
+                                    <i class="fas fa-user-doctor"></i>
+                                </div>
+                            {% else %}
+                                <div class="doctor-avatar-fallback visible">
+                                    <i class="fas fa-user-doctor"></i>
+                                </div>
+                            {% endif %}
+
+                        </div>
+
+                        <span class="availability-badge">
+                            <span></span>
+                            Available
+                        </span>
+
+                    </div>
+
+
+                    <!-- Doctor Information -->
+                    <div class="doctor-card-body">
+
+                        <h2>
+                            {{ doctor.name }}
+                        </h2>
+
+                        <p class="doctor-specialty">
+                            {{ doctor.specialty }}
+                        </p>
+
+                        <div class="doctor-rating">
+
+                            <span class="rating-stars">
+                                <i class="fas fa-star"></i>
+                            </span>
+
+                            <strong>
+                                {{ doctor.rating }}
+                            </strong>
+
+                            <span>
+                                Professional rating
+                            </span>
+
+                        </div>
+
+
+                        <div class="doctor-details">
+
+                            <div class="doctor-detail">
+
+                                <i class="fas fa-briefcase"></i>
+
+                                <span>
+                                    {{ doctor.experience }} experience
+                                </span>
+
+                            </div>
+
+
+                            <div class="doctor-detail">
+
+                                <i class="fas fa-graduation-cap"></i>
+
+                                <span>
+                                    {{ doctor.qualification }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="doctor-detail">
+
+                                <i class="fas fa-hospital"></i>
+
+                                <span>
+                                    {{ doctor.clinic }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="doctor-detail">
+
+                                <i class="fas fa-location-dot"></i>
+
+                                <span>
+                                    {{ doctor.location }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="consultation-types">
+
+                            {% for type in doctor.consultation %}
+
+                                <span>
+                                    {% if type == "Online" %}
+                                        <i class="fas fa-video"></i>
+                                    {% else %}
+                                        <i class="fas fa-hospital-user"></i>
+                                    {% endif %}
+
+                                    {{ type }}
+                                </span>
+
+                            {% endfor %}
+
+                        </div>
+
+
+                        <a
+                            href="/doctor-appointment/doctor/{{ doctor.id }}"
+                            class="view-doctor-btn"
+                        >
+                            View Profile
+
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- No Search Results -->
+            <div
+                class="no-doctors-search"
+                id="noDoctorsSearch"
+                style="display: none;"
+            >
+
+                <div class="no-doctors-icon">
+                    <i class="fas fa-user-doctor"></i>
+                </div>
+
+                <h3>No doctors found</h3>
+
+                <p>
+                    Try searching with a different doctor name.
+                </p>
+
+            </div>
+
+        {% else %}
+
+            <!-- No Doctors -->
+            <div class="no-doctors">
+
+                <div class="no-doctors-icon">
+                    <i class="fas fa-user-doctor"></i>
+                </div>
+
+                <h2>
+                    No Doctors Available
+                </h2>
+
+                <p>
+                    We currently don't have doctors listed
+                    for this specialty.
+                </p>
+
+                <a
+                    href="/doctor-appointment"
+                    class="back-home-btn"
+                >
+                    <i class="fas fa-arrow-left"></i>
+                    Explore Specialties
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/doctors.js') }}"></script>
+{% endblock %}

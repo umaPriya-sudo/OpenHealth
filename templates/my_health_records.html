@@ -1,0 +1,353 @@
+{% extends "base.html" %}
+
+{% block title %}
+My Health Records | OpenHealth
+{% endblock %}
+
+{% block content %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/my_health_records.css') }}"
+>
+
+<div class="health-records-page">
+
+    <div class="health-records-container">
+
+        <!-- Page Header -->
+        <div class="health-records-header">
+
+            <div>
+                <span class="health-records-label">
+                    MY HEALTH RECORDS
+                </span>
+
+                <h1>
+                    Your Health Records
+                </h1>
+
+                <p>
+                    View your health history, AI predictions and
+                    healthcare activity in one place.
+                </p>
+            </div>
+
+            <div class="health-records-header-icon">
+                <i class="fas fa-heart-pulse"></i>
+            </div>
+
+        </div>
+
+
+        <!-- Summary Cards -->
+        <div class="health-summary-grid">
+
+            <!-- AI Predictions -->
+            <div class="health-summary-card">
+
+                <div class="summary-icon prediction-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+
+                <div class="summary-content">
+
+                    <span>
+                        AI Predictions
+                    </span>
+
+                    <strong>
+                        {{ records|length }}
+                    </strong>
+
+                    <p>
+                        Saved prediction records
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Appointments -->
+            <div class="health-summary-card">
+
+                <div class="summary-icon appointment-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+
+                <div class="summary-content">
+
+                    <span>
+                        Appointments
+                    </span>
+
+                    <strong>
+                        —
+                    </strong>
+
+                    <p>
+                        View your appointments
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Medicines -->
+            <div class="health-summary-card">
+
+                <div class="summary-icon medicine-icon">
+                    <i class="fas fa-pills"></i>
+                </div>
+
+                <div class="summary-content">
+
+                    <span>
+                        Medicines
+                    </span>
+
+                    <strong>
+                        —
+                    </strong>
+
+                    <p>
+                        Coming later
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Medical Reports -->
+            <div class="health-summary-card">
+
+                <div class="summary-icon report-icon">
+                    <i class="fas fa-file-medical"></i>
+                </div>
+
+                <div class="summary-content">
+
+                    <span>
+                        Medical Reports
+                    </span>
+
+                    <strong>
+                        —
+                    </strong>
+
+                    <p>
+                        Coming later
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Prediction History -->
+        <section class="prediction-history-card">
+
+            <div class="prediction-history-header">
+
+                <div>
+
+                    <span class="section-label">
+                        AI HEALTH HISTORY
+                    </span>
+
+                    <h2>
+                        Recent Prediction History
+                    </h2>
+
+                    <p>
+                        Your latest AI-based health predictions.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            {% if records %}
+
+            <div class="prediction-list">
+
+                {% for record in records %}
+
+                <article class="prediction-record">
+
+                    <!-- Disease Icon -->
+                    <div class="prediction-record-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+
+
+                    <!-- Main Information -->
+                    <div class="prediction-record-info">
+
+                        <h3>
+                            {{ record.disease_name }}
+                        </h3>
+
+                        <div class="prediction-meta">
+
+                            <span>
+                                <i class="fas fa-calendar"></i>
+
+                                {{ record.created_at.strftime(
+                                    "%d %b %Y"
+                                ) if record.created_at else "—" }}
+                            </span>
+
+                            <span>
+                                <i class="fas fa-clock"></i>
+
+                                {{ record.created_at.strftime(
+                                    "%I:%M %p"
+                                ) if record.created_at else "—" }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Result -->
+                    <div class="prediction-result">
+
+                        <span class="result-label">
+                            Result
+                        </span>
+
+                        <strong>
+
+                            {% if record.prediction_result is mapping %}
+                                                
+                                {{ record.prediction_result.get("prediction", "—") }}
+                                                
+                            {% else %}
+                                                
+                                {{ record.prediction_result or "—" }}
+                                                
+                            {% endif %}
+                                                
+                        </strong>
+                    </div>
+
+
+                    <!-- Confidence -->
+                    <div class="prediction-confidence">
+
+                        <span class="confidence-label">
+                            Confidence
+                        </span>
+
+                        {% if record.confidence is not none %}
+
+                            <strong>
+                                {{ record.confidence }}%
+                            </strong>
+
+                        {% else %}
+
+                            <strong>
+                                —
+                            </strong>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- View -->
+                    <a
+                        href="/my-health-records/{{ record.record_id }}"
+                        class="view-record-btn"
+                    >
+                        View Details
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+
+                    <form
+                        action="/my-health-records/delete/{{ record.record_id }}"
+                        method="POST"
+                        class="delete-record-form"
+                        onsubmit="return confirm('Are you sure you want to delete this health record?');"
+                    >
+                        <button
+                            type="submit"
+                            class="delete-record-btn"
+                        >
+                            <i class="fas fa-trash"></i>
+                            Delete
+                        </button>
+                    </form>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <!-- Empty State -->
+            <div class="prediction-empty-state">
+
+                <div class="empty-state-icon">
+                    <i class="fas fa-file-medical"></i>
+                </div>
+
+                <h3>
+                    No Health Records Yet
+                </h3>
+
+                <p>
+                    Your completed AI predictions will appear
+                    here automatically.
+                </p>
+
+                <a
+                    href="/symptom-checker"
+                    class="start-prediction-btn"
+                >
+                    <i class="fas fa-stethoscope"></i>
+                    Start a Prediction
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- Information Note -->
+        <div class="health-records-note">
+
+            <i class="fas fa-circle-info"></i>
+
+            <p>
+                Health records are linked to your OpenHealth account.
+                AI prediction results are for informational purposes
+                and should not replace professional medical advice.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="{{ url_for(
+    'static',
+    filename='js/my_health_records.js'
+) }}"></script>
+
+{% endblock %}

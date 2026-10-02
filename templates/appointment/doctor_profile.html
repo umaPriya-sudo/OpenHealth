@@ -1,0 +1,385 @@
+{% extends "base.html" %}
+
+{% block title %}{{ doctor.name }} | OpenHealth{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/doctor_profile.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="doctor-profile-page">
+
+    <!-- Breadcrumb -->
+    <div class="profile-breadcrumb">
+        <a href="/doctor-appointment">
+            Home
+        </a>
+
+        <i class="fas fa-chevron-right"></i>
+
+        <a href="/doctor-appointment/doctors?specialty={{ doctor.specialty }}">
+            {{ doctor.specialty }}
+        </a>
+
+        <i class="fas fa-chevron-right"></i>
+
+        <span>{{ doctor.name }}</span>
+    </div>
+
+
+    <!-- Main Profile Area -->
+    <section class="doctor-profile-layout">
+
+        <!-- Doctor Information -->
+        <div class="doctor-profile-card">
+
+            <div class="profile-image-area">
+
+                <div class="profile-doctor-avatar">
+
+                    {% if doctor.image %}
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='images/' + doctor.image
+                            ) }}"
+                            alt="{{ doctor.name }}"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        >
+
+                        <div class="profile-avatar-fallback">
+                            <i class="fas fa-user-doctor"></i>
+                        </div>
+
+                    {% else %}
+
+                        <div class="profile-avatar-fallback visible">
+                            <i class="fas fa-user-doctor"></i>
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <div class="doctor-profile-info">
+
+                <span class="profile-specialty">
+                    {{ doctor.specialty }}
+                </span>
+
+                <h1>
+                    {{ doctor.name }}
+                </h1>
+
+                <div class="profile-rating">
+
+                    <i class="fas fa-star"></i>
+
+                    <strong>
+                        {{ doctor.rating }}
+                    </strong>
+
+                    <span>
+                        Professional rating
+                    </span>
+
+                </div>
+
+
+                <div class="profile-details">
+
+                    <div class="profile-detail-item">
+
+                        <i class="fas fa-briefcase"></i>
+
+                        <div>
+                            <strong>Experience</strong>
+                            <span>{{ doctor.experience }}</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-detail-item">
+
+                        <i class="fas fa-hospital"></i>
+
+                        <div>
+                            <strong>Clinic</strong>
+                            <span>{{ doctor.clinic }}</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-detail-item">
+
+                        <i class="fas fa-location-dot"></i>
+
+                        <div>
+                            <strong>Location</strong>
+                            <span>{{ doctor.location }}</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-detail-item">
+
+                        <i class="fas fa-graduation-cap"></i>
+
+                        <div>
+                            <strong>Qualification</strong>
+                            <span>{{ doctor.qualification }}</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-consultation">
+
+                    <span class="consultation-label">
+                        Consultation
+                    </span>
+
+                    <div class="consultation-options">
+
+                        {% for type in doctor.consultation %}
+
+                            <span>
+
+                                {% if type == "Online" %}
+                                    <i class="fas fa-video"></i>
+                                {% else %}
+                                    <i class="fas fa-hospital-user"></i>
+                                {% endif %}
+
+                                {{ type }}
+
+                            </span>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+
+                <div class="doctor-about">
+
+                    <h3>About Doctor</h3>
+
+                    <p>
+                        {{ doctor.name }} is a {{ doctor.specialty|lower }}
+                        with {{ doctor.experience|lower }} of professional
+                        experience. The doctor provides healthcare
+                        consultation through OpenHealth.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="read-more-profile"
+                    >
+                        Read More
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Booking Section -->
+        <div class="booking-card">
+
+            <div class="booking-header">
+
+                <span class="booking-eyebrow">
+                    BOOK AN APPOINTMENT
+                </span>
+
+                <h2>
+                    Select a Date & Time
+                </h2>
+
+                <p>
+                    Choose a convenient appointment slot.
+                </p>
+
+            </div>
+
+
+            <!-- Date Selection -->
+            <div class="booking-section">
+
+                <div class="booking-section-title">
+
+                    <h3>
+                        Select Date
+                    </h3>
+
+                    <div class="date-navigation">
+
+                        <button
+                            type="button"
+                            class="date-nav-btn"
+                            aria-label="Previous dates"
+                        >
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="date-nav-btn"
+                            aria-label="Next dates"
+                        >
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="date-grid">
+
+                    {% for item in available_dates %}
+
+                    <button
+                        type="button"
+                        class="date-card {% if loop.first %}active{% endif %}"
+                        data-date="{{ item.date }}"
+                    >
+                        <span>{{ item.day }}</span>
+
+                        <strong>
+                            {{ item.day_number }}
+                        </strong>
+                    
+                        <small>
+                            {{ item.month }}
+                        </small>
+                    </button>
+                
+                    {% endfor %}
+                
+                </div>
+
+            </div>
+
+            <!-- TIME SELECTION -->
+            <div class="time-grid">
+                {% for time in available_time_slots %}
+                <button
+                    type="button"
+                    class="time-slot {% if loop.first %}active{% endif %}"
+                    data-time="{{ time }}"
+                >
+                    {{ time }}
+                </button>
+                {% endfor %}        
+            </div>
+
+
+            <!-- Consultation Type -->
+            <div class="booking-section">
+            
+                <h3 class="booking-subtitle">
+                    Consultation Type
+                </h3>
+            
+                <div class="consultation-selection">
+
+                    {% if "In-person" in available_consultation_types %}
+                                
+                    <label class="consultation-choice active">
+                    
+                        <input
+                            type="radio"
+                            name="consultation_type"
+                            value="In-person"
+                            checked
+                        >
+                    
+                        <span class="radio-circle"></span>
+                    
+                        <span class="consultation-choice-icon">
+                            <i class="fas fa-hospital-user"></i>
+                        </span>
+                    
+                        <span class="consultation-choice-text">
+                            <strong>In-person</strong>
+                            <small>Visit at clinic</small>
+                        </span>
+                    
+                    </label>
+                
+                    {% endif %}
+                
+                
+                    {% if "Online" in available_consultation_types %}
+                
+                    <label class="consultation-choice">
+                    
+                        <input
+                            type="radio"
+                            name="consultation_type"
+                            value="Online"
+                            {% if "In-person" not in available_consultation_types %}
+                                checked
+                            {% endif %}
+                        >
+                    
+                        <span class="radio-circle"></span>
+                    
+                        <span class="consultation-choice-icon">
+                            <i class="fas fa-video"></i>
+                        </span>
+                    
+                        <span class="consultation-choice-text">
+                            <strong>Online</strong>
+                            <small>Video consultation</small>
+                        </span>
+                    
+                    </label>
+                
+                    {% endif %}
+                
+                </div>
+            
+            </div>
+
+
+            <!-- Continue -->
+            <button
+                type="button"
+                class="continue-booking-btn"
+                id="continueBookingBtn"
+                data-doctor-id="{{ doctor.id }}"
+            >
+                Continue
+
+                <i class="fas fa-arrow-right"></i>
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/doctor_profile.js') }}"></script>
+{% endblock %}

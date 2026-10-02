@@ -1,0 +1,560 @@
+{% extends "base.html" %}
+
+{% block title %}
+OpenHealth - Medicine Information
+{% endblock %}
+
+{% block extra_css %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/medicine_info.css') }}"
+>
+
+<!-- Modern page font -->
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+<link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+{% endblock %}
+
+
+{% block content %}
+
+<section class="medicine-info-page">
+
+    <!-- =====================================================
+         BACK BUTTON
+         ===================================================== -->
+
+    <div class="medicine-info-container">
+
+        <a
+            href="javascript:history.back()"
+            class="medicine-back-btn"
+        >
+            <i class="fas fa-arrow-left"></i>
+            <span>Back</span>
+        </a>
+
+
+        {% if medicine and medicine.success %}
+
+        <!-- =================================================
+             MEDICINE HERO
+             ================================================= -->
+
+        <div class="medicine-hero">
+
+            <!-- Decorative background -->
+            <div class="hero-decoration hero-decoration-one"></div>
+            <div class="hero-decoration hero-decoration-two"></div>
+
+            <div class="hero-wave"></div>
+
+
+            <!-- Medicine icon -->
+            <div class="medicine-hero-icon">
+
+                <div class="hero-pill pill-one"></div>
+                <div class="hero-pill pill-two"></div>
+
+            </div>
+
+
+            <!-- Medicine title -->
+            <div class="medicine-hero-content">
+
+                <span class="medicine-eyebrow">
+                    MEDICINE INFORMATION
+                </span>
+
+                <h1 class="medicine-title">
+                    {{ medicine.medicine_name  or "Medicine" }}
+                </h1>
+
+                {% if medicine.active_ingredient %}
+                <p class="medicine-active">
+                    Active Ingredient:
+                    <strong>
+                        {{ medicine.active_ingredient }}
+                    </strong>
+                </p>
+                {% endif %}
+
+
+                <!-- Tags -->
+                <div class="medicine-tags">
+
+                    <span class="medicine-tag tag-blue">
+                        <i class="fas fa-capsules"></i>
+                        Medicine Information
+                    </span>
+
+                    <span class="medicine-tag tag-purple">
+                        <i class="fas fa-database"></i>
+                        RxNorm
+                    </span>
+
+                    <span class="medicine-tag tag-teal">
+                        <i class="fas fa-shield-alt"></i>
+                        DailyMed Label
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Decorative capsule -->
+            <div class="hero-large-capsule">
+                <span></span>
+            </div>
+
+            <div class="hero-medical-plus">
+                <i class="fas fa-plus"></i>
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             INFORMATION CARDS
+             ================================================= -->
+
+        <div class="medicine-cards-grid">
+
+
+            <!-- ================= USES ================= -->
+
+            <article class="medicine-card card-uses">
+
+                <div class="medicine-card-top">
+
+                    <span class="medicine-number">
+                        01
+                    </span>
+
+                    <div class="medicine-card-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+
+                    <h2>
+                        Uses
+                    </h2>
+
+                </div>
+
+
+                <div class="medicine-card-content">
+
+                    <div class="expandable-content">
+
+                        {{ medicine.uses or
+                           "Information not available." }}
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="medicine-read-more"
+                    >
+                        Read More
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="card-decoration">
+                    <i class="fas fa-file-medical"></i>
+                </div>
+
+            </article>
+
+
+
+            <!-- ================= DOSAGE ================= -->
+
+            <article class="medicine-card card-dosage">
+
+                <div class="medicine-card-top">
+
+                    <span class="medicine-number">
+                        02
+                    </span>
+
+                    <div class="medicine-card-icon">
+                        <i class="fas fa-capsules"></i>
+                    </div>
+
+                    <h2>
+                        Dosage & Administration
+                    </h2>
+
+                </div>
+
+
+                <div class="medicine-card-content">
+
+                    <div class="expandable-content">
+
+                        {{ medicine.dosage or
+                           "Information not available." }}
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="medicine-read-more"
+                    >
+                        Read More
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="card-decoration">
+                    <i class="fas fa-prescription-bottle-alt"></i>
+                </div>
+
+            </article>
+
+
+
+            <!-- ================= WARNINGS ================= -->
+
+            <article class="medicine-card card-warning">
+
+                <div class="medicine-card-top">
+
+                    <span class="medicine-number">
+                        03
+                    </span>
+
+                    <div class="medicine-card-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+
+                    <h2>
+                        Warnings
+                    </h2>
+
+                </div>
+
+
+                <div class="medicine-card-content">
+
+                    <div class="expandable-content">
+
+                        {{ medicine.warnings or
+                           "Information not available." }}
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="medicine-read-more"
+                    >
+                        Read More
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="card-decoration">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+
+            </article>
+
+
+
+            <!-- ================= CONTRAINDICATIONS ================= -->
+
+            <article class="medicine-card card-contraindications">
+
+                <div class="medicine-card-top">
+
+                    <span class="medicine-number">
+                        04
+                    </span>
+
+                    <div class="medicine-card-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+
+                    <h2>
+                        Contraindications
+                    </h2>
+
+                </div>
+
+
+                <div class="medicine-card-content">
+
+                    <div class="expandable-content">
+
+                        {{ medicine.contraindications or
+                           "Information not available." }}
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="medicine-read-more"
+                    >
+                        Read More
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="card-decoration">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+
+            </article>
+
+
+
+            <!-- ================= SIDE EFFECTS ================= -->
+
+            <article class="medicine-card card-side-effects">
+
+                <div class="medicine-card-top">
+
+                    <span class="medicine-number">
+                        05
+                    </span>
+
+                    <div class="medicine-card-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+
+                    <h2>
+                        Side Effects
+                    </h2>
+
+                </div>
+
+
+                <div class="medicine-card-content">
+
+                    <div class="expandable-content">
+
+                        {{ medicine.side_effects or
+                           "Information not available." }}
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="medicine-read-more"
+                    >
+                        Read More
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="card-decoration">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+
+            </article>
+
+
+
+            <!-- ================= STORAGE ================= -->
+
+            <article class="medicine-card card-storage">
+
+                <div class="medicine-card-top">
+
+                    <span class="medicine-number">
+                        06
+                    </span>
+
+                    <div class="medicine-card-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+
+                    <h2>
+                        Storage
+                    </h2>
+
+                </div>
+
+
+                <div class="medicine-card-content">
+
+                    <div class="expandable-content">
+
+                        {{ medicine.storage or
+                           "Information not available." }}
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="medicine-read-more"
+                    >
+                        Read More
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="card-decoration">
+                    <i class="fas fa-box"></i>
+                </div>
+
+            </article>
+
+        </div>
+
+
+        <!-- =================================================
+             BOTTOM INFORMATION PANELS
+             ================================================= -->
+
+        <div class="medicine-bottom-grid">
+
+
+            <!-- SOURCE -->
+
+            <div class="medicine-source-panel">
+
+                <div class="bottom-panel-icon source-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+
+                <div>
+
+                    <h3>
+                        Source
+                    </h3>
+
+                    <p>
+                        This information is retrieved from
+                        DailyMed, provided by the U.S.
+                        National Library of Medicine.
+                    </p>
+
+                    <div class="source-meta">
+
+                        <span>
+                            Data Source:
+                            <strong>DailyMed</strong>
+                        </span>
+
+                        <span class="source-divider">
+                            |
+                        </span>
+
+                        <span>
+                            RxNorm:
+                            <strong>
+                                {{ medicine.active_ingredient or
+                                   medicine.name or "N/A" }}
+                            </strong>
+                        </span>
+
+                        <span class="source-divider">
+                            |
+                        </span>
+
+                        <span>
+                            Official Label Source
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- IMPORTANT NOTE -->
+
+            <div class="medicine-note-panel">
+
+                <div class="bottom-panel-icon note-icon">
+                    <i class="fas fa-info"></i>
+                </div>
+
+                <div>
+
+                    <h3>
+                        Important Note
+                    </h3>
+
+                    <p>
+                        This information is provided for
+                        educational purposes only and should
+                        not be used as a substitute for
+                        professional medical advice,
+                        diagnosis, or treatment.
+                        Always consult a qualified healthcare
+                        professional for questions about
+                        your medicines.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {% else %}
+
+        <!-- =================================================
+             NO RESULT
+             ================================================= -->
+
+        <div class="medicine-no-result">
+
+            <div class="medicine-no-result-icon">
+                <i class="fas fa-pills"></i>
+            </div>
+
+            <h2>
+                Medicine Information Unavailable
+            </h2>
+
+            <p>
+                We could not retrieve information for this
+                medicine. Please check the medicine name
+                and try again.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script
+    src="{{ url_for('static', filename='js/medicine_info.js') }}"
+></script>
+{% endblock %}

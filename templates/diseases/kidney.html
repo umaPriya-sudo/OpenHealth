@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %} OpenHealth - Heart Disease Prediction {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/diseases.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="disease-page kidney-page">
+
+    <h1>🩺 Kidney Disease Detection</h1>
+    <p class="subtitle">AI-powered CT image classification</p>
+
+    <div class="form-container">
+
+        <!-- Error Message -->
+        {% if error %}
+        <div class="result-box" style="border-color: #f5576c;">
+            <h3>⚠️ Error</h3>
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Kidney Image Upload -->
+        <form method="POST" enctype="multipart/form-data" id="kidneyDiseaseForm">
+            <div class="form-group">
+                <label for="kidney_image"> <i class="fas fa-kidney"></i> Upload Kidney CT Image </label>               
+                <input type="file" name="kidney_image" id="kidney_image" accept=".jpg,.jpeg,.png" required >               
+                <small> Upload a clear kidney CT image in JPG, JPEG, or PNG format. </small>               
+            </div>                      
+            <button type="submit" class="submit-btn"> <i class="fas fa-search" id="kidneyDiseasePredictBtn"></i> Analyze Kidney Image </button>
+        </form>  
+
+        <!-- Prediction Result -->
+        {% if show_result and prediction %}      
+        <div class="result-box">  
+
+            <h3>🩺 Kidney CT Analysis Result</h3> <hr>
+            <p><strong>Prediction:</strong> </p>
+            <p> <span class="result-value"> {{ prediction }} </span> </p> <hr>
+            <p> <strong>Model Score:</strong> {{ "%.2f"|format(confidence) }}% </p>    
+
+            <!-- Class Probabilities -->
+            {% if probabilities %}<hr>
+            <p><strong>Class Scores:</strong></p>         
+            <div style=" margin-top: 0.75rem; line-height: 2; ">
+
+                {% for class_name, probability in probabilities.items() %}                   
+                <div style=" display: flex; justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding: 0.25rem 0; ">
+                    <span>                        
+                        {% if class_name == 'Cyst' %} Kidney Cyst                        
+                        {% elif class_name == 'Normal' %} Normal Kidney                        
+                        {% elif class_name == 'Stone' %} Kidney Stone                        
+                        {% elif class_name == 'Tumor' %} Kidney Tumor                        
+                        {% else %} {{ class_name|capitalize }}                        
+                        {% endif %}
+                    </span>
+                    <strong> {{ "%.2f"|format( probability * 100 ) }}% </strong>
+                </div>
+                {% endfor %}
+
+            </div>
+            {% endif %}
+
+            <!-- Disclaimer -->
+            <p style=" font-size: 0.85rem; color: #718096; margin-top: 1rem; line-height: 1.6; ">
+                <i class="fas fa-info-circle"></i> <strong>Disclaimer:</strong>
+                This AI prediction is intended for educational and research purposes only. It is not a medical diagnosis. Please consult a qualified medical professional or radiologist for clinical evaluation.
+            </p>
+
+        </div>
+        {% endif %}
+        
+    </div>
+</section>
+{% endblock %}

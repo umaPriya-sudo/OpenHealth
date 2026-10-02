@@ -1,0 +1,433 @@
+{% extends "base.html" %}
+
+{% block title %}
+OpenHealth - Smarter Healthcare
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/home.css') }}"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =========================================================
+     HERO SECTION
+     ========================================================= -->
+
+<section class="hero">
+
+    <div class="hero-container">
+
+        <!-- LEFT SIDE -->
+
+        <div class="hero-content">
+
+            <span class="hero-badge">
+                <i class="fas fa-heartbeat"></i>
+                AI-Powered Healthcare
+            </span>
+
+
+            <h1>
+                Your Health.
+                <span>Smarter.</span>
+                <br>
+                Simpler.
+            </h1>
+
+
+            <p class="hero-description">
+
+                Explore intelligent healthcare tools, connect
+                with medical professionals, and take a smarter
+                approach to your health — all in one place.
+
+            </p>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="/services"
+                    class="hero-btn hero-btn-primary"
+                >
+                    Explore Services
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+
+                <a
+                    href="/doctor-appointment"
+                    class="hero-btn hero-btn-secondary"
+                >
+                    <i class="fas fa-user-md"></i>
+                    Find a Doctor
+                </a>
+
+            </div>
+
+
+            <div class="hero-trust">
+
+                <div class="trust-item">
+
+                    <i class="fas fa-shield-alt"></i>
+
+                    <span>
+                        Secure
+                    </span>
+
+                </div>
+
+
+                <div class="trust-item">
+
+                    <i class="fas fa-brain"></i>
+
+                    <span>
+                        AI-Powered
+                    </span>
+
+                </div>
+
+
+                <div class="trust-item">
+
+                    <i class="fas fa-user-md"></i>
+
+                    <span>
+                        Doctor Access
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="hero-visual">
+
+            <div class="health-card">
+
+                <div class="health-card-header">
+
+                    <div class="health-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            OpenHealth
+                        </strong>
+
+                        <span>
+                            Smart Healthcare
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="health-card-body">
+
+                    <div class="health-circle">
+
+                        <i class="fas fa-heartbeat"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Healthcare at your fingertips
+                    </h3>
+
+                    <p>
+                        Intelligent tools designed to
+                        help you understand and manage
+                        your health.
+                    </p>
+
+                </div>
+
+
+                <div class="health-features">
+
+                    <div class="mini-feature">
+                        <i class="fas fa-brain"></i>
+                        <span>AI Detection</span>
+                    </div>
+
+                    <div class="mini-feature">
+                        <i class="fas fa-pills"></i>
+                        <span>Medicine</span>
+                    </div>
+
+                    <div class="mini-feature">
+                        <i class="fas fa-stethoscope"></i>
+                        <span>Symptoms</span>
+                    </div>
+
+                    <div class="mini-feature">
+                        <i class="fas fa-user-md"></i>
+                        <span>Doctors</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SERVICES PREVIEW
+     ========================================================= -->
+
+<section class="services-preview">
+
+    <div class="section-heading">
+
+        <span>
+            OUR SERVICES
+        </span>
+
+        <h2>
+            Healthcare tools built for you
+        </h2>
+
+        <p>
+            Explore the intelligent services available
+            through OpenHealth.
+        </p>
+
+    </div>
+
+
+    <div class="service-cards">
+
+        <!-- Disease Detection -->
+
+        <a href="/services" class="service-card">
+
+            <div class="service-icon">
+                <i class="fas fa-brain"></i>
+            </div>
+
+            <h3>
+                Disease Detection
+            </h3>
+
+            <p>
+                AI-powered tools to help assess
+                different health risks.
+            </p>
+
+            <span class="service-link">
+                Explore
+                <i class="fas fa-arrow-right"></i>
+            </span>
+
+        </a>
+
+
+        <!-- Medicine Recognition -->
+
+        <a href="/recognition" class="service-card">
+
+            <div class="service-icon">
+                <i class="fas fa-pills"></i>
+            </div>
+
+            <h3>
+                Medicine Recognition
+            </h3>
+
+            <p>
+                Identify medicines using intelligent
+                image recognition.
+            </p>
+
+            <span class="service-link">
+                Explore
+                <i class="fas fa-arrow-right"></i>
+            </span>
+
+        </a>
+
+
+        <!-- Symptom Checker -->
+
+        <a href="/symptom-checker" class="service-card">
+
+            <div class="service-icon">
+                <i class="fas fa-stethoscope"></i>
+            </div>
+
+            <h3>
+                Symptom Checker
+            </h3>
+
+            <p>
+                Explore symptoms and possible health
+                conditions.
+            </p>
+
+            <span class="service-link">
+                Explore
+                <i class="fas fa-arrow-right"></i>
+            </span>
+
+        </a>
+
+
+        <!-- Doctor Consultation -->
+
+        <a href="/doctor-appointment" class="service-card">
+
+            <div class="service-icon">
+                <i class="fas fa-user-md"></i>
+            </div>
+
+            <h3>
+                Doctor Consultation
+            </h3>
+
+            <p>
+                Find doctors and explore online or
+                in-person consultations.
+            </p>
+
+            <span class="service-link">
+                Find Doctors
+                <i class="fas fa-arrow-right"></i>
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     HOW IT WORKS
+     ========================================================= -->
+
+<section class="how-it-works">
+
+    <div class="section-heading">
+
+        <span>
+            HOW OPENHEALTH WORKS
+        </span>
+
+        <h2>
+            Healthcare made simple
+        </h2>
+
+    </div>
+
+
+    <div class="steps-container">
+
+        <div class="step-card">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <i class="fas fa-compass"></i>
+
+            <h3>
+                Explore
+            </h3>
+
+            <p>
+                Discover the healthcare services
+                available on OpenHealth.
+            </p>
+
+        </div>
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <i class="fas fa-user-lock"></i>
+
+            <h3>
+                Sign In
+            </h3>
+
+            <p>
+                Create an account when a service
+                requires secure access.
+            </p>
+
+        </div>
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <i class="fas fa-heartbeat"></i>
+
+            <h3>
+                Use
+            </h3>
+
+            <p>
+                Access healthcare tools and
+                services based on your account.
+            </p>
+
+        </div>
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                04
+            </div>
+
+            <i class="fas fa-chart-line"></i>
+
+            <h3>
+                Manage
+            </h3>
+
+            <p>
+                Keep track of your healthcare
+                journey through OpenHealth.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

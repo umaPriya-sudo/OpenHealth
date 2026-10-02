@@ -1,0 +1,33 @@
+{
+    "best_model": "SVM",
+    "training_rows": 304,
+    "testing_rows": 42,
+    "number_of_symptoms": 132,
+    "number_of_diseases": 41,
+    "results": {
+        "Decision Tree": {
+            "accuracy": 0.9761904761904762,
+            "precision": 0.9880952380952381,
+            "recall": 0.9761904761904762,
+            "f1_score": 0.9761904761904762
+        },
+        "Random Forest": {
+            "accuracy": 0.9761904761904762,
+            "precision": 0.9880952380952381,
+            "recall": 0.9761904761904762,
+            "f1_score": 0.9761904761904762
+        },
+        "SVM": {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1_score": 1.0
+        },
+        "Naive Bayes": {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1_score": 1.0
+        }
+    }
+}

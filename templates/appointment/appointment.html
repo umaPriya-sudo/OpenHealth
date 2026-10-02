@@ -1,0 +1,244 @@
+{% extends "base.html" %}
+
+{% block title %}Doctor Appointment | OpenHealth{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/appointment.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="appointment-page">
+
+    <!-- Hero Section -->
+    <section class="appointment-hero">
+
+        <div class="hero-content">
+
+            <span class="hero-eyebrow">
+                <i class="fas fa-heart-pulse"></i>
+                OpenHealth Care
+            </span>
+
+            <h1>
+                Find the Right Doctor
+                <span>for Your Healthcare Needs</span>
+            </h1>
+
+            <p>
+                Connect with healthcare professionals and
+                book appointments through OpenHealth.
+            </p>
+
+            <!-- Search -->
+            <div class="doctor-search">
+                <i class="fas fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="doctorSearch"
+                    placeholder="Search doctors or specialties..."
+                >
+
+                <button type="button" id="searchDoctorBtn">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="hero-visual">
+
+            <div class="hero-circle"></div>
+
+            <div class="doctor-illustration">
+                <i class="fas fa-user-doctor"></i>
+            </div>
+
+            <div class="floating-card card-one">
+                <i class="fas fa-calendar-check"></i>
+                <div>
+                    <strong>Easy Booking</strong>
+                    <span>Quick & simple</span>
+                </div>
+            </div>
+
+            <div class="floating-card card-two">
+                <i class="fas fa-shield-heart"></i>
+                <div>
+                    <strong>Secure</strong>
+                    <span>Your data is protected</span>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Popular Specialties -->
+    <section class="specialties-section">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-eyebrow">
+                    EXPLORE
+                </span>
+
+                <h2>Popular Specialties</h2>
+
+                <p>
+                    Choose a specialty to find the right doctor for you.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="view-all-btn"
+                id="viewAllSpecialties"
+            >
+                View All Specialties
+                <i class="fas fa-arrow-right"></i>
+            </button>
+
+        </div>
+
+
+        <div class="specialty-grid">
+
+            {% set specialties = [
+                ("Cardiology", "cardiology", "fa-heart"),
+                ("Neurology", "neurology", "fa-brain"),
+                ("Orthopedics", "orthopedics", "fa-bone"),
+                ("Dermatology", "dermatology", "fa-hand-dots"),
+                ("General Medicine", "general", "fa-stethoscope"),
+                ("Gynecology", "gynecology", "fa-venus"),
+                ("Pediatrics", "pediatrics", "fa-baby"),
+                ("ENT", "ent", "fa-ear-listen")
+            ] %}
+            
+            
+            {% for specialty, icon_class, icon_name in specialties %}
+            
+            <button
+                class="specialty-card"
+                data-specialty="{{ specialty }}"
+            >
+            
+                <div class="specialty-icon {{ icon_class }}">
+                    <i class="fas {{ icon_name }}"></i>
+                </div>
+            
+                <h3>
+                    {{ specialty }}
+                </h3>
+            
+                <span>
+                    Find Doctors
+                </span>
+            
+            </button>
+        
+            {% endfor %}
+        
+        </div>
+
+    </section>
+
+
+    <!-- Why Choose OpenHealth -->
+    <section class="why-openhealth">
+
+        <div class="section-heading centered">
+
+            <span class="section-eyebrow">
+                WHY OPENHEALTH
+            </span>
+
+            <h2>Healthcare Made Simple</h2>
+
+            <p>
+                Everything you need to manage your healthcare journey
+                in one place.
+            </p>
+
+        </div>
+
+
+        <div class="benefits-grid">
+
+            <div class="benefit-card">
+
+                <div class="benefit-icon">
+                    <i class="fas fa-user-doctor"></i>
+                </div>
+
+                <h3>Trusted Doctors</h3>
+
+                <p>
+                    Explore doctors by specialty and
+                    professional experience.
+                </p>
+
+            </div>
+
+
+            <div class="benefit-card">
+
+                <div class="benefit-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+
+                <h3>Easy Booking</h3>
+
+                <p>
+                    Select a convenient date and available
+                    time slot with ease.
+                </p>
+
+            </div>
+
+
+            <div class="benefit-card">
+
+                <div class="benefit-icon">
+                    <i class="fas fa-stethoscope"></i>
+                </div>
+
+                <h3>Multiple Specialties</h3>
+
+                <p>
+                    Find doctors across different
+                    healthcare specialties.
+                </p>
+
+            </div>
+
+
+            <div class="benefit-card">
+
+                <div class="benefit-icon">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+
+                <h3>Your Health Data</h3>
+
+                <p>
+                    Keep your appointment information
+                    secure and organized.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/appointment.js') }}"></script>
+{% endblock %}

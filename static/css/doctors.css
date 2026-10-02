@@ -1,0 +1,773 @@
+/* =========================================================
+   OPENHEALTH — DOCTOR LISTING
+   ========================================================= */
+
+.doctors-page {
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at 8% 10%,
+            rgba(59, 130, 246, 0.07),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 92% 15%,
+            rgba(99, 102, 241, 0.06),
+            transparent 25%
+        ),
+        #f8fbff;
+
+    padding: 30px 5% 70px;
+    color: #0f172a;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.doctors-header {
+    max-width: 1240px;
+    min-height: 220px;
+
+    margin: 0 auto 30px;
+    padding: 38px 45px;
+
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f2f8ff 60%,
+            #e8f2ff 100%
+        );
+
+    border: 1px solid rgba(59, 130, 246, 0.12);
+
+    box-shadow:
+        0 18px 50px rgba(15, 23, 42, 0.06);
+}
+
+
+.doctors-header-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+.back-to-appointment {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 22px;
+
+    color: #2563eb;
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition:
+        gap 0.2s ease;
+}
+
+
+.back-to-appointment:hover {
+    gap: 11px;
+}
+
+
+.back-to-appointment i {
+    font-size: 11px;
+}
+
+
+.doctors-eyebrow {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+}
+
+
+.doctors-header h1 {
+    margin: 0;
+
+    color: #0f2f68;
+
+    font-size: clamp(32px, 4vw, 46px);
+    line-height: 1.1;
+
+    letter-spacing: -0.035em;
+}
+
+
+.doctors-header p {
+    max-width: 600px;
+
+    margin: 12px 0 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* Header icon */
+
+.header-icon {
+    width: 145px;
+    height: 145px;
+
+    margin-right: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #dbeafe,
+            #bfdbfe
+        );
+
+    color: #2563eb;
+
+    font-size: 64px;
+
+    box-shadow:
+        inset 0 0 0 12px rgba(255, 255, 255, 0.45);
+}
+
+
+/* =========================================================
+   CONTROLS
+   ========================================================= */
+
+.doctor-controls {
+    max-width: 1240px;
+
+    margin: 0 auto 27px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+.doctor-list-search {
+    width: min(100%, 470px);
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+
+    background: #ffffff;
+
+    border: 1px solid #dbe7f5;
+    border-radius: 13px;
+
+    box-shadow:
+        0 7px 22px rgba(15, 23, 42, 0.045);
+
+    overflow: hidden;
+}
+
+
+.doctor-list-search > i {
+    margin-left: 17px;
+
+    color: #94a3b8;
+    font-size: 15px;
+}
+
+
+.doctor-list-search input {
+    flex: 1;
+
+    height: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    padding: 0 15px;
+
+    color: #0f172a;
+
+    font-size: 13px;
+}
+
+
+.doctor-list-search input::placeholder {
+    color: #94a3b8;
+}
+
+
+.doctor-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 11px 15px;
+
+    border-radius: 11px;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+
+    color: #475569;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.doctor-count i {
+    color: #2563eb;
+}
+
+
+/* =========================================================
+   DOCTOR GRID
+   ========================================================= */
+
+.doctor-list-section {
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+
+.doctor-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   DOCTOR CARD
+   ========================================================= */
+
+.doctor-card {
+    overflow: hidden;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 8px 27px rgba(15, 23, 42, 0.045);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.doctor-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(59, 130, 246, 0.24);
+
+    box-shadow:
+        0 18px 40px rgba(37, 99, 235, 0.09);
+}
+
+
+/* =========================================================
+   CARD TOP
+   ========================================================= */
+
+.doctor-card-top {
+    min-height: 145px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f1f7ff,
+            #e7f1ff
+        );
+
+    border-bottom: 1px solid #e5edf7;
+}
+
+
+.doctor-avatar {
+    width: 108px;
+    height: 108px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #dbeafe;
+
+    border: 5px solid rgba(255, 255, 255, 0.9);
+
+    box-shadow:
+        0 9px 25px rgba(37, 99, 235, 0.12);
+}
+
+
+.doctor-avatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.doctor-avatar-fallback {
+    width: 100%;
+    height: 100%;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #dbeafe,
+            #bfdbfe
+        );
+
+    color: #2563eb;
+
+    font-size: 46px;
+}
+
+
+.doctor-avatar-fallback.visible {
+    display: flex;
+}
+
+
+/* Availability */
+
+.availability-badge {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 6px 9px;
+
+    border-radius: 999px;
+
+    background: #ecfdf5;
+
+    color: #047857;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+.availability-badge span {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #10b981;
+}
+
+
+/* =========================================================
+   CARD BODY
+   ========================================================= */
+
+.doctor-card-body {
+    padding: 21px;
+}
+
+
+.doctor-card-body h2 {
+    margin: 0;
+
+    color: #172554;
+
+    font-size: 18px;
+    line-height: 1.3;
+}
+
+
+.doctor-specialty {
+    margin: 5px 0 13px;
+
+    color: #2563eb;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* Rating */
+
+.doctor-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-bottom: 17px;
+
+    font-size: 11px;
+}
+
+
+.rating-stars {
+    color: #f59e0b;
+}
+
+
+.doctor-rating strong {
+    color: #334155;
+    font-size: 12px;
+}
+
+
+.doctor-rating > span:last-child {
+    color: #94a3b8;
+}
+
+
+/* =========================================================
+   DETAILS
+   ========================================================= */
+
+.doctor-details {
+    padding: 14px 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    border-top: 1px solid #eef2f7;
+    border-bottom: 1px solid #eef2f7;
+}
+
+
+.doctor-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+
+    color: #64748b;
+
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+
+.doctor-detail i {
+    width: 15px;
+
+    margin-top: 2px;
+
+    color: #64748b;
+
+    font-size: 11px;
+    text-align: center;
+}
+
+
+/* =========================================================
+   CONSULTATION TYPES
+   ========================================================= */
+
+.consultation-types {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin: 14px 0 17px;
+}
+
+
+.consultation-types span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 6px 9px;
+
+    border-radius: 7px;
+
+    background: #f8fafc;
+
+    color: #475569;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+.consultation-types i {
+    color: #2563eb;
+}
+
+
+/* =========================================================
+   VIEW PROFILE BUTTON
+   ========================================================= */
+
+.view-doctor-btn {
+    width: 100%;
+
+    min-height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.view-doctor-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+}
+
+
+.view-doctor-btn i {
+    font-size: 10px;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.view-doctor-btn:hover i {
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   EMPTY STATES
+   ========================================================= */
+
+.no-doctors,
+.no-doctors-search {
+    max-width: 600px;
+
+    margin: 45px auto;
+    padding: 55px 30px;
+
+    text-align: center;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+
+.no-doctors-icon {
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 28px;
+}
+
+
+.no-doctors h2,
+.no-doctors-search h3 {
+    margin: 0 0 8px;
+
+    color: #172554;
+}
+
+
+.no-doctors p,
+.no-doctors-search p {
+    margin: 0 0 22px;
+
+    color: #64748b;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+.back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 16px;
+
+    border-radius: 9px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .doctor-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .doctors-header {
+        padding: 35px;
+    }
+
+    .header-icon {
+        margin-right: 10px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .doctors-page {
+        padding: 20px 4% 55px;
+    }
+
+    .doctors-header {
+        min-height: auto;
+
+        padding: 30px 25px;
+
+        align-items: flex-start;
+    }
+
+    .doctors-header h1 {
+        font-size: 34px;
+    }
+
+    .header-icon {
+        display: none;
+    }
+
+    .doctor-controls {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .doctor-list-search {
+        width: 100%;
+    }
+
+    .doctor-count {
+        width: fit-content;
+    }
+}
+
+
+@media (max-width: 520px) {
+
+    .doctors-page {
+        padding: 15px 15px 45px;
+    }
+
+    .doctors-header {
+        padding: 25px 20px;
+
+        border-radius: 20px;
+    }
+
+    .doctors-header h1 {
+        font-size: 30px;
+    }
+
+    .doctors-header p {
+        font-size: 13px;
+    }
+
+    .doctor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .doctor-card-body {
+        padding: 19px;
+    }
+}

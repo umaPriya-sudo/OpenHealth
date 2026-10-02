@@ -1,0 +1,558 @@
+<!-- =========================================================
+    OpenHealth Authentication Modal Sign In / Sign Up
+ ========================================================= -->
+
+<div id="authModal" class="auth-modal" aria-hidden="true">
+
+    <!-- Background overlay -->
+    <div class="auth-modal-overlay" data-auth-close></div>
+
+    <!-- Modal Card -->
+    <div class="auth-modal-card" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+
+        <!-- Close Button -->
+        <button type="button" class="auth-close-btn" id="authCloseBtn" aria-label="Close authentication modal" data-auth-close>
+            <i class="fas fa-times"></i>
+        </button>
+
+        <!-- =============== Header ========================== -->
+        <div class="auth-header">
+            <div class="auth-logo"> <i class="fas fa-heartbeat"></i> </div>
+            <h2 id="authModalTitle"> Welcome to OpenHealth </h2>
+            <p id="authModalSubtitle"> Sign in to access AI-powered healthcare services</p>
+        </div>
+
+        <!-- ============== Sign In / Sign Up Tabs ================ -->
+        <div class="auth-tabs">
+            <button type="button" class="auth-tab active" id="signInTab" data-auth-tab="signin">
+                Sign In
+            </button>
+            <button type="button" class="auth-tab" id="signUpTab" data-auth-tab="signup">
+                Sign Up
+            </button>
+        </div>
+
+        <!-- =====================Authentication Messages ============================ -->
+        <div id="authMessage" class="auth-message" role="alert" aria-live="polite"></div>
+
+        <!-- ================ SIGN IN FORM ========================== -->
+        <form id="signInForm" class="auth-form active" novalidate>
+
+            <!-- Email -->
+            <div class="auth-input-group">
+                <label for="signinEmail"> Email Address</label>
+                <div class="auth-input-wrapper">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="signinEmail" name="email" placeholder="Enter your email" autocomplete="email" required>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="auth-input-group">
+                <div class="auth-label-row">
+                    <label for="signinPassword"> Password</label>
+                    <button type="button" class="forgot-password-btn" id="forgotPasswordBtn">
+                        Forgot Password?
+                    </button>
+                </div>
+                <div class="auth-input-wrapper">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="signinPassword" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+                    <button type="button" class="password-toggle" data-password-toggle="signinPassword" aria-label="Show password">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Remember Me -->
+            <div class="auth-options">
+                <label class="remember-me">
+                    <input type="checkbox" id="rememberMe" name="remember_me">
+                    <span class="custom-checkbox"></span>
+                    <span>Remember me</span>
+                </label>
+            </div>
+
+            <!-- Sign In Button -->
+            <button type="submit" class="auth-submit-btn" id="signInBtn">
+                <span>Sign In</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+
+            <!-- Divider -->
+            <div class="auth-divider"> <span>OR</span> </div>
+
+            <!-- Google -->
+            <button type="button" class="google-auth-btn" id="googleSignInBtn">
+                <span class="google-icon">G</span>
+                <span>Continue with Google</span>
+            </button>
+
+            <!-- Switch -->
+            <p class="auth-switch-text">
+                Don't have an account?
+                <button type="button" class="auth-switch-btn" data-auth-switch="signup">
+                    Sign Up
+                </button>
+            </p>
+        </form>
+
+        <!-- ==================== SIGN UP FORM ============================ -->
+        <form id="signUpForm" class="auth-form" novalidate>
+
+            <!-- Account Type -->
+            <div class="auth-role-selection">
+                <label>Account Type</label>
+            
+                <div class="auth-role-options">
+                
+                    <label class="auth-role-option active">
+                        <input
+                            type="radio"
+                            name="account_type"
+                            value="patient"
+                        >
+                        <span class="auth-role-card">
+                            <i class="fas fa-user"></i>
+                            <span>
+                                <strong>Patient</strong>
+                                <small>Personal healthcare account</small>
+                            </span>
+                        </span>
+                    </label>
+                
+                    <label class="auth-role-option">
+                        <input
+                            type="radio"
+                            name="account_type"
+                            value="doctor"
+                        >
+                        <span class="auth-role-card">
+                            <i class="fas fa-user-md"></i>
+                            <span>
+                                <strong>Doctor</strong>
+                                <small>Healthcare professional</small>
+                            </span>
+                        </span>
+                    </label>
+                
+                </div>
+            </div>
+
+            <div id="signupFields" class="signup-fields">
+            
+                <!-- Full Name -->
+                <div class="auth-input-group">
+                    <label for="signupFullName"> Full Name </label>
+                    <div class="auth-input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="signupFullName" name="full_name" placeholder="Enter your full name" autocomplete="name" maxlength="100" required>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="auth-input-group">
+                    <label for="signupEmail"> Email Address </label>
+                    <div class="auth-input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="signupEmail" name="email" placeholder="Enter your email" autocomplete="email" required>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="auth-input-group">
+                    <label for="signupPassword">Password</label>
+                    <div class="auth-input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="signupPassword" name="password" placeholder="Create a password" autocomplete="new-password" minlength="8" required>
+                        <button type="button" class="password-toggle" data-password-toggle="signupPassword" aria-label="Show password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="auth-input-group">
+                    <label for="signupConfirmPassword"> Confirm Password </label>
+                    <div class="auth-input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="signupConfirmPassword" name="confirm_password" placeholder="Confirm your password" autocomplete="new-password" minlength="8" required>
+                        <button type="button" class="password-toggle" data-password-toggle="signupConfirmPassword" aria-label="Show password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ================= DOCTOR INFORMATION ================= -->
+
+                <div
+                    id="doctorFields"
+                    class="doctor-fields"
+                >
+
+                    <div class="doctor-section-title">
+                        <i class="fas fa-user-md"></i>
+                        <span>Professional Information</span>
+                    </div>
+                
+                    <!-- Registration Number -->
+                    <div class="auth-input-group">
+                        <label for="doctorRegistrationNumber">
+                            Medical Registration Number
+                        </label>
+                    
+                        <div class="auth-input-wrapper">
+                            <i class="fas fa-id-card"></i>
+                            <input
+                                type="text"
+                                id="doctorRegistrationNumber"
+                                name="registration_number"
+                                placeholder="Enter registration number"
+                                maxlength="100"
+                            >
+                        </div>
+                    </div>
+                
+                    <!-- Qualification -->
+                    <div class="auth-input-group">
+                        <label for="doctorQualification">
+                            Qualification
+                        </label>
+                    
+                        <div class="auth-input-wrapper">
+                            <i class="fas fa-graduation-cap"></i>
+                            <input
+                                type="text"
+                                id="doctorQualification"
+                                name="qualification"
+                                placeholder="e.g. MBBS, MD"
+                                maxlength="255"
+                            >
+                        </div>
+                    </div>
+                
+                    <!-- Specialization -->
+                    <div class="auth-input-group doctor-specialization-group">
+                        <label for="doctorSpecialization">
+                            Specialization
+                        </label>
+                    
+                        <div class="doctor-specialization-wrapper">
+                        
+                            <div class="doctor-specialization-icon">
+                                <i class="fas fa-stethoscope"></i>
+                            </div>
+                        
+                            <select
+                                id="doctorSpecialization"
+                                name="specialization"
+                            >
+                                <option value="" selected disabled>
+                                    Select your specialization
+                                </option>
+                            
+                                <option value="Cardiology">
+                                    Cardiology
+                                </option>
+                            
+                                <option value="Neurology">
+                                    Neurology
+                                </option>
+                            
+                                <option value="Orthopedics">
+                                    Orthopedics
+                                </option>
+                            
+                                <option value="Dermatology">
+                                    Dermatology
+                                </option>
+                            
+                                <option value="General Medicine">
+                                    General Medicine
+                                </option>
+                            
+                                <option value="Gynecology">
+                                    Gynecology
+                                </option>
+                            
+                                <option value="Pediatrics">
+                                    Pediatrics
+                                </option>
+                            
+                                <option value="ENT">
+                                    ENT
+                                </option>
+                            </select>
+                        
+                            <i class="fas fa-chevron-down doctor-select-arrow"></i>
+                        
+                        </div>
+                    </div>
+                
+                    
+                    <div class="doctor-form-row">
+
+                        <!-- Years of Experience -->
+                        <div class="auth-input-group">
+                            <label for="doctorExperience">
+                                Years of Experience
+                            </label>
+                        
+                            <div class="auth-input-wrapper">
+                                <i class="fas fa-briefcase"></i>
+                            
+                                <input
+                                    type="number"
+                                    id="doctorExperience"
+                                    name="experience_years"
+                                    placeholder="e.g. 5"
+                                    min="0"
+                                    max="70"
+                                >
+                            </div>
+                        </div>
+                    
+                        <!-- Consultation Fee -->
+                        <div class="auth-input-group">
+                            <label for="doctorConsultationFee">
+                                Consultation Fee
+                            </label>
+                        
+                            <div class="auth-input-wrapper">
+                                <i class="fas fa-indian-rupee-sign"></i>
+                            
+                                <input
+                                    type="number"
+                                    id="doctorConsultationFee"
+                                    name="consultation_fee"
+                                    placeholder="e.g. 500"
+                                    min="0"
+                                    step="0.01"
+                                >
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <!-- Bio -->
+                    <div class="auth-input-group">
+                        <label for="doctorBio">
+                            Professional Bio
+                        </label>
+                    
+                        <div class="auth-input-wrapper doctor-textarea-wrapper">
+                            <i class="fas fa-file-medical"></i>
+                        
+                            <textarea
+                                id="doctorBio"
+                                name="bio"
+                                placeholder="Briefly describe your professional experience"
+                                maxlength="1000"
+                            ></textarea>
+                        </div>
+                    </div>
+                
+                
+                    <div class="doctor-section-title">
+                        <i class="fas fa-hospital"></i>
+                        <span>Practice Information</span>
+                    </div>
+                
+                    <!-- Clinic Name -->
+                    <div class="auth-input-group">
+                        <label for="doctorClinicName">
+                            Clinic / Hospital Name
+                        </label>
+                    
+                        <div class="auth-input-wrapper">
+                            <i class="fas fa-hospital"></i>
+                        
+                            <input
+                                type="text"
+                                id="doctorClinicName"
+                                name="clinic_name"
+                                placeholder="Enter clinic or hospital name"
+                                maxlength="255"
+                            >
+                        </div>
+                    </div>
+                
+                    <!-- Clinic Address -->
+                    <div class="auth-input-group">
+                        <label for="doctorClinicAddress">
+                            Clinic Address
+                        </label>
+                    
+                        <div class="auth-input-wrapper doctor-textarea-wrapper">
+                            <i class="fas fa-map-marker-alt"></i>
+                        
+                            <textarea
+                                id="doctorClinicAddress"
+                                name="clinic_address"
+                                placeholder="Enter clinic or hospital address"
+                                maxlength="500"
+                            ></textarea>
+                        </div>
+                    </div>
+                
+                    <div class="doctor-form-row">
+
+                        <!-- City -->
+                        <div class="auth-input-group">
+                            <label for="doctorCity">
+                                City
+                            </label>
+                        
+                            <div class="auth-input-wrapper">
+                                <i class="fas fa-city"></i>
+                            
+                                <input
+                                    type="text"
+                                    id="doctorCity"
+                                    name="city"
+                                    placeholder="e.g. Dehradun"
+                                    maxlength="100"
+                                >
+                            </div>
+                        </div>
+                    
+                        <!-- Consultation Type -->
+                        <div class="auth-input-group">
+                            <label>
+                                Consultation Type
+                            </label>
+                        
+                            <div class="doctor-consultation-options">
+                            
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        name="consultation_type"
+                                        value="In-person"
+                                    >
+                                    <span>In-person</span>
+                                </label>
+                            
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        name="consultation_type"
+                                        value="Online"
+                                    >
+                                    <span>Online</span>
+                                </label>
+                            
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                </div>
+
+                <!-- Terms -->
+                <label class="terms-checkbox">
+                    <input type="checkbox" id="termsAccepted" name="terms_accepted" required>
+                    <span class="custom-checkbox"></span>
+                    <span>
+                        I agree to the <a href="#" class="terms-link">Terms of Service</a>
+                        and <a href="#" class="terms-link">Privacy Policy</a>.
+                    </span>
+                </label>
+
+                <!-- Create Account -->
+                <button type="submit" class="auth-submit-btn" id="signUpBtn">
+                    <span>Create Account</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+
+                <!-- Divider -->
+                <div class="auth-divider"><span>OR</span> </div>
+
+                <!-- Google -->
+                <button type="button" class="google-auth-btn" id="googleSignUpBtn">
+                    <span class="google-icon">G</span>
+                    <span>Continue with Google</span>
+                </button>
+
+                <!-- Switch -->
+                <p class="auth-switch-text">
+                    Already have an account?
+                    <button type="button" class="auth-switch-btn" data-auth-switch="signin">
+                        Sign In
+                    </button>
+                </p>
+            </div>
+
+            <!-- ==================== EMAIL VERIFICATION ==================== -->
+
+<div id="emailVerificationSection" class="email-verification-section">
+            
+                <div class="verification-icon">
+                    <i class="fas fa-envelope-circle-check"></i>
+                </div>
+            
+                <h3>Verify Your Email</h3>
+            
+                <p class="verification-description">
+                    We've sent a 6-digit verification code to
+                    <strong id="verificationEmail"></strong>
+                </p>
+            
+                <div class="verification-input-group">
+                
+                    <label for="verificationOtp">
+                        Enter Verification Code
+                    </label>
+                
+                    <div class="verification-otp-wrapper">
+                        <i class="fas fa-shield-halved"></i>
+                    
+                        <input
+                            type="text"
+                            id="verificationOtp"
+                            name="verification_otp"
+                            placeholder="Enter 6-digit code"
+                            inputmode="numeric"
+                            maxlength="6"
+                            autocomplete="one-time-code"
+                        >
+                    </div>
+                
+                </div>
+            
+                <button
+                    type="button"
+                    class="auth-submit-btn"
+                    id="verifyEmailBtn"
+                >
+                    <span>Verify Email</span>
+                    <i class="fas fa-check"></i>
+                </button>
+            
+                <div class="verification-resend">
+                
+                    <span>Didn't receive the code?</span>
+                
+                    <button
+                        type="button"
+                        id="resendVerificationBtn"
+                        class="verification-resend-btn"
+                    >
+                        Resend Code
+                    </button>
+                
+                </div>
+            
+                <button
+                    type="button"
+                    id="verificationBackBtn"
+                    class="verification-back-btn"
+                >
+                    <i class="fas fa-arrow-left"></i>
+                    Back
+                </button>
+            
+            </div>
+        </form>
+    </div>
+</div>

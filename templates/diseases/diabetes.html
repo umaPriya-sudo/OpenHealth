@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %} OpenHealth - Heart Disease Prediction {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/diseases.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="disease-page">
+    <h1>💉 Diabetes Prediction</h1>
+    <p class="subtitle">72% accuracy</p>
+
+    <div class="form-container">
+        <form method="POST" id="diabetesForm">
+
+            <div class="form-group">
+                <label>Pregnancies</label>
+                <input type="number" name="pregnancies" placeholder="Number of pregnancies" required>
+            </div>
+
+            <div class="form-group">
+                <label>Glucose Level</label>
+                <input type="number" name="Glucose" placeholder="Plasma glucose concentration" required>
+            </div>
+
+            <div class="form-group">
+                <label>Blood Pressure</label>
+                <input type="number" name="BloodPressure" placeholder="Diastolic blood pressure" required>
+            </div>
+
+            <div class="form-group">
+                <label>Skin Thickness</label>
+                <input type="number" name="skin_thickness" placeholder="Triceps skin fold thickness" required>
+            </div>
+
+            <div class="form-group">
+                <label>Insulin</label>
+                <input type="number" name="insulin" placeholder="2-Hour serum insulin" required>
+            </div>
+
+            <div class="form-group">
+                <label>BMI</label>
+                <input type="number" name="BMI" placeholder="Body mass index" step="0.1" required>
+            </div>
+
+            <div class="form-group">
+                <label>Diabetes Pedigree Function</label>
+                <input type="number" name="DiabetesPedigreeFunction" placeholder="Family history score" step="0.001" required>
+            </div>
+
+            <div class="form-group">
+                <label>Age</label>
+                <input type="number" name="Age" placeholder="Your age" required>
+            </div>
+
+            <button type="submit" class="submit-btn" id="diabetesPredictBtn"><i class="fas fa-heartbeat"></i> Predict Risk</button>
+        </form>
+
+        {% if show_result %}
+        <div class="result-box">
+            <h3>💉 Results</h3>
+            <p>Diabetes Probability: <span class="result-value">{{ "%.2f"|format(final_result * 100) }}%</span></p>
+            <p>Risk Level: <span class="risk-level {% if final_result >= 0.7 %}risk-high{% elif final_result >= 0.4 %}risk-medium{% else %}risk-low{% endif %}">{{ risk_level }}</span></p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

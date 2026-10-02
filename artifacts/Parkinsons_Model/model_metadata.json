@@ -1,0 +1,59 @@
+{
+    "dataset": "UCI Parkinsons",
+    "dataset_source": "https://archive.ics.uci.edu/ml/machine-learning-databases/parkinsons/parkinsons.data",
+    "task": "binary classification",
+    "target": "status",
+    "classes": {
+        "0": "Healthy",
+        "1": "Parkinson's"
+    },
+    "selected_model": "Gradient Boosting",
+    "feature_count": 22,
+    "features": [
+        "MDVP:Fo(Hz)",
+        "MDVP:Fhi(Hz)",
+        "MDVP:Flo(Hz)",
+        "MDVP:Jitter(%)",
+        "MDVP:Jitter(Abs)",
+        "MDVP:RAP",
+        "MDVP:PPQ",
+        "Jitter:DDP",
+        "MDVP:Shimmer",
+        "MDVP:Shimmer(dB)",
+        "Shimmer:APQ3",
+        "Shimmer:APQ5",
+        "MDVP:APQ",
+        "Shimmer:DDA",
+        "NHR",
+        "HNR",
+        "RPDE",
+        "DFA",
+        "spread1",
+        "spread2",
+        "D2",
+        "PPE"
+    ],
+    "random_state": 42,
+    "evaluation": {
+        "type": "Repeated StratifiedGroupKFold",
+        "repeats": 5,
+        "folds_per_repeat": 5,
+        "total_folds_per_model": 25,
+        "group": "subject extracted from name"
+    },
+    "primary_selection_metric": "mean balanced accuracy",
+    "threshold_selection_rule": "maximize the minimum of sensitivity and specificity, then balanced accuracy, then minimize sensitivity-specificity gap",
+    "secondary_selection_metric": "mean sensitivity-specificity gap",
+    "deployment_threshold": 0.79,
+    "out_of_fold_metrics": {
+        "accuracy": 0.7743589743589744,
+        "precision": 0.8410596026490066,
+        "sensitivity": 0.8639455782312925,
+        "specificity": 0.5,
+        "balanced_accuracy": 0.6819727891156462,
+        "f1": 0.8523489932885906,
+        "roc_auc": 0.7293083900226758,
+        "balance_gap": 0.3639455782312925
+    },
+    "warning": "Research/project prototype only. Not a clinical diagnostic device."
+}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %} OpenHealth - Heart Disease Prediction {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/diseases.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="disease-page">
+    <h1>❤️ Heart Disease Prediction</h1>
+    <p class="subtitle">85% accuracy</p>
+
+    <div class="form-container">
+        <form method="POST" id="heartDiseaseForm">
+
+            <div class="form-group">
+                <label>Age</label>
+                <input type="number" name="age" placeholder="Your age" required>
+            </div>
+
+            <div class="form-group">
+                <label>Sex</label>
+                <select name="sex" required>
+                    <option value="">Select gender</option>
+                    <option value="0">Female</option>
+                    <option value="1">Male</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Chest Pain Type</label>
+                <select name="cp" required>
+                    <option value="">Select type</option>
+                    <option value="0">Typical Angina</option>
+                    <option value="1">Atypical Angina</option>
+                    <option value="2">Non-anginal Pain</option>
+                    <option value="3">Asymptomatic</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Resting Blood Pressure (mm Hg)</label>
+                <input type="number" name="trestbps" placeholder="e.g., 120" required>
+            </div>
+
+            <div class="form-group">
+                <label>Cholesterol (mg/dl)</label>
+                <input type="number" name="chol" placeholder="e.g., 200" required>
+            </div>
+
+            <button type="submit" class="submit-btn" id="heartDiseasePredictBtn"><i class="fas fa-heartbeat"></i> Predict Risk</button>
+        </form>
+        
+        {% if show_result %}
+        <div class="result-box">
+            <h3>❤️ Results</h3>
+            <p>Heart Disease Probability: <span class="result-value">{{ "%.2f"|format(final_result * 100) }}%</span></p>
+            <p>Risk Level: <span class="risk-level {% if final_result >= 0.7 %}risk-high{% elif final_result >= 0.4 %}risk-medium{% else %}risk-low{% endif %}">{{ risk_level }}</span></p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

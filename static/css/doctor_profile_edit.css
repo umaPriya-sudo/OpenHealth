@@ -1,0 +1,533 @@
+/* =========================================================
+   OPENHEALTH — EDIT DOCTOR PROFESSIONAL PROFILE
+   ========================================================= */
+
+.doctor-profile-page {
+    min-height: 100vh;
+    padding: 35px 5% 70px;
+    background:
+        radial-gradient(
+            circle at 8% 8%,
+            rgba(59, 130, 246, 0.07),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 92% 12%,
+            rgba(99, 102, 241, 0.06),
+            transparent 25%
+        ),
+        #f8fbff;
+    color: #0f172a;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+   ========================================================= */
+
+.profile-page-header {
+    max-width: 1100px;
+    margin: 0 auto 25px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.profile-page-header h1 {
+    margin: 15px 0 7px;
+
+    color: #172f63;
+    font-size: 30px;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+}
+
+.profile-page-header p {
+    margin: 0;
+
+    color: #64748b;
+    font-size: 13px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #2563eb;
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.back-link:hover {
+    color: #1d4ed8;
+}
+
+.verification-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 8px 12px;
+
+    border-radius: 20px;
+
+    background: #ecfdf5;
+    color: #047857;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   MAIN CARD
+   ========================================================= */
+
+.profile-card {
+    max-width: 1100px;
+    margin: 0 auto;
+
+    padding: 30px;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 12px 35px rgba(15, 23, 42, 0.055);
+}
+
+.profile-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding-bottom: 24px;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.profile-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 13px;
+
+    background: #eff6ff;
+    color: #2563eb;
+
+    font-size: 20px;
+}
+
+.profile-card-header h2 {
+    margin: 0 0 4px;
+
+    color: #172f63;
+
+    font-size: 19px;
+}
+
+.profile-card-header p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.profile-message {
+    margin-top: 20px;
+    padding: 12px 15px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.profile-message.success {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #047857;
+}
+
+.profile-message.error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.doctor-profile-form {
+    margin-top: 26px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.form-group {
+    min-width: 0;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #334155;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.form-group label span {
+    color: #ef4444;
+}
+
+.form-group small {
+    display: block;
+
+    margin-top: 6px;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.input-wrapper,
+.textarea-wrapper {
+    position: relative;
+}
+
+.input-wrapper > i,
+.textarea-wrapper > i {
+    position: absolute;
+
+    left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #94a3b8;
+
+    font-size: 13px;
+
+    pointer-events: none;
+}
+
+.textarea-wrapper > i {
+    top: 17px;
+    transform: none;
+}
+
+.input-wrapper input,
+.input-wrapper select,
+.textarea-wrapper textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dbe4ef;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #334155;
+
+    font-family: inherit;
+    font-size: 12px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.input-wrapper input,
+.input-wrapper select {
+    min-height: 45px;
+    padding: 0 14px 0 40px;
+}
+
+.textarea-wrapper textarea {
+    min-height: 110px;
+
+    padding: 13px 14px 13px 40px;
+
+    resize: vertical;
+
+    line-height: 1.6;
+}
+
+.input-wrapper input:focus,
+.input-wrapper select:focus,
+.textarea-wrapper textarea:focus {
+    border-color: #93c5fd;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.input-wrapper input[readonly] {
+    background: #f8fafc;
+    color: #64748b;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   INPUT SUFFIX / CURRENCY
+   ========================================================= */
+
+.input-suffix {
+    position: absolute;
+
+    right: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #94a3b8;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    pointer-events: none;
+}
+
+.currency-symbol {
+    position: absolute;
+
+    left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #64748b;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    z-index: 2;
+}
+
+#consultationFee {
+    padding-left: 34px;
+}
+
+
+/* =========================================================
+   SECTION DIVIDER
+   ========================================================= */
+
+.section-divider {
+    margin-top: 8px;
+    padding-top: 24px;
+
+    border-top: 1px solid #eef2f7;
+}
+
+.section-divider > div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-divider > div > i {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #eff6ff;
+    color: #2563eb;
+
+    font-size: 14px;
+}
+
+.section-divider h3 {
+    margin: 0 0 3px;
+
+    color: #334155;
+
+    font-size: 14px;
+}
+
+.section-divider p {
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+   ========================================================= */
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+
+    padding-top: 8px;
+}
+
+.cancel-btn,
+.save-profile-btn {
+    min-height: 43px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 0 18px;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.cancel-btn {
+    border: 1px solid #dbe4ef;
+
+    background: #ffffff;
+
+    color: #64748b;
+}
+
+.cancel-btn:hover {
+    border-color: #cbd5e1;
+
+    background: #f8fafc;
+}
+
+.save-profile-btn {
+    border: none;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 18px rgba(37, 99, 235, 0.16);
+}
+
+.save-profile-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 750px) {
+
+    .doctor-profile-page {
+        padding: 25px 4% 55px;
+    }
+
+    .profile-page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .profile-page-header h1 {
+        font-size: 26px;
+    }
+
+    .profile-card {
+        padding: 22px 20px;
+        border-radius: 18px;
+    }
+
+    .doctor-profile-form {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full-width {
+        grid-column: auto;
+    }
+
+    .form-actions {
+        justify-content: stretch;
+        flex-direction: column-reverse;
+    }
+
+    .cancel-btn,
+    .save-profile-btn {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 450px) {
+
+    .profile-card-header {
+        align-items: flex-start;
+    }
+
+    .profile-card-header h2 {
+        font-size: 17px;
+    }
+
+    .profile-page-header h1 {
+        font-size: 23px;
+    }
+}

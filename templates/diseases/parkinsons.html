@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+
+{% block title %} OpenHealth - Breast Cancer Detection {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/diseases.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="disease-page parkinson-page">
+
+    <!-- ========== HEADER =============== -->
+    <div class="parkinson-header">
+        <div class="parkinson-title-row">
+            <div>
+                <h1 class="parkinson-title"> ⚡ Parkinson's Detection  </h1>
+                <p class="parkinson-subtitle"> AI-based analysis of voice biomarkers </p>
+                <p class="parkinson-description"> Enter the 22 voice measurements below to perform the Parkinson's screening prediction. </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========== TWO COLUMN LAYOUT ================= -->
+    <div class="parkinson-layout">
+
+        <!-- ========== LEFT — INPUT CARD ================ -->
+        <div class="parkinson-input-card">
+
+            <div class="parkinson-card-header">
+                <div class="parkinson-card-title">
+                    <div class="parkinson-card-icon"><i class="fas fa-microphone"></i> </div>
+                    <div>
+                        <h2>Voice Biomarker Input</h2>
+                        <p> Provide the 22 acoustic features </p>
+                    </div>
+                </div>
+                <div class="parkinson-feature-count"><strong>22 / 22</strong> <span> Features Required </span></div>
+            </div>
+
+            <form method="POST" action="{{ url_for('parkinsons.parkinsons') }}" id="parkinsonsForm">
+
+                <!-- ============= VOICE FREQUENCY ================ -->
+                <div class="parkinson-feature-groups">
+                    <div class="parkinson-feature-group">
+
+                        <div class="parkinson-group-header">
+                            <div class="parkinson-group-name"><i class="fas fa-wave-square"></i> Voice Frequency </div>
+                            <span class="parkinson-group-count"> 3 features</span>
+                        </div>
+
+                        <div class="parkinson-fields">
+                            <div class="form-group">
+                                <label> MDVP: Fo(Hz) </label>
+                                <input type="number" name="MDVP:Fo(Hz)" placeholder="e.g., 119.99" step="any" value="{{ request.form.get('MDVP:Fo(Hz)', '') }}" required >
+                            </div>
+
+                            <div class="form-group">
+                                <label>MDVP: Fhi(Hz)</label>
+                                <input type="number" name="MDVP:Fhi(Hz)" placeholder="e.g., 157.30" step="any" value="{{ request.form.get('MDVP:Fhi(Hz)', '') }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label> MDVP:Flo(Hz) </label>
+                                <input type="number" name="MDVP:Flo(Hz)" placeholder="e.g., 74.99" step="any" value="{{ request.form.get('MDVP:Flo(Hz)', '') }}" required>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ========== JITTER ============== -->
+                    <div class="parkinson-feature-group">
+
+                        <div class="parkinson-group-header">
+                            <div class="parkinson-group-name"> <i class="fas fa-chart-column"></i> Jitter Measuremen </div>
+                            <span class="parkinson-group-count"> 5 features</span>
+                        </div>
+
+                        <div class="parkinson-fields">
+                            <div class="form-group">
+                                <label>MDVP:Jitter(%)</label>
+                                <input type="number" name="MDVP:Jitter(%)" placeholder="e.g., 0.00784" step="any" value="{{ request.form.get('MDVP:Jitter(%)', '') }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label> MDVP: Jitter(Abs) </label>
+                                <input type="number" name="MDVP:Jitter(Abs)" placeholder="e.g., 0.00007" step="any" value="{{ request.form.get('MDVP:Jitter(Abs)', '') }}" required >
+                            </div>
+
+                            <div class="form-group">
+                                <label> MDVP: RAP </label>
+                                <input type="number" name="MDVP:RAP" placeholder="e.g., 0.00370" step="any" value="{{ request.form.get('MDVP:RAP', '') }}" required >
+                            </div>
+
+                            <div class="form-group">
+                                <label> MDVP: PPQ </label>
+                                <input type="number" name="MDVP:PPQ" placeholder="e.g., 0.00554" step="any" value="{{ request.form.get('MDVP:PPQ', '') }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label> Jitter: DDP </label>
+                                <input type="number" name="Jitter:DDP" placeholder="e.g., 0.01109" step="any" value="{{ request.form.get('Jitter:DDP', '') }}" required >
+                                
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ============= SHIMMER ============= -->
+                    <div class="parkinson-feature-group">
+
+                        <div class="parkinson-group-header">
+                            <div class="parkinson-group-name"><i class="fas fa-volume-high"></i> Shimmer Measurements </div>
+                            <span class="parkinson-group-count">  6 features </span>
+                        </div>
+
+                        <div class="parkinson-fields">
+
+                            <div class="form-group">
+                                <label> MDVP: Shimmer </label>
+                                <input type="number" name="MDVP:Shimmer" placeholder="e.g., 0.04374" step="any" value="{{ request.form.get('MDVP:Shimmer', '') }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label> MDVP: Shimmer(dB) </label>
+                                <input type="number" name="MDVP:Shimmer(dB)" placeholder="e.g., 0.426" step="any" value="{{ request.form.get('MDVP:Shimmer(dB)', '') }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label> Shimmer: APQ3 </label>
+                                <input type="number" name="Shimmer:APQ3" placeholder="e.g., 0.02182" step="any" value="{{ request.form.get('Shimmer:APQ3', '') }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label> Shimmer: APQ5 </label>
+                                <input type="number" name="Shimmer:APQ5" placeholder="e.g., 0.03130" step="any" value="{{ request.form.get('Shimmer:APQ5', '') }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>MDVP: APQ</label>
+                                <input type="number" name="MDVP:APQ" placeholder="e.g., 0.02971" step="any" value="{{ request.form.get('MDVP:APQ', '') }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label> Shimmer: DDA</label>
+                                <input type="number" name="Shimmer:DDA" placeholder="e.g., 0.06545" step="any" value="{{ request.form.get('Shimmer:DDA', '') }}" required>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- =========== NOISE / HARMONICS ===================== -->
+                    <div class="parkinson-feature-group">
+                        <div class="parkinson-group-header">
+                            <div class="parkinson-group-name"><i class="fas fa-music"></i>Noise & Harmonics</div>
+                            <span class="parkinson-group-count"> 2 features</span>
+                        </div>
+
+                        <div class="parkinson-fields">
+                            <div class="form-group">
+                                <label> NHR </label>
+                                <input type="number" name="NHR" placeholder="e.g., 0.02211" step="any" value="{{ request.form.get('NHR', '') }}" required >
+                            </div>
+
+                            <div class="form-group">
+                                <label>HNR </label>
+                                <input type="number" name="HNR" placeholder="e.g., 21.033" step="any" value="{{ request.form.get('HNR', '') }}" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ============= NONLINEAR FEATURES ============= -->
+                    <div class="parkinson-feature-group">
+                        <div class="parkinson-group-header">
+                            <div class="parkinson-group-name"><i class="fas fa-brain"></i> Nonlinear Voice Features </div>
+                            <span class="parkinson-group-count"> 6 features</span>
+                        </div>
+
+                        <div class="parkinson-fields">
+                            <div class="form-group">
+                                <label> RPDE </label>
+                                <input type="number" name="RPDE" placeholder="e.g., 0.414783" step="any" value="{{ request.form.get('RPDE', '') }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label> DFA </label>
+                                <input type="number" name="DFA" placeholder="e.g., 0.815285" step="any" value="{{ request.form.get('DFA', '') }}" required >
+                            </div>
+
+                            <div class="form-group">
+                                <label> spread1 </label>
+                                <input type="number" name="spread1" placeholder="e.g., -4.813031" step="any" value="{{ request.form.get('spread1', '') }}" required >
+                            </div>
+
+                            <div class="form-group">
+                                <label> spread2 </label>
+                                <input type="number" name="spread2" placeholder="e.g., 0.266482" step="any" value="{{ request.form.get('spread2', '') }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label> D2 </label>
+                                <input type="number" name="D2" placeholder="e.g., 2.301442" step="any" value="{{ request.form.get('D2', '') }}" required >
+                            </div>
+
+                            <div class="form-group">
+                                <label> PPE </label>
+                                <input type="number" name="PPE" placeholder="e.g., 0.284654" step="any" value="{{ request.form.get('PPE', '') }}" required >
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- =============== SUBMIT ====================== -->
+                <div class="parkinson-submit-area">
+                    <button type="submit" class="parkinson-submit-btn" id="parkinsonsPredictBtn">
+                        <i class="fas fa-bolt"></i> &nbsp; Analyze for Parkinson's &nbsp; →
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- ============== RIGHT — RESULT CARD ================= -->
+        <div class="parkinson-result-column">
+            <div class="parkinson-result-card">
+
+                <!-- RESULT HEADER -->
+                <div class="parkinson-result-header">
+                    <div class="parkinson-result-header-inner">
+                        <div class="parkinson-result-icon"><i class="fas fa-file-medical"></i></div>
+                        <div>
+                            <h2> Prediction Result </h2>
+                            <p> Your AI analysis will appear here </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- =========== ERROR ================= -->
+                {% if error %}
+                <div class="parkinson-error">
+                    <h3><i class="fas fa-triangle-exclamation"></i>Prediction Error</h3>
+                    <p>{{ error }}</p>
+                </div>
+
+                <!-- ============= SUCCESS RESULT ============= -->
+                {% elif show_result %}
+                <div class="parkinson-result-content">
+                    <div class="parkinson-result-status"> <i class="fas fa-bolt"></i> <h3> {{ prediction }} </h3></div>
+                    
+                    <!-- Probability -->
+                    <div class="parkinson-probability">
+                        <div class="parkinson-probability-value"> {{ probability }}% </div>
+                        <span class="parkinson-probability-label"> Model Probability </span>
+                    </div>
+                    
+                    <!-- Progress -->
+                    <div class="parkinson-progress"><div class="parkinson-progress-bar"></div></div>
+                    
+                    <!-- Details -->
+                    <div class="parkinson-details">
+                        <div class="parkinson-detail">
+                            <span class="parkinson-detail-label"> Model Confidence </span>
+                            <span class="parkinson-detail-value">{{ confidence }}%</span>
+                        </div>
+                        
+                        <div class="parkinson-detail">
+                            <span class="parkinson-detail-label">Risk Indication </span>
+                            <span class="parkinson-detail-value">{{ risk_level }} </span>
+                        </div>
+                        
+                        <div class="parkinson-detail">
+                            <span class="parkinson-detail-label"> AI Model </span>
+                            <span class="parkinson-detail-value">{{ model_name }} </span>
+                        </div>
+                       
+                        <div class="parkinson-detail">
+                            <span class="parkinson-detail-label"> Features Analyzed </span>
+                            <span class="parkinson-detail-value"> 22 </span>
+                        </div>
+                    </div>
+                   
+                    <!-- Important Note -->
+                    <div class="parkinson-important-note">
+                        <div class="parkinson-important-note-title"><i class="fas fa-shield-halved"></i>Important Note </div>
+                        <p> This AI tool is intended for educational and research purposes only. It is not a medical diagnosis. Please consult a qualified healthcare professional for proper medical evaluation.</p>
+                    </div>
+                </div>
+                
+                <!-- =========== EMPTY STATE =================== -->
+                {% else %}
+                <div class="parkinson-empty-result">
+                    <div class="parkinson-empty-icon"><i class="fas fa-file-medical"></i></div>
+                    <h3>Ready for Analysis </h3>
+                    <p> Enter the 22 voice measurements and click <strong>Analyze for Parkinson's</strong> to see the prediction result.</p>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

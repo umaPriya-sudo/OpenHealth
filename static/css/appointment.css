@@ -1,0 +1,787 @@
+/* =========================================================
+   OPENHEALTH — DOCTOR APPOINTMENT
+   Main Appointment Page
+   ========================================================= */
+
+.appointment-page {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 8% 8%, rgba(59, 130, 246, 0.08), transparent 28%),
+        radial-gradient(circle at 92% 15%, rgba(99, 102, 241, 0.07), transparent 25%),
+        #f8fbff;
+    padding: 28px 5% 70px;
+    color: #0f172a;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.appointment-hero {
+    max-width: 1240px;
+    min-height: 390px;
+    margin: 0 auto 55px;
+    padding: 55px 60px;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid rgba(59, 130, 246, 0.12);
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f4f9ff 58%,
+            #eaf3ff 100%
+        );
+
+    box-shadow:
+        0 20px 60px rgba(15, 23, 42, 0.07);
+}
+
+
+.hero-content {
+    width: 58%;
+    position: relative;
+    z-index: 3;
+}
+
+
+.hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 13px;
+    margin-bottom: 18px;
+
+    border-radius: 999px;
+    background: rgba(59, 130, 246, 0.09);
+    color: #2563eb;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+
+.hero-eyebrow i {
+    font-size: 13px;
+}
+
+
+.hero-content h1 {
+    max-width: 650px;
+    margin: 0;
+
+    font-size: clamp(36px, 4vw, 54px);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+    color: #0f2f68;
+}
+
+
+.hero-content h1 span {
+    display: block;
+    color: #1769e0;
+}
+
+
+.hero-content > p {
+    max-width: 570px;
+    margin: 20px 0 27px;
+
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* Search */
+
+.doctor-search {
+    width: min(100%, 570px);
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+
+    background: #ffffff;
+    border: 1px solid #dbe7f5;
+    border-radius: 14px;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.08);
+
+    overflow: hidden;
+}
+
+
+.doctor-search > i {
+    margin-left: 19px;
+    color: #94a3b8;
+    font-size: 17px;
+}
+
+
+.doctor-search input {
+    flex: 1;
+    height: 100%;
+
+    border: none;
+    outline: none;
+    background: transparent;
+
+    padding: 0 15px;
+
+    color: #0f172a;
+    font-size: 14px;
+}
+
+
+.doctor-search input::placeholder {
+    color: #94a3b8;
+}
+
+
+.doctor-search button {
+    width: 48px;
+    height: 44px;
+    margin-right: 7px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.doctor-search button:hover {
+    background: #1d4ed8;
+    transform: translateX(2px);
+}
+
+
+/* =========================================================
+   HERO VISUAL
+   ========================================================= */
+
+.hero-visual {
+    width: 38%;
+    height: 330px;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.hero-circle {
+    width: 285px;
+    height: 285px;
+
+    position: absolute;
+    right: 15px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #dbeafe,
+            #bfdbfe
+        );
+
+    box-shadow:
+        inset 0 0 0 18px rgba(255, 255, 255, 0.45);
+}
+
+
+.doctor-illustration {
+    width: 220px;
+    height: 250px;
+
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 120px 120px 35px 35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #eff6ff,
+            #dbeafe
+        );
+
+    box-shadow:
+        0 20px 40px rgba(37, 99, 235, 0.12);
+
+    color: #2563eb;
+}
+
+
+.doctor-illustration i {
+    font-size: 125px;
+}
+
+
+/* Floating cards */
+
+.floating-card {
+    position: absolute;
+    z-index: 4;
+
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    padding: 12px 15px;
+
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e2e8f0;
+    border-radius: 13px;
+
+    box-shadow:
+        0 12px 30px rgba(15, 23, 42, 0.10);
+}
+
+
+.floating-card i {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+
+.floating-card strong {
+    display: block;
+
+    font-size: 12px;
+    color: #0f172a;
+}
+
+
+.floating-card span {
+    display: block;
+    margin-top: 2px;
+
+    font-size: 10px;
+    color: #94a3b8;
+}
+
+
+.card-one {
+    left: 5px;
+    top: 42px;
+}
+
+
+.card-two {
+    right: 0;
+    bottom: 30px;
+}
+
+
+/* =========================================================
+   SECTION COMMON
+   ========================================================= */
+
+.specialties-section,
+.why-openhealth {
+    max-width: 1240px;
+    margin: 0 auto 65px;
+}
+
+
+.section-heading {
+    margin-bottom: 28px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+.section-heading.centered {
+    display: block;
+    text-align: center;
+}
+
+
+.section-eyebrow {
+    display: block;
+    margin-bottom: 7px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+}
+
+
+.section-heading h2 {
+    margin: 0;
+
+    color: #0f2f68;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+
+.section-heading p {
+    margin: 8px 0 0;
+
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* View all */
+
+.view-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 9px 0;
+
+    border: none;
+    background: transparent;
+
+    color: #2563eb;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.view-all-btn i {
+    font-size: 11px;
+    transition: transform 0.2s ease;
+}
+
+
+.view-all-btn:hover i {
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   SPECIALTY CARDS
+   ========================================================= */
+
+.specialty-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 17px;
+}
+
+
+.specialty-card {
+    min-height: 155px;
+    padding: 22px 18px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 17px;
+
+    background: #ffffff;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 24px rgba(15, 23, 42, 0.045);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.specialty-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(59, 130, 246, 0.28);
+
+    box-shadow:
+        0 16px 35px rgba(37, 99, 235, 0.10);
+}
+
+
+.specialty-icon {
+    width: 50px;
+    height: 50px;
+
+    margin-bottom: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    font-size: 21px;
+}
+
+
+.specialty-icon.cardiology {
+    background: #fff0f2;
+    color: #ef4444;
+}
+
+
+.specialty-icon.neurology {
+    background: #f0edff;
+    color: #7c3aed;
+}
+
+
+.specialty-icon.orthopedics {
+    background: #eaf5ff;
+    color: #0284c7;
+}
+
+
+.specialty-icon.dermatology {
+    background: #fff5ed;
+    color: #ea580c;
+}
+
+
+.specialty-icon.general {
+    background: #e9faf5;
+    color: #059669;
+}
+
+
+.specialty-icon.gynecology {
+    background: #fff0f7;
+    color: #db2777;
+}
+
+
+.specialty-icon.pediatrics {
+    background: #fff8e8;
+    color: #d97706;
+}
+
+
+.specialty-icon.ent {
+    background: #eef4ff;
+    color: #4f46e5;
+}
+
+
+.specialty-card h3 {
+    margin: 0 0 5px;
+
+    color: #172554;
+
+    font-size: 15px;
+    font-weight: 750;
+}
+
+
+.specialty-card span {
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   WHY OPENHEALTH
+   ========================================================= */
+
+.why-openhealth {
+    padding-top: 5px;
+}
+
+
+.benefits-grid {
+    margin-top: 32px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+
+.benefit-card {
+    padding: 25px 22px;
+
+    border: 1px solid #e5edf7;
+    border-radius: 17px;
+
+    background: rgba(255, 255, 255, 0.82);
+
+    text-align: center;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.benefit-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 14px 30px rgba(15, 23, 42, 0.07);
+}
+
+
+.benefit-icon {
+    width: 52px;
+    height: 52px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: #eff6ff;
+    color: #2563eb;
+
+    font-size: 20px;
+}
+
+
+.benefit-card h3 {
+    margin: 0 0 8px;
+
+    color: #172554;
+
+    font-size: 15px;
+}
+
+
+.benefit-card p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .appointment-hero {
+        padding: 45px;
+    }
+
+    .hero-content {
+        width: 60%;
+    }
+
+    .hero-visual {
+        width: 35%;
+    }
+
+    .specialty-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .appointment-page {
+        padding: 20px 4% 50px;
+    }
+
+    .appointment-hero {
+        min-height: auto;
+
+        padding: 38px 28px;
+
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: 38px;
+    }
+
+    .hero-visual {
+        width: 100%;
+        height: 280px;
+
+        margin-top: 20px;
+    }
+
+    .hero-circle {
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .specialty-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 520px) {
+
+    .appointment-page {
+        padding: 15px 15px 40px;
+    }
+
+    .appointment-hero {
+        padding: 30px 20px;
+        border-radius: 22px;
+    }
+
+    .hero-content h1 {
+        font-size: 31px;
+    }
+
+    .hero-content > p {
+        font-size: 14px;
+    }
+
+    .doctor-search {
+        height: 54px;
+    }
+
+    .hero-visual {
+        height: 250px;
+    }
+
+    .hero-circle {
+        width: 220px;
+        height: 220px;
+    }
+
+    .doctor-illustration {
+        width: 175px;
+        height: 205px;
+    }
+
+    .doctor-illustration i {
+        font-size: 95px;
+    }
+
+    .floating-card {
+        padding: 9px 11px;
+    }
+
+    .floating-card i {
+        width: 31px;
+        height: 31px;
+        font-size: 12px;
+    }
+
+    .floating-card strong {
+        font-size: 10px;
+    }
+
+    .floating-card span {
+        font-size: 8px;
+    }
+
+    .card-one {
+        left: -2px;
+        top: 28px;
+    }
+
+    .card-two {
+        right: -2px;
+        bottom: 20px;
+    }
+
+    .section-heading h2 {
+        font-size: 24px;
+    }
+
+    .specialty-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 11px;
+    }
+
+    .specialty-card {
+        min-height: 135px;
+        padding: 17px 14px;
+    }
+
+    .specialty-icon {
+        width: 43px;
+        height: 43px;
+        margin-bottom: 11px;
+        font-size: 18px;
+    }
+
+    .specialty-card h3 {
+        font-size: 13px;
+    }
+
+    .specialty-card span {
+        font-size: 10px;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,888 @@
+{% extends "base.html" %}
+
+{% block title %}
+OpenHealth - AI Symptom Checker
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/symptom_checker.css') }}"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+<section class="symptom-page">
+
+    <div class="symptom-container">
+
+        <!-- =====================================================
+             BREADCRUMB
+        ====================================================== -->
+
+        <div class="symptom-breadcrumb">
+
+            <span>Home</span>
+
+            <i class="fas fa-chevron-right"></i>
+
+            <strong>Symptom Checker</strong>
+
+        </div>
+
+
+        <!-- =====================================================
+             PAGE HEADER
+        ====================================================== -->
+
+        <div class="symptom-hero">
+
+            <div class="symptom-hero-content">
+
+                <h1>
+                    AI Symptom Checker
+                </h1>
+
+                <p>
+                    Select the symptoms you are experiencing and get
+                    an AI-based prediction of possible health conditions.
+                </p>
+
+            </div>
+
+
+            <div class="symptom-hero-illustration">
+
+                <div class="hero-circle hero-circle-one"></div>
+
+                <div class="hero-circle hero-circle-two"></div>
+
+                <div class="hero-clipboard">
+
+                    <i class="fas fa-clipboard-check"></i>
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+                <div class="hero-heart">
+
+                    <i class="fas fa-heart"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             INFORMATION CARDS
+        ====================================================== -->
+
+        <div class="symptom-stats">
+
+            <div class="symptom-stat-card">
+
+                <div class="stat-icon blue">
+
+                    <i class="fas fa-file-medical"></i>
+
+                </div>
+
+                <div class="stat-content">
+
+                    <strong>132 Symptoms</strong>
+
+                    <span>
+                        from medical dataset
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="symptom-stat-card">
+
+                <div class="stat-icon cyan">
+
+                    <i class="fas fa-disease"></i>
+
+                </div>
+
+                <div class="stat-content">
+
+                    <strong>41 Diseases</strong>
+
+                    <span>
+                        AI-based prediction
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="symptom-stat-card">
+
+                <div class="stat-icon green">
+
+                    <i class="fas fa-bolt"></i>
+
+                </div>
+
+                <div class="stat-content">
+
+                    <strong>Quick Results</strong>
+
+                    <span>
+                        Get instant insights
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             SYMPTOM SELECTION CARD
+        ====================================================== -->
+
+        <div
+            id="symptomSelection"
+            class="symptom-selection-card"
+        >
+
+            <div class="selection-heading">
+
+                <h2>
+                    Select Your Symptoms
+                </h2>
+
+                <p>
+                    Search or browse through the list of symptoms
+                    you are experiencing.
+                </p>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="symptom-search-wrapper">
+
+                <i class="fas fa-search"></i>
+
+                <input
+                    type="search"
+                    id="symptomSearch"
+                    placeholder="Search symptoms (e.g., itching, headache, fever...)"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="symptom-selection-layout">
+
+
+                <!-- =================================================
+                     CATEGORY SIDEBAR
+                ================================================== -->
+
+                <aside class="symptom-category-panel">
+
+                    <div class="category-title">
+                        Categories
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="category-item active"
+                        data-category="all"
+                    >
+
+                        <span class="category-icon">
+                            <i class="fas fa-list"></i>
+                        </span>
+
+                        <span>All Symptoms</span>
+
+                        <small id="allCount">132</small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="category-item"
+                        data-category="general"
+                    >
+
+                        <span class="category-icon">
+                            <i class="fas fa-user"></i>
+                        </span>
+
+                        <span>General</span>
+
+                        <small>24</small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="category-item"
+                        data-category="skin"
+                    >
+
+                        <span class="category-icon">
+                            <i class="fas fa-hand-sparkles"></i>
+                        </span>
+
+                        <span>Skin & Hair</span>
+
+                        <small>18</small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="category-item"
+                        data-category="gastro"
+                    >
+
+                        <span class="category-icon">
+                            <i class="fas fa-stomach"></i>
+                        </span>
+
+                        <span>Gastrointestinal</span>
+
+                        <small>16</small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="category-item"
+                        data-category="respiratory"
+                    >
+
+                        <span class="category-icon">
+                            <i class="fas fa-lungs"></i>
+                        </span>
+
+                        <span>Respiratory</span>
+
+                        <small>12</small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="category-item"
+                        data-category="musculoskeletal"
+                    >
+
+                        <span class="category-icon">
+                            <i class="fas fa-bone"></i>
+                        </span>
+
+                        <span>Musculoskeletal</span>
+
+                        <small>14</small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="category-item"
+                        data-category="neurological"
+                    >
+
+                        <span class="category-icon">
+                            <i class="fas fa-brain"></i>
+                        </span>
+
+                        <span>Neurological</span>
+
+                        <small>10</small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="category-item"
+                        data-category="cardiovascular"
+                    >
+
+                        <span class="category-icon">
+                            <i class="fas fa-heart-pulse"></i>
+                        </span>
+
+                        <span>Cardiovascular</span>
+
+                        <small>10</small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="category-item"
+                        data-category="other"
+                    >
+
+                        <span class="category-icon">
+                            <i class="fas fa-plus"></i>
+                        </span>
+
+                        <span>Others</span>
+
+                        <small>28</small>
+
+                    </button>
+
+                </aside>
+
+
+                <!-- =================================================
+                     SYMPTOM LIST
+                ================================================== -->
+
+                <div class="symptom-list-panel">
+
+                    <div class="symptom-list-heading">
+
+                        <div>
+
+                            <h3>
+                                Available Symptoms
+                                (<span id="symptomTotal">132</span>)
+                            </h3>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="clearSymptomsBtn"
+                            class="clear-symptoms-btn"
+                        >
+                            Clear All
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="symptomGrid"
+                        class="symptom-grid"
+                    >
+
+                        <!-- Loaded from API -->
+
+                    </div>
+
+
+                    <!-- =================================================
+                         SELECTED SYMPTOMS
+                    ================================================== -->
+
+                    <div class="selected-symptoms-section">
+
+                        <div class="selected-heading">
+
+                            <strong>
+                                Selected Symptoms
+                                (<span id="selectedCount">0</span>)
+                            </strong>
+
+                        </div>
+
+
+                        <div
+                            id="selectedSymptoms"
+                            class="selected-symptoms"
+                        >
+
+                            <span class="selected-placeholder">
+                                Select symptoms above to add them here.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ERROR -->
+
+                    <div
+                        id="symptomError"
+                        class="symptom-error"
+                    ></div>
+
+
+                    <!-- ACTION -->
+
+                    <div class="symptom-action">
+
+                        <button
+                            type="button"
+                            id="predictSymptomBtn"
+                            class="predict-symptom-btn"
+                            disabled
+                        >
+
+                            Check Possible Disease
+
+                            <i class="fas fa-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             LOADING STATE
+        ====================================================== -->
+
+        <div
+            id="symptomLoading"
+            class="symptom-loading"
+        >
+
+            <div class="loading-card">
+
+                <div class="loading-spinner">
+
+                    <div class="spinner-inner"></div>
+
+                </div>
+
+
+                <h2>
+                    Analyzing Symptoms...
+                </h2>
+
+
+                <p>
+                    Our AI model is analyzing your symptoms to
+                    predict possible health conditions.
+                </p>
+
+
+                <div class="analysis-steps">
+
+                    <div class="analysis-step completed">
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                        </span>
+
+                        Processing selected symptoms
+
+                    </div>
+
+
+                    <div class="analysis-step completed">
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                        </span>
+
+                        Running AI prediction model
+
+                    </div>
+
+
+                    <div class="analysis-step active">
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                        </span>
+
+                        Analyzing possible conditions
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             RESULT
+        ====================================================== -->
+
+        <div
+            id="symptomResult"
+            class="symptom-result"
+        >
+
+            <div class="result-card">
+
+
+                <!-- RESULT HEADER -->
+
+                <div class="result-main">
+
+                    <div class="result-disease-icon">
+
+                        <i class="fas fa-shield-heart"></i>
+
+                    </div>
+
+
+                    <div class="result-disease-info">
+
+                        <span>
+                            Predicted Condition
+                        </span>
+
+                        <h2 id="resultDisease">
+                            Fungal infection
+                        </h2>
+
+                        <p>
+                            Based on the symptoms you selected.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SELECTED SYMPTOMS -->
+
+                <div class="result-symptoms-section">
+
+                    <strong>
+                        Selected Symptoms
+                        (<span id="resultSymptomCount">0</span>)
+                    </strong>
+
+
+                    <div
+                        id="resultSymptoms"
+                        class="result-symptoms"
+                    ></div>
+
+                </div>
+
+
+                <!-- DISCLAIMER -->
+
+                <div class="medical-disclaimer">
+
+                    <div class="disclaimer-icon">
+
+                        <i class="fas fa-exclamation"></i>
+
+                    </div>
+
+                    <div>
+
+                        This is an AI-based prediction and not
+                        a medical diagnosis. Please consult a
+                        qualified doctor for proper diagnosis
+                        and medical advice.
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="result-actions">
+
+                    <button
+                        type="button"
+                        id="checkAgainBtn"
+                        class="result-secondary-btn"
+                    >
+                        Check Again
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="viewDetailsBtn"
+                        class="result-primary-btn"
+                    >
+                        View Details
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             DISEASE DETAILS
+             FUTURE EXPANDABLE SECTION
+        ====================================================== -->
+
+        <div
+            id="diseaseDetails"
+            class="disease-details"
+        >
+
+            <div class="details-sidebar">
+
+                <button type="button" class="details-tab active" data-tab="overview">
+
+                    <i class="fas fa-circle-info"></i>
+
+                    Overview
+
+                </button>
+
+
+                <button type="button" class="details-tab" data-tab="symptoms">
+
+                    <i class="fas fa-list-check"></i>
+
+                    Symptoms
+
+                </button>
+
+
+                <button type="button" class="details-tab" data-tab="causes">
+
+                    <i class="fas fa-magnifying-glass"></i>
+
+                    Possible Causes
+
+                </button>
+
+
+                <button type="button" class="details-tab" data-tab="precautions">
+
+                    <i class="fas fa-shield-halved"></i>
+
+                    Precautions
+
+                </button>
+
+
+                <button class="details-tab" type="button" data-tab="medicines">
+
+                    <i class="fas fa-pills"></i>
+
+                    Commonly Associated Medicines
+
+                </button>
+
+
+                <button class="details-tab">
+
+                    <i class="fas fa-user-doctor"></i>
+
+                    Doctor Consultation
+
+                </button>
+
+            </div>
+
+
+            <div class="details-content">
+
+                <div class="details-title-row">
+                
+                    <div class="details-disease-icon">
+                    
+                        <i class="fas fa-shield-heart"></i>
+                    
+                    </div>
+                
+                    <div>
+                    
+                        <h2 id="detailsDisease">
+                            Fungal infection
+                        </h2>
+                    
+                        <p id="detailsSubtitle">
+                            Disease information
+                        </p>
+                    
+                    </div>
+                
+                </div>
+            
+            
+                <!-- =====================================================
+                     DYNAMIC DETAILS CONTENT
+                ====================================================== -->
+            
+                <div
+                    id="detailsOverview"
+                    class="details-tab-content active"
+                >
+            
+                    <h3>
+                        Disease Overview
+                    </h3>
+                
+                    <p>
+                        The prediction is based on the symptoms selected
+                        and analyzed by the OpenHealth AI symptom prediction
+                        model.
+                    </p>
+                
+                    <div class="details-info-box">
+                    
+                        <i class="fas fa-circle-info"></i>
+                    
+                        <span>
+                            This result represents an AI-based prediction
+                            and should not be considered a medical diagnosis.
+                        </span>
+                    
+                    </div>
+                
+                </div>
+            
+            
+                <div
+                    id="detailsSymptoms"
+                    class="details-tab-content"
+                >
+            
+                    <h3>
+                        Selected Symptoms
+                    </h3>
+                
+                    <div
+                        id="detailsSymptomsList"
+                        class="details-symptoms-list"
+                    ></div>
+                
+                </div>
+            
+            
+                <div
+                    id="detailsCauses"
+                    class="details-tab-content"
+                >
+            
+                    <h3>
+                        Possible Causes
+                    </h3>
+                
+                    <p>
+                        Possible causes and disease-specific information
+                        will be displayed here after the disease information
+                        database is connected.
+                    </p>
+                
+                    <div class="details-info-box">
+                    
+                        <i class="fas fa-magnifying-glass"></i>
+                    
+                        <span>
+                            Disease-specific causes will be connected
+                            in the next stage.
+                        </span>
+                    
+                    </div>
+                
+                </div>
+            
+            
+                <div
+                    id="detailsPrecautions"
+                    class="details-tab-content"
+                >
+            
+                    <h3>
+                        Precautions
+                    </h3>
+                
+                    <p>
+                        Recommended precautions for the predicted condition
+                        will be displayed here.
+                    </p>
+                
+                    <div class="details-info-box">
+                    
+                        <i class="fas fa-shield-halved"></i>
+                    
+                        <span>
+                            Disease-specific precautions will be connected
+                            from the healthcare information database.
+                        </span>
+                    
+                    </div>
+                
+                </div>
+
+                <!-- Commonly Associated Medicines -->
+                <div
+                    id="detailsMedicines"
+                    class="details-tab-content"
+                >
+                    <h3>Commonly Associated Medicines</h3>
+
+                    <p>
+                        Here are some medicines commonly associated with
+                        <span id="medicinesDiseaseName">this condition</span>.
+                    </p>
+                
+                    <p class="medicine-disclaimer">
+                        Please consult a doctor or pharmacist before taking any medicine.
+                    </p>
+                
+                    <div
+                        id="associatedMedicinesList"
+                        class="associated-medicines-list"
+                    >
+                    
+                    </div>
+                </div>
+            
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script
+    src="{{ url_for('static', filename='js/symptom_checker.js') }}"
+></script>
+
+{% endblock %}

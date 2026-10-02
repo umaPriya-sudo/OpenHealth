@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %} OpenHealth - Breast Cancer Detection {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/diseases.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="disease-page">
+
+    <h1> 🎀 Breast Cancer Detection </h1>
+    <p class="subtitle">  6-feature model • ~93% validation accuracy </p>
+
+    <div class="form-container">
+
+        <!-- ====== ERROR MESSAGE ================ -->
+        {% if error %}
+        <div class="result-box" style="border-color: #f5576c;">
+            <h3>⚠️ Error </h3>
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+
+        <!-- ======== BREAST CANCER FORM =========== -->
+        <form method="POST" id="breastCancerForm">
+
+            <!-- Radius Mean -->
+            <div class="form-group">
+                <label> Radius Mean </label>
+                <input type="number" step="0.0001" name="radius_mean" placeholder="e.g., 17.99" required>
+            </div>
+
+            <!-- Texture Mean -->
+            <div class="form-group">
+                <label> Texture Mean </label>
+                <input type="number" step="0.0001" name="texture_mean"  placeholder="e.g., 10.38"  required>
+            </div>
+
+            <!-- Perimeter Mean -->
+            <div class="form-group">
+                <label> Perimeter Mean </label>
+                <input type="number" step="0.0001" name="perimeter_mean" placeholder="e.g., 122.80" required>
+            </div>
+
+            <!-- Area Mean -->
+            <div class="form-group"> 
+                <label> Area Mean </label>
+                <input type="number" step="0.0001" name="area_mean" placeholder="e.g., 1001.0" required>
+            </div>
+
+            <!-- Smoothness Mean -->
+            <div class="form-group">
+                <label> Smoothness Mean </label>
+                <input type="number" step="0.0001" name="smoothness_mean" placeholder="e.g., 0.1184" required>
+            </div>
+
+            <!-- Compactness Mean -->
+            <div class="form-group">
+                <label> Compactness Mean </label>
+                <input type="number" step="0.0001" name="compactness_mean" placeholder="e.g., 0.2776" required>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="submit-btn" id="breastCancerPredictBtn"> <i class="fas fa-chart-line"></i> Predict Risk </button>
+        </form>
+
+        <!-- =========PREDICTION RESULT ============= -->
+        {% if show_result %}
+        <div class="result-box">
+            <h3>🎀 Results</h3>
+            <p> Cancer Probability: <span class="result-value"> {{ "%.2f"|format(final_result * 100) }}%</span> </p>
+            <p> Risk Level:
+                <span class="risk-level
+                    {% if final_result >= 0.7 %} risk-high
+                    {% elif final_result >= 0.4 %} risk-medium
+                    {% else %} risk-low
+                    {% endif %}">
+                    {{ risk_level }}
+                </span>
+            </p>
+            <p style="font-size: 0.85rem; color: #718096; margin-top: 0.5rem;">
+                <i class="fas fa-info-circle"></i> Disclaimer: This is not a medical diagnosis.Please consult a doctor.
+            </p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

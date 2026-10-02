@@ -1,0 +1,611 @@
+{% extends "base.html" %}
+
+{% block title %}My Profile | OpenHealth{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/profile.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+
+    <!-- ================================================== -->
+    <!-- PROFILE HEADER -->
+    <!-- ================================================== -->
+
+    <section class="profile-header">
+
+        <div class="profile-header-content">
+
+            <div class="profile-avatar">
+                {% if user.profile_image %}
+                    <img
+                        src="{{ user.profile_image }}"
+                        alt="Profile"
+                    >
+                {% else %}
+                    <i class="fas fa-user"></i>
+                {% endif %}
+            </div>
+
+            <div class="profile-intro">
+
+                <span class="profile-eyebrow">
+                    <i class="fas fa-user-circle"></i>
+                    MY PROFILE
+                </span>
+
+                <h1>
+                    {{ user.full_name }}
+                </h1>
+
+                <p>
+                    Manage your OpenHealth account and view
+                    your healthcare activity.
+                </p>
+
+                <div class="profile-meta">
+
+                    <span>
+                        <i class="fas fa-envelope"></i>
+                        {{ user.email }}
+                    </span>
+
+                    {% if user.auth_provider %}
+                    <span>
+                        <i class="fas fa-shield-halved"></i>
+                        {{ user.auth_provider|title }} Account
+                    </span>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <button
+            type="button"
+            class="edit-profile-btn"
+            id="editProfileBtn"
+        >
+            <i class="fas fa-pen"></i>
+            Edit Profile
+        </button>
+
+    </section>
+
+
+    <!-- ================================================== -->
+    <!-- QUICK STATS -->
+    <!-- ================================================== -->
+
+    <section class="profile-stats">
+
+        <div class="profile-stat-card">
+
+            <div class="stat-icon prediction-icon">
+                <i class="fas fa-brain"></i>
+            </div>
+
+            <div>
+                <span>AI Predictions</span>
+
+                <strong>
+                    {{ activities
+                       | selectattr("type", "equalto", "Disease Prediction")
+                       | list
+                       | length }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-stat-card">
+
+            <div class="stat-icon appointment-icon">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+
+            <div>
+                <span>Appointments</span>
+
+                <strong>
+                    {{ activities
+                       | selectattr("type", "equalto", "Appointment")
+                       | list
+                       | length }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-stat-card">
+
+            <div class="stat-icon symptom-icon">
+                <i class="fas fa-stethoscope"></i>
+            </div>
+
+            <div>
+                <span>Symptom Checks</span>
+
+                <strong>
+                    {{ activities
+                       | selectattr(
+                           "type",
+                           "equalto",
+                           "Symptom Checker Prediction"
+                       )
+                       | list
+                       | length }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-stat-card">
+
+            <div class="stat-icon activity-icon">
+                <i class="fas fa-clock-rotate-left"></i>
+            </div>
+
+            <div>
+                <span>Total Activities</span>
+
+                <strong>
+                    {{ activities|length }}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================== -->
+    <!-- ACTIVITY -->
+    <!-- ================================================== -->
+
+    <section class="activity-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-eyebrow">
+                    <i class="fas fa-chart-line"></i>
+                    YOUR ACTIVITY
+                </span>
+
+                <h2>
+                    Recent Healthcare Activity
+                </h2>
+
+                <p>
+                    A record of your recent activity
+                    on OpenHealth.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        {% if activities %}
+
+        <div class="activity-list">
+
+            {% for activity in activities[:10] %}
+
+            <div class="activity-card">
+
+                <div class="activity-icon">
+
+                    <i class="fas {{ activity.icon }}"></i>
+
+                </div>
+
+
+                <div class="activity-content">
+
+                    <div class="activity-top">
+
+                        <span class="activity-type">
+                            {{ activity.type }}
+                        </span>
+
+                        {% if activity.status %}
+
+                        <span
+                            class="activity-status
+                            {% if activity.status == 'Cancelled' %}
+                                cancelled
+                            {% else %}
+                                confirmed
+                            {% endif %}"
+                        >
+                            {{ activity.status }}
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <h3>
+                        {{ activity.title }}
+                    </h3>
+
+
+                    <p>
+                        {{ activity.description }}
+                    </p>
+
+
+                    {% if activity.appointment_date %}
+
+                    <div class="activity-appointment-info">
+
+                        <span>
+                            <i class="fas fa-calendar"></i>
+                            {{ activity.appointment_date }}
+                        </span>
+
+                        <span>
+                            <i class="fas fa-clock"></i>
+                            {{ activity.appointment_time }}
+                        </span>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    {% if activity.date %}
+
+                    <small class="activity-date">
+
+                        <i class="fas fa-clock"></i>
+
+                        {{ activity.date }}
+
+                    </small>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-activity">
+
+            <div class="empty-icon">
+                <i class="fas fa-heart-pulse"></i>
+            </div>
+
+            <h3>
+                No Activity Yet
+            </h3>
+
+            <p>
+                Your healthcare activities will appear here
+                as you use OpenHealth services.
+            </p>
+
+            <a href="/services" class="explore-services-btn">
+                <i class="fas fa-compass"></i>
+                Explore Services
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- ================================================== -->
+    <!-- ACCOUNT INFORMATION -->
+    <!-- ================================================== -->
+
+    <section class="account-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-eyebrow">
+                    <i class="fas fa-id-card"></i>
+                    ACCOUNT
+                </span>
+
+                <h2>
+                    Account Information
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="account-card">
+
+            <div class="account-row">
+
+                <span>
+                    <i class="fas fa-user"></i>
+                    Full Name
+                </span>
+
+                <strong>
+                    {{ user.full_name }}
+                </strong>
+
+            </div>
+
+
+            <div class="account-row">
+
+                <span>
+                    <i class="fas fa-envelope"></i>
+                    Email Address
+                </span>
+
+                <strong>
+                    {{ user.email }}
+                </strong>
+
+            </div>
+
+
+            <div class="account-row">
+
+                <span>
+                    <i class="fas fa-shield-halved"></i>
+                    Authentication
+                </span>
+
+                <strong>
+                    {{ user.auth_provider|title }}
+                </strong>
+
+            </div>
+
+
+            <div class="account-row">
+
+                <span>
+                    <i class="fas fa-circle-check"></i>
+                    Email Verification
+                </span>
+
+                <strong>
+                    {% if user.email_verified %}
+                        Verified
+                    {% else %}
+                        Not Verified
+                    {% endif %}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================================================== -->
+    <!-- EDIT PROFILE MODAL -->
+    <!-- ================================================== -->
+
+    <div
+        class="profile-modal-overlay"
+        id="profileModal"
+    >
+
+        <div class="profile-modal">
+
+            <div class="profile-modal-header">
+
+                <div>
+                    <span class="profile-modal-eyebrow">
+                        <i class="fas fa-user-pen"></i>
+                        ACCOUNT SETTINGS
+                    </span>
+
+                    <h2>
+                        Edit Profile
+                    </h2>
+
+                    <p>
+                        Update your basic profile information.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="profile-modal-close"
+                    id="closeProfileModal"
+                    aria-label="Close"
+                >
+                    <i class="fas fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <form
+                action="/profile/update"
+                method="POST"
+                enctype="multipart/form-data"
+                class="profile-edit-form"
+            >
+
+                <!-- Profile Picture -->
+
+                <div class="profile-picture-edit">
+                
+                    <div class="profile-picture-preview">
+                    
+                        {% if user.profile_image %}
+                    
+                            <img
+                                src="{{ user.profile_image }}"
+                                alt="Profile Picture"
+                                id="profilePicturePreview"
+                            >
+                    
+                        {% else %}
+                    
+                            <div
+                                class="profile-picture-placeholder"
+                                id="profilePicturePlaceholder"
+                            >
+                                <i class="fas fa-user"></i>
+                            </div>
+                        
+                        {% endif %}
+                        
+                    </div>
+                
+                
+                    <div class="profile-picture-actions">
+                    
+                        <label
+                            for="profileImage"
+                            class="profile-picture-upload-btn"
+                        >
+                            <i class="fas fa-camera"></i>
+                            Change Photo
+                        </label>
+                    
+                        <input
+                            type="file"
+                            id="profileImage"
+                            name="profile_image"
+                            accept="image/png,image/jpeg,image/jpg"
+                            hidden
+                        >
+                    
+                        <p>
+                            JPG or PNG · Maximum 2 MB
+                        </p>
+
+                        {% if user.profile_image %}
+                        <button
+                            type="button"
+                            class="remove-picture-btn"
+                            id="removeProfilePictureBtn"
+                        >
+                            <i class="fas fa-trash"></i>
+                            Remove Photo
+                        </button>
+                        {% endif %}
+                    
+                    </div>
+                
+                </div>
+
+                <!-- Full Name -->
+
+                <div class="profile-form-group">
+
+                    <label for="profileFullName">
+                        Full Name
+                    </label>
+
+                    <div class="profile-input-wrapper">
+
+                        <i class="fas fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="profileFullName"
+                            name="full_name"
+                            value="{{ user.full_name }}"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="profile-form-group">
+
+                    <label for="profileEmail">
+                        Email Address
+                    </label>
+
+                    <div class="profile-input-wrapper">
+
+                        <i class="fas fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="profileEmail"
+                            value="{{ user.email }}"
+                            readonly
+                        >
+
+                    </div>
+
+                    <small>
+                        Email address cannot be changed here.
+                    </small>
+
+                </div>
+
+
+                <!-- Actions -->
+
+                <div class="profile-modal-actions">
+
+                    <button
+                        type="button"
+                        class="profile-cancel-btn"
+                        id="cancelProfileEdit"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="profile-save-btn"
+                    >
+                        <i class="fas fa-check"></i>
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,158 @@
+{
+    "paracetamol": {
+        "name": "Paracetamol / Acetaminophen",
+        "category": "Painkiller / Fever Reducer",
+        "uses": "Pain relief, fever reduction, headache, muscle aches",
+        "dosage": "500mg every 4-6 hours (max 4g/day)",
+        "side_effects": "Nausea, rash, liver damage (overdose)",
+        "warning": "Do not exceed recommended dose. Avoid with alcohol.",
+        "brand_names": [
+            "Crocin",
+            "Dolo 650",
+            "Calpol",
+            "Tylenol"
+        ]
+    },
+
+    "ibuprofen": {
+        "name": "Ibuprofen",
+        "category": "NSAID / Painkiller",
+        "uses": "Pain relief, inflammation, fever, arthritis, muscle pain",
+        "dosage": "200-400mg every 6-8 hours (max 1.2g/day)",
+        "side_effects": "Stomach upset, heartburn, dizziness, kidney issues",
+        "warning": "Take with food. Not for long-term use. Avoid with stomach ulcers.",
+        "brand_names": [
+            "Brufen",
+            "Advil",
+            "Motrin",
+            "Nurofen"
+        ]
+    },
+
+    "aspirin": {
+        "name": "Aspirin (Acetylsalicylic Acid)",
+        "category": "NSAID / Blood Thinner",
+        "uses": "Pain relief, fever, blood thinning, heart attack prevention",
+        "dosage": "300-600mg every 4-6 hours (max 4g/day)",
+        "side_effects": "Stomach irritation, bleeding risk, ringing in ears",
+        "warning": "Not for children under 16. Avoid with stomach ulcers.",
+        "brand_names": [
+            "Ecosprin",
+            "Aspirin",
+            "Disprin"
+        ]
+    },
+
+    "amoxicillin": {
+        "name": "Amoxicillin",
+        "category": "Antibiotic (Penicillin)",
+        "uses": "Bacterial infections (respiratory, ear, urinary, skin)",
+        "dosage": "250-500mg every 8 hours (or 875mg twice daily)",
+        "side_effects": "Diarrhea, rash, nausea, yeast infection",
+        "warning": "Complete full course. Allergies possible (rash, swelling).",
+        "brand_names": [
+            "Amoxil",
+            "Moxikind",
+            "Novamox"
+        ]
+    },
+
+    "azithromycin": {
+        "name": "Azithromycin",
+        "category": "Antibiotic (Macrolide)",
+        "uses": "Bacterial infections (respiratory, sinus, ear, skin, STD)",
+        "dosage": "500mg once daily (3-day course) or 1g single dose",
+        "side_effects": "Diarrhea, nausea, abdominal pain, headache",
+        "warning": "Take on empty stomach. Avoid with heart rhythm problems.",
+        "brand_names": [
+            "Azee",
+            "Zithromax",
+            "Azax"
+        ]
+    },
+
+    "metformin": {
+        "name": "Metformin",
+        "category": "Antidiabetic",
+        "uses": "Type 2 diabetes, PCOS, weight management",
+        "dosage": "500-2000mg daily with meals",
+        "side_effects": "Nausea, diarrhea, stomach upset, vitamin B12 deficiency",
+        "warning": "Take with food. Monitor kidney function. Avoid alcohol.",
+        "brand_names": [
+            "Glycomet",
+            "Metformin",
+            "Glucophage"
+        ]
+    },
+
+    "omeprazole": {
+        "name": "Omeprazole",
+        "category": "Acid Reducer (PPI)",
+        "uses": "Acid reflux, heartburn, GERD, stomach ulcers",
+        "dosage": "20mg once daily (30-60 min before meal)",
+        "side_effects": "Headache, nausea, constipation, vitamin B12 deficiency",
+        "warning": "Short-term use recommended. May affect vitamin B12 absorption.",
+        "brand_names": [
+            "Omez",
+            "Rantac",
+            "Losec",
+            "Prilosec"
+        ]
+    },
+
+    "losartan": {
+        "name": "Losartan",
+        "category": "Blood Pressure (ARB)",
+        "uses": "High blood pressure, kidney protection in diabetes",
+        "dosage": "25-100mg once daily",
+        "side_effects": "Dizziness, fatigue, back pain, hyperkalemia",
+        "warning": "Monitor blood pressure. Avoid during pregnancy.",
+        "brand_names": [
+            "Losar",
+            "Cozaar",
+            "Losakind"
+        ]
+    },
+
+    "amlodipine": {
+        "name": "Amlodipine",
+        "category": "Blood Pressure (Calcium Channel Blocker)",
+        "uses": "High blood pressure, angina (chest pain)",
+        "dosage": "2.5-10mg once daily",
+        "side_effects": "Swelling (edema), fatigue, dizziness, flushing",
+        "warning": "Take same time daily. Avoid grapefruit juice.",
+        "brand_names": [
+            "Amlodep",
+            "Amvasc",
+            "Norvasc"
+        ]
+    },
+
+    "atorvastatin": {
+        "name": "Atorvastatin",
+        "category": "Cholesterol Lowering (Statin)",
+        "uses": "High cholesterol, heart attack/stroke prevention",
+        "dosage": "10-80mg once daily",
+        "side_effects": "Muscle pain, joint pain, diarrhea, liver issues",
+        "warning": "Monitor liver function. Report muscle pain. Avoid pregnancy.",
+        "brand_names": [
+            "Atorlip",
+            "Lipitor",
+            "Torvasc"
+        ]
+    },
+
+    "levothyroxine": {
+        "name": "Levothyroxine",
+        "category": "Thyroid Hormone",
+        "uses": "Hypothyroidism (low thyroid), thyroid hormone replacement",
+        "dosage": "25-200mcg once daily (on empty stomach)",
+        "side_effects": "Weight loss, nervousness, heart palpitations, insomnia",
+        "warning": "Take on empty stomach 30-60 min before breakfast. Regular blood tests.",
+        "brand_names": [
+            "Thyronorm",
+            "Synthroid",
+            "Levoxyl"
+        ]
+    }
+}

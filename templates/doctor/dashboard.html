@@ -1,0 +1,638 @@
+{% extends "base.html" %}
+
+{% block title %}
+Doctor Dashboard | OpenHealth
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/doctor_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="doctor-dashboard">
+
+    <!-- =========================================
+         HEADER
+         ========================================= -->
+
+    <section class="doctor-dashboard-header">
+
+        <div>
+            <span class="dashboard-label">
+                DOCTOR PORTAL
+            </span>
+
+            <h1>
+                Welcome, Dr. {{ doctor.full_name }}
+            </h1>
+
+            <p>
+                Manage your appointments and professional profile
+                from one place.
+            </p>
+        </div>
+
+        <div class="doctor-verification">
+
+            {% if doctor.verification_status == "Approved" %}
+
+                <span class="status-badge status-approved">
+                    <i class="fas fa-check-circle"></i>
+                    Verified Doctor
+                </span>
+
+            {% elif doctor.verification_status == "Rejected" %}
+
+                <span class="status-badge status-rejected">
+                    <i class="fas fa-times-circle"></i>
+                    Verification Rejected
+                </span>
+
+            {% else %}
+
+                <span class="status-badge status-pending">
+                    <i class="fas fa-clock"></i>
+                    Verification Pending
+                </span>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         STATISTICS
+         ========================================= -->
+
+    <section class="doctor-stat-grid">
+
+        <!-- Today's Appointments -->
+
+        <div class="doctor-stat-card">
+
+            <div class="doctor-stat-icon today-icon">
+                <i class="fas fa-calendar-day"></i>
+            </div>
+
+            <div>
+                <span>
+                    Today's Appointments
+                </span>
+
+                <strong>
+                    {{ today_appointments|length }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- Upcoming -->
+
+        <div class="doctor-stat-card">
+
+            <div class="doctor-stat-icon upcoming-icon">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+
+            <div>
+                <span>
+                    Upcoming Appointments
+                </span>
+
+                <strong>
+                    {{ upcoming_appointments|length }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- Patients -->
+
+        <div class="doctor-stat-card">
+
+            <div class="doctor-stat-icon patient-icon">
+                <i class="fas fa-users"></i>
+            </div>
+
+            <div>
+                <span>
+                    Total Patients
+                </span>
+
+                <strong>
+                    {{ total_patients }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- Total Appointments -->
+
+        <div class="doctor-stat-card">
+
+            <div class="doctor-stat-icon appointment-icon">
+                <i class="fas fa-stethoscope"></i>
+            </div>
+
+            <div>
+                <span>
+                    Total Appointments
+                </span>
+
+                <strong>
+                    {{ total_appointments }}
+                </strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         MAIN CONTENT
+         ========================================= -->
+
+    <section class="doctor-dashboard-grid">
+
+
+        <!-- =====================================
+             TODAY'S APPOINTMENTS
+             ===================================== -->
+
+        <div class="doctor-panel">
+
+            <div class="doctor-panel-header">
+
+                <div>
+                    <h2>
+                        Today's Appointments
+                    </h2>
+
+                    <p>
+                        Your appointments scheduled for today.
+                    </p>
+                </div>
+
+                <i class="fas fa-calendar-check"></i>
+
+            </div>
+
+
+            {% if today_appointments %}
+
+                <div class="doctor-appointment-list">
+
+                    {% for appointment in today_appointments %}
+
+                    <div class="doctor-appointment-card">
+
+                        <div class="appointment-time">
+
+                            <strong>
+                                {{ appointment.appointment_time }}
+                            </strong>
+
+                            <span>
+                                Today
+                            </span>
+
+                        </div>
+
+
+                        <div class="appointment-patient">
+
+                            <div class="patient-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    {{ appointment.patient_name }}
+                                </strong>
+
+                                <span>
+                                    {{ appointment.patient_email }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="appointment-type">
+
+                            <span>
+                                {{ appointment.consultation_type }}
+                            </span>
+
+                            {% if appointment.reason %}
+
+                                <small>
+                                    {{ appointment.reason }}
+                                </small>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="appointment-status">
+
+                            {% if appointment.status == "Confirmed" %}
+
+                                <span class="status-confirmed">
+                                    Confirmed
+                                </span>
+
+                            {% elif appointment.status == "Completed" %}
+
+                                <span class="status-completed">
+                                    Completed
+                                </span>
+
+                            {% elif appointment.status == "Rejected" %}
+
+                                <span class="status-rejected">
+                                    Rejected
+                                </span>
+
+                            {% else %}
+
+                                <span class="status-pending">
+                                    {{ appointment.status }}
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="doctor-empty-state">
+
+                    <i class="fas fa-calendar-check"></i>
+
+                    <h3>
+                        No appointments today
+                    </h3>
+
+                    <p>
+                        You don't have any appointments scheduled
+                        for today.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- =====================================
+             DOCTOR PROFILE SUMMARY
+             ===================================== -->
+
+        <div class="doctor-panel doctor-profile-panel">
+
+            <div class="doctor-panel-header">
+
+                <div>
+                    <h2>
+                        Professional Profile
+                    </h2>
+
+                    <p>
+                        Your registered professional information.
+                    </p>
+                </div>
+
+                <i class="fas fa-user-md"></i>
+
+            </div>
+
+
+            <div class="doctor-profile-info">
+
+                <div class="profile-info-row">
+
+                    <span>
+                        <i class="fas fa-user-md"></i>
+                        Specialization
+                    </span>
+
+                    <strong>
+                        {{ doctor.specialization }}
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-info-row">
+
+                    <span>
+                        <i class="fas fa-graduation-cap"></i>
+                        Qualification
+                    </span>
+
+                    <strong>
+                        {{ doctor.qualification }}
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-info-row">
+
+                    <span>
+                        <i class="fas fa-briefcase"></i>
+                        Experience
+                    </span>
+
+                    <strong>
+                        {{ doctor.experience_years }} years
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-info-row">
+
+                    <span>
+                        <i class="fas fa-hospital"></i>
+                        Clinic / Hospital
+                    </span>
+
+                    <strong>
+                        {{ doctor.clinic_name }}
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-info-row">
+
+                    <span>
+                        <i class="fas fa-map-marker-alt"></i>
+                        City
+                    </span>
+
+                    <strong>
+                        {{ doctor.city }}
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-info-row">
+
+                    <span>
+                        <i class="fas fa-id-card"></i>
+                        Registration No.
+                    </span>
+
+                    <strong>
+                        {{ doctor.registration_number }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =========================================
+         UPCOMING APPOINTMENTS
+         ========================================= -->
+
+    <section class="doctor-panel upcoming-panel">
+
+        <div class="doctor-panel-header">
+
+            <div>
+                <h2>
+                    Upcoming Appointments
+                </h2>
+
+                <p>
+                    Your next scheduled patient appointments.
+                </p>
+            </div>
+
+            <i class="fas fa-calendar-alt"></i>
+
+        </div>
+
+
+        {% if upcoming_appointments %}
+
+            <div class="upcoming-table-wrapper">
+
+                <table class="doctor-appointments-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Patient</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Consultation</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for appointment in upcoming_appointments %}
+
+                        <tr>
+
+                            <td>
+
+                                <div class="table-patient">
+
+                                    <div class="patient-avatar small">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            {{ appointment.patient_name }}
+                                        </strong>
+
+                                        <span>
+                                            {{ appointment.patient_email }}
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                {{ appointment.appointment_date }}
+                            </td>
+
+
+                            <td>
+                                {{ appointment.appointment_time }}
+                            </td>
+
+
+                            <td>
+                                {{ appointment.consultation_type }}
+                            </td>
+
+
+                            <td>
+
+                                {% if appointment.status == "Confirmed" %}
+
+                                    <span class="status-confirmed">
+                                        Confirmed
+                                    </span>
+
+                                {% elif appointment.status == "Completed" %}
+
+                                    <span class="status-completed">
+                                        Completed
+                                    </span>
+
+                                {% elif appointment.status == "Rejected" %}
+
+                                    <span class="status-rejected">
+                                        Rejected
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="status-pending">
+                                        {{ appointment.status }}
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        {% else %}
+
+            <div class="doctor-empty-state">
+
+                <i class="fas fa-calendar"></i>
+
+                <h3>
+                    No upcoming appointments
+                </h3>
+
+                <p>
+                    New appointments will appear here.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- =========================================
+         QUICK ACTIONS
+         ========================================= -->
+
+    <section class="doctor-quick-actions">
+
+        <h2>
+            Quick Actions
+        </h2>
+
+        <div class="quick-action-grid">
+
+            <a
+                href="{{ url_for('doctor_appointment.appointment_management_page') }}"
+                class="quick-action-card"
+            >
+
+                <i class="fas fa-calendar-check"></i>
+
+                <div>
+                    <strong>
+                        Manage Appointments
+                    </strong>
+
+                    <span>
+                        View and manage patient appointments
+                    </span>
+                </div>
+
+                <i class="fas fa-arrow-right arrow-icon"></i>
+
+            </a>
+
+
+            <a href="{{ url_for('doctor_profile.edit_profile') }}" class="quick-action-card">
+                <i class="fas fa-user-edit"></i>
+                <div>
+                    <strong> Edit Profile </strong>
+                    <span> Update your professional information </span>
+                </div>
+                <i class="fas fa-arrow-right arrow-icon"></i>
+            </a>
+
+
+            <a href="{{ url_for('doctor_availability.manage_availability') }}" class="quick-action-card">
+
+                <i class="fas fa-clock"></i>
+
+                <div>
+                    <strong>
+                        Manage Availability
+                    </strong>
+
+                    <span>
+                        Set your consultation schedule
+                    </span>
+                </div>
+
+                <i class="fas fa-arrow-right arrow-icon"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

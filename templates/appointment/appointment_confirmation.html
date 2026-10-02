@@ -1,0 +1,253 @@
+{% extends "base.html" %}
+
+{% block title %}
+Confirm Appointment | OpenHealth
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/appointment_confirmation.css') }}">
+
+<section class="appointment-confirmation-page">
+
+    <!-- HEADER -->
+    <div class="confirmation-header">
+
+        <span class="confirmation-eyebrow">
+            <i class="fas fa-clipboard-check"></i>
+            REVIEW APPOINTMENT
+        </span>
+
+        <h1>
+            Review Your Appointment
+        </h1>
+
+        <p>
+            Please check the details below before confirming your appointment.
+        </p>
+
+    </div>
+
+
+    <!-- MAIN CARD -->
+    <div class="confirmation-layout">
+
+
+        <!-- DOCTOR -->
+        <div class="confirmation-doctor-card">
+
+            <div class="confirmation-card-heading">
+
+                <div class="confirmation-heading-icon">
+                    <i class="fas fa-user-doctor"></i>
+                </div>
+
+                <div>
+                    <h2>Doctor</h2>
+                    <p>Selected healthcare professional</p>
+                </div>
+
+            </div>
+
+
+            <div class="confirmation-doctor">
+
+                <div class="confirmation-doctor-avatar">
+                    <i class="fas fa-user-doctor"></i>
+                </div>
+
+                <div class="confirmation-doctor-info">
+
+                    <span>
+                        {{ doctor.specialty }}
+                    </span>
+
+                    <h3>
+                        {{ doctor.name }}
+                    </h3>
+
+                    <p>
+                        {{ doctor.qualification }}
+                    </p>
+
+                    <div class="confirmation-rating">
+
+                        <i class="fas fa-star"></i>
+
+                        <strong>
+                            {{ doctor.rating }}
+                        </strong>
+
+                        <span>
+                            Rating
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="confirmation-doctor-meta">
+
+                <div>
+                    <i class="fas fa-hospital"></i>
+                    <span>{{ doctor.clinic }}</span>
+                </div>
+
+                <div>
+                    <i class="fas fa-location-dot"></i>
+                    <span>{{ doctor.location }}</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- APPOINTMENT DETAILS -->
+        <div class="confirmation-details-card">
+
+            <div class="confirmation-card-heading">
+
+                <div class="confirmation-heading-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+
+                <div>
+                    <h2>Appointment Details</h2>
+                    <p>Your selected appointment information</p>
+                </div>
+
+            </div>
+
+
+            <div class="confirmation-detail-list">
+
+                <!-- DATE -->
+                <div class="confirmation-detail">
+
+                    <div class="confirmation-detail-icon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+
+                    <div>
+                        <span>Date</span>
+
+                        <strong>
+                            {{ appointment_date }}
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <!-- TIME -->
+                <div class="confirmation-detail">
+
+                    <div class="confirmation-detail-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+
+                    <div>
+                        <span>Time</span>
+
+                        <strong>
+                            {{ appointment_time }}
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <!-- CONSULTATION -->
+                <div class="confirmation-detail">
+
+                    <div class="confirmation-detail-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+
+                    <div>
+                        <span>Consultation Type</span>
+
+                        <strong>
+                            {{ consultation_type }}
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <!-- REASON -->
+                <div class="confirmation-detail">
+
+                    <div class="confirmation-detail-icon">
+                        <i class="fas fa-notes-medical"></i>
+                    </div>
+
+                    <div>
+                        <span>Reason for Visit</span>
+
+                        <strong>
+                            {{ reason if reason else "Not provided" }}
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+            <div class="confirmation-actions">
+
+                <button
+                    type="button"
+                    class="confirmation-back-btn"
+                    id="confirmationBackBtn"
+                >
+                    <i class="fas fa-arrow-left"></i>
+                    Back
+                </button>
+
+
+                <button
+                    type="button"
+                    class="confirm-appointment-btn"
+                    id="confirmAppointmentBtn"
+                >
+                    Confirm Appointment
+                    <i class="fas fa-check"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- INFO NOTE -->
+    <div class="confirmation-note">
+
+        <i class="fas fa-circle-info"></i>
+
+        <p>
+            Please verify your appointment information carefully.
+            This is an academic/demo appointment booking system and
+            does not create a real-world medical appointment.
+        </p>
+
+    </div>
+
+</section>
+
+
+<script
+    src="{{ url_for('static', filename='js/appointment_confirmation.js') }}">
+</script>
+
+{% endblock %}

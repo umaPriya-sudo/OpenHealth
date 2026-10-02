@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}Appointment Management - OpenHealth{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/doctor_appointments.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="doctor-appointments-page">
+
+    <!-- Page Header -->
+    <section class="appointments-header">
+
+        <div>
+            <span class="page-eyebrow">
+                <i class="fas fa-calendar-check"></i>
+                DOCTOR PORTAL
+            </span>
+
+            <h1>Appointment Management</h1>
+
+            <p>
+                View and manage your patient appointments from one place.
+            </p>
+        </div>
+
+        <a href="{{ url_for('doctor.doctor_dashboard') }}"
+           class="back-dashboard-btn">
+            <i class="fas fa-arrow-left"></i>
+            Back to Dashboard
+        </a>
+
+    </section>
+
+
+    <!-- Appointment Filters -->
+    <section class="appointment-toolbar">
+
+        <div class="appointment-search">
+            <i class="fas fa-search"></i>
+
+            <input
+                type="text"
+                id="appointmentSearch"
+                placeholder="Search patient or appointment..."
+            >
+        </div>
+
+        <div class="appointment-filter">
+
+            <i class="fas fa-filter"></i>
+
+            <select id="statusFilter">
+                <option value="all">All Appointments</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Completed">Completed</option>
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <!-- Appointment Content -->
+    <section class="appointments-card">
+
+        <div class="appointments-card-header">
+
+            <div>
+                <h2>Your Appointments</h2>
+
+                <p>
+                    Manage scheduled consultations and appointment status.
+                </p>
+            </div>
+
+            <div class="appointment-count">
+                <span id="appointmentCount">0</span>
+                Appointments
+            </div>
+
+        </div>
+
+
+        <!-- Loading State -->
+        <div id="appointmentsLoading" class="appointments-state">
+
+            <div class="loading-spinner"></div>
+
+            <h3>Loading appointments...</h3>
+
+            <p>
+                Please wait while we fetch your appointments.
+            </p>
+
+        </div>
+
+
+        <!-- Empty State -->
+        <div id="appointmentsEmpty"
+             class="appointments-state"
+             style="display: none;">
+
+            <div class="empty-icon">
+                <i class="fas fa-calendar-xmark"></i>
+            </div>
+
+            <h3>No appointments found</h3>
+
+            <p>
+                You don't have any appointments matching the selected filter.
+            </p>
+
+        </div>
+
+
+        <!-- Appointment List -->
+        <div id="appointmentsList"
+             class="appointments-list"
+             style="display: none;">
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/doctor_appointments.js') }}"></script>
+{% endblock %}

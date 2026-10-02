@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %} OpenHealth - Healthcare Services {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/services.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="services-page">
+    <h1> Our Healthcare Services </h1>
+    <p> Choose a disease for AI-powered diagnosis </p>
+    <div class="service-grid">
+
+        <!-- =========== BREAST CANCER ============= -->
+        <div class="service-card">
+            <i class="fas fa-ribbon"></i>
+            <h3> Breast Cancer </h3>
+            <p> 96% Accuracy </p>
+            <span class="accuracy accuracy-best"> ⭐ Best </span> 
+            <a href="/breast_cancer"> Try Now → </a>
+        </div>
+
+        <!-- ======= HEART DISEASE ============= -->
+        <div class="service-card">
+            <i class="fas fa-heart"></i>
+            <h3> Heart Disease </h3>
+            <p> 85% Accuracy </p>
+            <span class="accuracy accuracy-good">⭐ Good </span>
+            <a href="/heart">Try Now →</a>
+        </div>
+
+        <!-- =========== DIABETES =============== -->
+        <div class="service-card">
+            <i class="fas fa-tint"></i>
+            <h3>Diabetes</h3>
+            <p>72% Accuracy</p> 
+            <span class="accuracy accuracy-average"> ⭐ Average </span>
+            <a href="/diabetes"> Try Now → </a>
+        </div>
+
+        <!-- =========== BRAIN TUMOR =========== -->
+        <div class="service-card">
+            <i class="fas fa-brain"></i>
+            <h3> Brain Tumor </h3>
+            <p> 84.94% Test Accuracy </p>
+            <span class="accuracy accuracy-best"> 🧠 AI Powered </span>
+            <a href="/brain"> Try Now → </a>
+        </div>
+
+        <!-- ========== KIDNEY DISEASE ============ -->
+        <div class="service-card">
+            <i class="fas fa-heartbeat"></i>
+            <h3>  Kidney Disease </h3>
+            <p> CT Image Classification </p>
+            <span class="accuracy accuracy-good">🩺 AI Powered </span>
+            <a href="/kidney"> Try Now → </a>
+        </div>
+
+        <!-- ========= LIVER DISEASE =============== -->
+        <div class="service-card">
+            <i class="fas fa-vial"></i>
+            <h3> Liver Disease </h3>
+            <p> Risk Assessment </p>
+            <span class="accuracy accuracy-average"> 🧪 AI Powered </span>
+            <a href="/liver">Try Now → </a>
+        </div>
+
+        <!-- ========= PARKINSON'S ============ -->
+        <div class="service-card">
+            <i class="fas fa-bolt"></i>
+            <h3> Parkinson Detection</h3>
+            <p>  22 Voice Biomarkers </p>
+            <span class="accuracy accuracy-best"> ✦ AI-Powered Screening </span>
+            <a href="/parkinsons"> Try Now → </a>
+        </div>
+
+        <!-- ======== MALARIA ============== -->
+        <div class="service-card">
+            <i class="fas fa-bug"></i>
+            <h3> Malaria </h3>
+            <p> 96.88% Test Accuracy</p>
+            <span class="accuracy accuracy-best">🦠 CNN Powered</span>
+            <a href="/malaria"> Try Now → </a>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

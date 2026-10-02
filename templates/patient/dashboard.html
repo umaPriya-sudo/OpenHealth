@@ -1,0 +1,490 @@
+{% extends "base.html" %}
+
+{% block title %}
+Patient Dashboard - OpenHealth
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/patient_dashboard.css') }}"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="patient-dashboard">
+
+    <div class="patient-dashboard-container">
+
+        <!-- =========================
+             WELCOME SECTION
+        ========================== -->
+
+        <section class="dashboard-welcome">
+
+            <div class="welcome-content">
+
+                <span class="dashboard-badge">
+                    <i class="fas fa-heartbeat"></i>
+                    Patient Dashboard
+                </span>
+
+                <h1>
+                    Welcome, {{ user.full_name }} 👋
+                </h1>
+
+                <p>
+                    Manage your healthcare journey,
+                    appointments and health tools from one place.
+                </p>
+
+            </div>
+
+            <a href="/profile" class="profile-shortcut">
+
+                <i class="fas fa-user-circle"></i>
+
+                <div>
+                    <strong>My Profile</strong>
+                    <span>View your account</span>
+                </div>
+
+                <i class="fas fa-chevron-right"></i>
+
+            </a>
+
+        </section>
+
+
+        <!-- =========================
+            HEALTHCARE MANAGEMENT
+        ========================== -->
+
+        <section class="dashboard-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-label">
+                        HEALTHCARE
+                    </span>
+
+                    <h2>
+                        Manage your healthcare
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <div class="management-grid">
+
+                <!-- Find Doctor -->
+
+                <a
+                    href="/doctor-appointment"
+                    class="dashboard-card management-card"
+                >
+
+                    <div class="card-icon doctor-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>Find a Doctor</h3>
+
+                        <p>
+                            Find doctors and explore
+                            online or in-person consultations.
+                        </p>
+
+                        <span class="card-link">
+                            Find Doctors
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Appointments -->
+
+                <a
+                    href="/my-appointments"
+                    class="dashboard-card management-card"
+                >
+
+                    <div class="card-icon appointment-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>My Appointments</h3>
+
+                        <p>
+                            View, manage and keep track
+                            of your doctor appointments.
+                        </p>
+
+                        <span class="card-link">
+                            View Appointments
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Health Records -->
+
+                <a
+                    href="/my-health-records"
+                    class="dashboard-card management-card"
+                >
+
+                    <div class="card-icon records-icon">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>Health Records</h3>
+
+                        <p>
+                            Access and manage your
+                            personal health records.
+                        </p>
+
+                        <span class="card-link">
+                            View Records
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             AI HEALTH TOOLS
+        ========================== -->
+
+        <section class="dashboard-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-label">
+                        AI HEALTH TOOLS
+                    </span>
+
+                    <h2>
+                        Explore OpenHealth tools
+                    </h2>
+
+                    <p>
+                        Intelligent tools designed to help you
+                        understand your health.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="tools-grid">
+
+                <!-- Disease Detection -->
+
+                <a
+                    href="/services"
+                    class="tool-card"
+                >
+
+                    <div class="tool-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+
+                    <div class="tool-content">
+
+                        <h3>Disease Detection</h3>
+
+                        <p>
+                            Explore AI-powered disease
+                            risk assessment tools.
+                        </p>
+
+                        <span>
+                            Explore
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Medicine Recognition -->
+
+                <a
+                    href="/recognition"
+                    class="tool-card"
+                >
+
+                    <div class="tool-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+
+                    <div class="tool-content">
+
+                        <h3>Medicine Recognition</h3>
+
+                        <p>
+                            Identify medicines using
+                            intelligent image recognition.
+                        </p>
+
+                        <span>
+                            Recognize Medicine
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Symptom Checker -->
+
+                <a
+                    href="/symptom-checker"
+                    class="tool-card"
+                >
+
+                    <div class="tool-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+
+                    <div class="tool-content">
+
+                        <h3>Symptom Checker</h3>
+
+                        <p>
+                            Explore symptoms and possible
+                            health conditions.
+                        </p>
+
+                        <span>
+                            Check Symptoms
+                            <i class="fas fa-arrow-right"></i>
+
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+            QUICK ACCESS
+        ========================== -->
+
+        <!-- Appointment -->
+        <div class="overview-card">
+        
+            <div class="overview-header">
+            
+                <div>
+                    <span class="section-label">
+                        APPOINTMENTS
+                    </span>
+                
+                    <h2>
+                        Your appointments
+                    </h2>
+                </div>
+            
+                <i class="fas fa-calendar-alt"></i>
+            
+            </div>
+        
+        
+            {% if appointments %}
+                <div class="appointment-list">
+                
+                
+                    {% for appointment in appointments %}
+                
+                        <div class="appointment-list-item">
+                        
+                            <!-- Doctor -->
+                            <div class="appointment-doctor">
+                            
+                                <div class="appointment-doctor-icon">
+                                    <i class="fas fa-user-doctor"></i>
+                                </div>
+                            
+                                <div>
+                                    <span class="appointment-label">
+                                        DOCTOR
+                                    </span>
+                                
+                                    <strong>
+                                        {{ appointment.doctor_name or "Doctor" }}
+                                    </strong>
+                                
+                                    {% if appointment.doctor_specialty %}
+                                        <small>
+                                            {{ appointment.doctor_specialty }}
+                                        </small>
+                                    {% endif %}
+                                </div>
+                            
+                            </div>
+                        
+                        
+                            <!-- Date -->
+                            <div class="appointment-detail">
+                            
+                                <span>
+                                    <i class="fas fa-calendar"></i>
+                                    DATE
+                                </span>
+                            
+                                <strong>
+                                    {{ appointment.appointment_date }}
+                                </strong>
+                            
+                            </div>
+                        
+                        
+                            <!-- Time -->
+                            <div class="appointment-detail">
+                            
+                                <span>
+                                    <i class="fas fa-clock"></i>
+                                    TIME
+                                </span>
+                            
+                                <strong>
+                                    {{ appointment.appointment_time }}
+                                </strong>
+                            
+                            </div>
+                        
+                        
+                            <!-- Consultation -->
+                            <div class="appointment-detail">
+                            
+                                <span>
+                                    <i class="fas fa-video"></i>
+                                    CONSULTATION
+                                </span>
+                            
+                                <strong>
+                                    {{ appointment.consultation_type }}
+                                </strong>
+                            
+                            </div>
+                        
+                        
+                            <!-- Status -->
+                            <div class="appointment-status">
+                            
+                                <span
+                                    class="status-badge
+                                    {% if appointment.status == 'Confirmed' %}
+                                        confirmed
+                                    {% elif appointment.status == 'Cancelled' %}
+                                        cancelled
+                                    {% else %}
+                                        pending
+                                    {% endif %}"
+                                >
+                                    <i class="fas fa-circle"></i>
+                                    {{ appointment.status }}
+                                </span>
+                            
+                            </div>
+                        
+                        
+                            <!-- View Details -->
+                            <a
+                                href="/my-appointments"
+                                class="appointment-view-btn"
+                            >
+                                View Details
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        
+                        </div>
+                    
+                    {% endfor %}
+                    
+                {% else %}
+                    
+                    <div class="appointment-empty">
+                        <i class="fas fa-calendar-check"></i>
+                    
+                        <p>No appointments yet.</p>
+                    
+                        <a href="/doctor-appointment">
+                            Book an Appointment
+                        </a>
+                    </div>
+                
+                {% endif %}
+                
+            </div>
+        
+        
+            
+        
+        </div>
+
+        </br></br>
+        <!-- =========================
+             SAFETY NOTE
+        ========================== -->
+
+        <section class="dashboard-note">
+
+            <i class="fas fa-shield-alt"></i>
+
+            <div>
+
+                <strong>
+                    Use OpenHealth responsibly
+                </strong>
+
+                <p>
+                    AI-powered tools provide informational
+                    assistance and should not replace professional
+                    medical advice or emergency care.
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</div>
+
+{% endblock %}

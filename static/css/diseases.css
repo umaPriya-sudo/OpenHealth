@@ -1,0 +1,1690 @@
+/* ============= OPENHEALTH - DISEASE PAGES ========================== */
+
+/* ========= DISEASE PAGE ============ */
+.disease-page {
+    padding: 4rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ========= PAGE HEADING ============ */
+.disease-page h1 {
+    text-align: center;
+    margin-bottom: 0.75rem;
+    color: #2d3748;
+}
+
+.subtitle {
+    text-align: center;
+    color: #718096;
+    margin-bottom: 2rem;
+}
+
+/* ======= FORM CONTAINER ============ */
+.form-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* ========== FORM GROUP ============== */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: white;
+    color: #2d3748;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.12);
+}
+
+/* ========== SUBMIT BUTTON ============= */
+.submit-btn {
+    width: 100%;
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg,#667eea 0%,#764ba2 100% );
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.25);
+}
+
+/* ======== RESULT BOX ============= */
+.result-box {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 15px;
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+}
+
+.result-box h3 {
+    margin-bottom: 1rem;
+    color: #2d3748;
+}
+
+.result-box p {
+    margin-bottom: 0.75rem;
+    color: #4a5568;
+}
+
+/* ======= RESULT VALUE ============ */
+.result-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #667eea;
+}
+
+/* ======== RISK LEVEL ============= */
+.risk-level {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.risk-high {
+    background: #fed7d7;
+    color: #c53030;
+}
+
+.risk-medium {
+    background: #feebc8;
+    color: #c05621;
+}
+
+.risk-low {
+    background: #c6f6d5;
+    color: #276749;
+}
+
+
+/* =============== LIVER DISEASE PAGE Custom Dashboard Styles ========================== */
+
+.liver-dashboard {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 35px 35px 50px;
+}
+
+.liver-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 28px;
+}
+
+.liver-title-area {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.liver-title-icon {
+    font-size: 48px;
+    line-height: 1;
+    margin-top: 5px;
+}
+
+.liver-title-area h1 {
+    margin: 0;
+    font-size: 42px;
+    line-height: 1.15;
+    font-weight: 800;
+    background: linear-gradient(135deg,#667eea 0%,  #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.liver-title-area p {
+    margin: 10px 0 0;
+    max-width: 760px;
+    color: #64748b;
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.liver-badge {
+    min-width: 155px;
+    padding: 14px 18px;
+    text-align: center;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.75);
+    border: 2px solid #d8def8;
+    box-shadow: 0 5px 20px rgba(84, 103, 220, 0.08);
+}
+
+.liver-badge strong {
+    display: block;
+    color: #5c6edb;
+    font-size: 15px;
+}
+
+.liver-badge span {
+    display: block;
+    margin-top: 4px;
+    color: #7b879d;
+    font-size: 13px;
+}
+
+.liver-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(380px, 0.85fr);
+    gap: 24px;
+    align-items: stretch;
+}
+
+.liver-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 25px;
+    border: 1px solid #e5e9f2;
+    box-shadow: 0 12px 35px rgba(50, 70, 120, 0.10);
+    box-sizing: border-box;
+}
+
+.liver-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding: 16px;
+    border-radius: 17px;
+    background: linear-gradient( 135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
+}
+
+.liver-heading-icon {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    font-size: 26px;
+    background: linear-gradient( 135deg, #667eea, #764ba2);
+}
+
+.liver-card-heading h2 {
+    margin: 0;
+    color: #263657;
+    font-size: 23px;
+    font-weight: 750;
+}
+
+.liver-card-heading p {
+    margin: 4px 0 0;
+    color: #718096;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.liver-form {
+    display: grid;
+    grid-template-columns: repeat( 2, minmax(0, 1fr));
+    column-gap: 18px;
+    row-gap: 17px;
+}
+
+.liver-field {
+    min-width: 0;
+}
+
+.liver-field label {
+    display: block;
+    margin-bottom: 7px;
+    color: #24345a;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.liver-field .unit {
+    margin-left: 4px;
+    color: #7b879d;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.liver-field input, .liver-field select {
+    width: 100%;
+    height: 52px;
+    padding: 0 14px;
+    box-sizing: border-box;
+    border: 2px solid #dfe5f0;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #263657;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.liver-field input::placeholder {
+    color: #9aa6b9;
+}
+
+.liver-field input:focus, .liver-field select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.11);
+    transform: translateY(-1px);
+}
+
+.liver-submit {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+}
+
+.liver-predict-btn {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient( 100deg, #667eea, #764ba2);
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 750;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.22);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.liver-predict-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(102, 126, 234, 0.30);
+}
+
+.liver-predict-btn:active {
+    transform: translateY(0);
+}
+
+.liver-arrow {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #704eb6;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.liver-result-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.liver-empty-result {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 25px 30px;
+    min-height: 430px;
+}
+
+.liver-empty-icon {
+    width: 125px;
+    height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    background: linear-gradient( 135deg, #eef1ff, #f5efff);
+    font-size: 58px;
+}
+
+.liver-empty-result h3 {
+    margin: 0 0 10px;
+    color: #263657;
+    font-size: 25px;
+    font-weight: 750;
+}
+
+.liver-empty-result p {
+    margin: 3px 0;
+    color: #718096;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.liver-empty-result strong {
+    color: #694db6;
+    font-size: 16px;
+}
+
+.liver-prediction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 5px 5px 15px;
+}
+
+.liver-result-icon {
+    width: 78px;
+    height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 13px;
+    border-radius: 50%;
+    background: linear-gradient( 135deg, #eef1ff, #f5efff);
+    font-size: 38px;
+}
+
+.liver-result-label {
+    margin-bottom: 7px;
+    color: #718096;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.liver-prediction-status {
+    max-width: 100%;
+    margin-bottom: 22px;
+    font-size: 27px;
+    line-height: 1.25;
+    font-weight: 800;
+    word-break: normal;
+}
+
+.liver-safe {
+    background: linear-gradient( 135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.liver-risk {
+    background: linear-gradient( 135deg, #d65c70, #8d43a4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.liver-result-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 13px 15px;
+    margin-bottom: 9px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    background: #f7f8ff;
+    border: 1px solid #e5e8f5;
+    text-align: left;
+}
+
+.liver-result-row span {
+    color: #59677f;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.liver-result-row strong {
+    color: #684cb7;
+    font-size: 17px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.liver-result-note {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    margin-top: 13px;
+    padding: 14px;
+    box-sizing: border-box;
+    border-radius: 13px;
+    background: linear-gradient( 135deg, #f0f2ff, #f7f1ff);
+    text-align: left;
+}
+
+.liver-result-note-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.liver-result-note strong {
+    color: #6548b4;
+    font-size: 15px;
+}
+
+.liver-result-note p {
+    margin: 4px 0 0;
+    color: #718096;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.liver-disclaimer {
+    margin-top: 20px;
+    padding: 17px 20px;
+    border-radius: 15px;
+    border: 1px solid #eadb9c;
+    background: #fffdf2;
+    color: #4b4b4b;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.liver-disclaimer strong {
+    color: #5a4a18;
+    font-size: 15px;
+}
+
+.liver-disclaimer p {
+    margin: 4px 0 0;
+}
+
+.liver-error {
+    padding: 15px;
+    border-radius: 13px;
+    border: 1px solid #f3b7bf;
+    background: #fff4f5;
+    color: #c53030;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+/* ============= LIVER RESPONSIVE DESIGN ==================== */
+@media (max-width: 1050px) {
+    .liver-grid {
+        grid-template-columns: 1fr;
+    }
+    .liver-result-card {
+        min-height: 500px;
+    }
+}
+
+@media (max-width: 700px) {
+    .liver-dashboard {
+        padding: 25px 15px 40px;
+    }
+    .liver-header {
+        align-items: flex-start;
+    }
+    .liver-badge {
+        display: none;
+    }
+    .liver-title-icon {
+        font-size: 36px;
+    }
+    .liver-title-area h1 {
+        font-size: 30px;
+    }
+    .liver-title-area p {
+        font-size: 14px;
+    }
+    .liver-card {
+        padding: 18px;
+        border-radius: 20px;
+    }
+    .liver-form {
+        grid-template-columns: 1fr;
+    }
+    .liver-submit {
+        grid-column: 1;
+    }
+    .liver-prediction-status {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 450px) {
+    .liver-result-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
+
+/* =========================================================
+   BRAIN MRI RESULT - CLEAN RESULT CARD
+   ========================================================= */
+
+.brain-page .result-box {
+    margin-top: 2rem;
+    padding: 1.75rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+}
+
+/* Result heading */
+.brain-page .result-box h3 {
+    margin: 0 0 1rem;
+    padding-bottom: 0.85rem;
+    color: #263a56;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+/* Horizontal separators */
+.brain-page .result-box hr {
+    margin: 0.9rem 0;
+    border: 0;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Normal result text */
+.brain-page .result-box p {
+    margin: 0.65rem 0;
+    color: #475569;
+    line-height: 1.6;
+}
+
+/* Prediction label */
+.brain-page .result-box p strong {
+    color: #334155;
+}
+
+/* Prediction value */
+.brain-page .result-value {
+    display: inline-block;
+    margin-top: 0.15rem;
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #667eea;
+}
+
+/* Class scores heading */
+.brain-page .result-box p:has(+ div) {
+    margin-bottom: 0.5rem;
+}
+
+/* Class score list */
+.brain-page .result-box div[style*="justify-content"] {
+    margin-top: 0.5rem !important;
+    line-height: 1.5 !important;
+}
+
+/* Individual class score */
+.brain-page .result-box div[style*="justify-content"] > span,
+.brain-page .result-box div[style*="justify-content"] > strong {
+    padding: 0.7rem 0;
+}
+
+.brain-page .result-box div[style*="justify-content"] > span {
+    color: #475569;
+}
+
+.brain-page .result-box div[style*="justify-content"] > strong {
+    color: #334155;
+}
+
+/* Disclaimer */
+.brain-page .result-box p:last-child {
+    margin-top: 1.25rem !important;
+    padding: 0.9rem 1rem;
+    background: #f8fafc;
+    border-left: 4px solid #667eea;
+    border-radius: 8px;
+    color: #64748b;
+    font-size: 0.84rem !important;
+    line-height: 1.6 !important;
+}
+
+/* =========================================================
+   KIDNEY CT RESULT - CLEAN RESULT CARD
+   ========================================================= */
+
+.kidney-page .result-box {
+    margin-top: 2rem;
+    padding: 1.75rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+}
+
+/* Result heading */
+.kidney-page .result-box h3 {
+    margin: 0 0 1rem;
+    padding-bottom: 0.85rem;
+    color: #263a56;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+/* Clean separators */
+.kidney-page .result-box hr {
+    margin: 0.9rem 0;
+    border: 0;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Result text */
+.kidney-page .result-box p {
+    margin: 0.65rem 0;
+    color: #475569;
+    line-height: 1.6;
+}
+
+/* Labels */
+.kidney-page .result-box p strong {
+    color: #334155;
+}
+
+/* Main prediction */
+.kidney-page .result-value {
+    display: inline-block;
+    margin-top: 0.15rem;
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #667eea;
+}
+
+/* Class score section */
+.kidney-page .result-box div[style*="justify-content"] {
+    margin-top: 0.5rem !important;
+    line-height: 1.5 !important;
+}
+
+/* Individual class rows */
+.kidney-page .result-box div[style*="justify-content"] > span,
+.kidney-page .result-box div[style*="justify-content"] > strong {
+    padding: 0.7rem 0;
+}
+
+.kidney-page .result-box div[style*="justify-content"] > span {
+    color: #475569;
+}
+
+.kidney-page .result-box div[style*="justify-content"] > strong {
+    color: #334155;
+}
+
+/* Disclaimer */
+.kidney-page .result-box p:last-child {
+    margin-top: 1.25rem !important;
+    padding: 0.9rem 1rem;
+    background: #f8fafc;
+    border-left: 4px solid #667eea;
+    border-radius: 8px;
+    color: #64748b;
+    font-size: 0.84rem !important;
+    line-height: 1.6 !important;
+}
+
+/* =========================================================
+   PARKINSON'S PREMIUM TWO-COLUMN UI
+   ========================================================= */
+.parkinson-page {
+    width: 100%;
+    max-width: 1500px !important;
+    margin: 0 auto;
+    padding: 35px 30px 60px !important;
+}
+/* ---------- HEADER ---------- */
+.parkinson-header {
+    margin-bottom: 28px;
+}
+.parkinson-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+.parkinson-page h1.parkinson-title {
+    font-size: 3rem;
+    line-height: 1.1;
+    margin: 0 0 8px 0;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.parkinson-subtitle {
+    color: #4a6090;
+    font-size: 1.15rem;
+    margin: 0 0 8px;
+    font-weight: 500;
+}
+.parkinson-description {
+    color: #64748b;
+    font-size: 0.98rem;
+    margin: 0;
+}
+/* ---------- MAIN TWO COLUMN LAYOUT ---------- */
+.parkinson-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(360px, 0.85fr);
+    gap: 24px;
+    align-items: start;
+}
+/* ---------- LEFT INPUT CARD ---------- */
+.parkinson-input-card {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 22px;
+    padding: 25px;
+    box-shadow: 0 10px 35px rgba(75, 85, 140, 0.10), 0 2px 8px rgba(75, 85, 140, 0.05);
+    border: 1px solid rgba(102, 126, 234, 0.08);
+}
+.parkinson-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+    gap: 15px;
+}
+.parkinson-card-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.parkinson-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    color: white;
+    font-size: 1.25rem;
+    box-shadow:0 7px 18px rgba(102, 126, 234, 0.25);
+}
+.parkinson-card-title h2 {
+    margin: 0;
+    color: #123d8d;
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+.parkinson-card-title p {
+    margin: 3px 0 0;
+    color: #718096;
+    font-size: 0.86rem;
+}
+/* ---------- FEATURE COUNTER ---------- */
+.parkinson-feature-count {
+    background: linear-gradient( 135deg, #f0f2ff, #f8f0ff);
+    border-radius: 13px;
+    padding: 10px 15px;
+    text-align: center;
+    min-width: 92px;
+}
+.parkinson-feature-count strong {
+    display: block;
+    color: #6655d8;
+    font-size: 1.05rem;
+    font-weight: 800;
+}
+.parkinson-feature-count span {
+    color: #64748b;
+    font-size: 0.72rem;
+}
+/* ---------- FEATURE GROUP GRID ---------- */
+.parkinson-feature-groups {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+/* ---------- FEATURE GROUP CARD ---------- */
+.parkinson-feature-group {
+    background: #ffffff;
+    border: 1px solid #dce3ff;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+.parkinson-feature-group:hover {
+    border-color: #aebcff;
+    box-shadow: 0 5px 18px rgba(102, 126, 234, 0.08);
+}
+/* ---------- GROUP HEADER ---------- */
+.parkinson-group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 15px;
+    background: linear-gradient(135deg,#f4f5ff,#faf5ff );
+    border-bottom: 1px solid #e6e9fb;
+}
+.parkinson-group-name {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #243c91;
+    font-size: 0.93rem;
+    font-weight: 750;
+}
+.parkinson-group-name i {
+    color: #6857e5;
+    font-size: 1rem;
+}
+.parkinson-group-count {
+    background: #e9edff;
+    color: #5368ce;
+    border-radius: 20px;
+    padding: 4px 9px;
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+/* ---------- FEATURE INPUT GRID ---------- */
+.parkinson-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 11px;
+    padding: 14px;
+}
+.parkinson-fields .form-group {
+    margin-bottom: 0;
+}
+.parkinson-fields .form-group:last-child:nth-child(odd) {
+    grid-column: span 2;
+    max-width: calc(50% - 5px);
+}
+.parkinson-fields label {
+    display: block;
+    color: #20355f;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.parkinson-fields input {
+    width: 100%;
+    height: 40px;
+    padding: 8px 11px;
+    border: 1.5px solid #dce3ef;
+    border-radius: 9px;
+    background: #fbfcff;
+    color: #24324d;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    transition: all 0.2s ease;
+}
+.parkinson-fields input::placeholder {
+    color: #9aa5b8;
+}
+.parkinson-fields input:hover {
+    border-color: #bbc6e8;
+    background: #ffffff;
+}
+.parkinson-fields input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.10);
+}
+/* ---------- ANALYZE BUTTON ---------- */
+.parkinson-submit-area {
+    margin-top: 18px;
+}
+.parkinson-submit-btn {
+    width: 100%;
+    height: 54px;
+    border: none;
+    border-radius: 13px;
+    background: linear-gradient(135deg, #667eea 0%,#764ba2 100%);
+    color: white;
+    font-size: 1rem;
+    font-weight: 750;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.24);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.parkinson-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(102, 126, 234, 0.32);
+}
+.parkinson-submit-btn:active {
+    transform: translateY(0);
+}
+/* ---------- RIGHT RESULT CARD ---------- */
+.parkinson-result-column {
+    position: sticky;
+    top: 90px;
+}
+.parkinson-result-card {
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0 10px 35px rgba(75, 85, 140, 0.10),0 2px 8px rgba(75, 85, 140, 0.05);
+    border: 1px solid rgba(102, 126, 234, 0.10);
+    overflow: hidden;
+}
+/* ---------- RESULT HEADER ---------- */
+.parkinson-result-header {
+    padding: 22px 24px;
+    background: linear-gradient( 135deg,#f1f3ff 0%,#faf2ff 100%);
+    border-bottom: 1px solid #e8e8f8;
+}
+.parkinson-result-header-inner {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+.parkinson-result-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e3eaff;
+    color: #5069df;
+    font-size: 1.15rem;
+}
+.parkinson-result-header h2 {
+    margin: 0;
+    color: #123d8d;
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+.parkinson-result-header p {
+    margin: 3px 0 0;
+    color: #66758f;
+    font-size: 0.83rem;
+}
+/* ---------- EMPTY RESULT ---------- */
+.parkinson-empty-result {
+    min-height: 470px;
+    padding: 35px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.parkinson-empty-icon {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient( 135deg, #f0f2ff,#faf0ff);
+    color: #667eea;
+    font-size: 3rem;
+    margin-bottom: 22px;
+}
+.parkinson-empty-result h3 {
+    margin: 0 0 9px;
+    color: #123d8d;
+    font-size: 1.55rem;
+    font-weight: 800;
+}
+.parkinson-empty-result p {
+    max-width: 350px;
+    margin: 0;
+    color: #718096;
+    line-height: 1.6;
+    font-size: 0.9rem;
+}
+/* ---------- RESULT CONTENT ---------- */
+.parkinson-result-content {
+    padding: 25px;
+}
+.parkinson-result-status {
+    text-align: center;
+    padding: 20px 15px;
+    border-radius: 15px;
+    background: linear-gradient(135deg,#f4f2ff, #faf5ff);
+    margin-bottom: 20px;
+}
+.parkinson-result-status i {
+    font-size: 1.8rem;
+    color: #667eea;
+    margin-bottom: 8px;
+}
+.parkinson-result-status h3 {
+    margin: 0;
+    color: #253d91;
+    font-size: 1.3rem;
+    line-height: 1.35;
+    font-weight: 800;
+}
+/* ---------- PROBABILITY ---------- */
+.parkinson-probability {
+    text-align: center;
+    margin: 20px 0;
+}
+.parkinson-probability-value {
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+}
+.parkinson-probability-label {
+    display: block;
+    margin-top: 7px;
+    color: #718096;
+    font-size: 0.78rem;
+}
+/* ---------- PROGRESS BAR ---------- */
+.parkinson-progress {
+    width: 100%;
+    height: 9px;
+    background: #e9edf7;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 15px 0 24px;
+}
+.parkinson-progress-bar {
+    height: 100%;
+    width: 0%;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #667eea,#764ba2);
+    transition: width 0.8s ease;
+}
+/* ---------- RESULT DETAILS ---------- */
+.parkinson-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.parkinson-detail {
+    padding: 13px;
+    border-radius: 11px;
+    background: #f8f9fd;
+    border: 1px solid #edf0f7;
+}
+.parkinson-detail-label {
+    display: block;
+    color: #8994a8;
+    font-size: 0.68rem;
+    margin-bottom: 4px;
+}
+.parkinson-detail-value {
+    color: #243c91;
+    font-size: 0.84rem;
+    font-weight: 750;
+}
+/* ---------- IMPORTANT NOTE ---------- */
+.parkinson-important-note {
+    padding: 15px;
+    border-radius: 13px;
+    background: linear-gradient(135deg,#f5f5ff, #fbf5ff);
+    border: 1px solid #e0dcff;
+}
+.parkinson-important-note-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4e4ab4;
+    font-size: 0.82rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+.parkinson-important-note-title i {
+    color: #667eea;
+}
+.parkinson-important-note p {
+    margin: 0;
+    color: #667085;
+    font-size: 0.72rem;
+   line-height: 1.55;
+}
+/* ---------- ERROR ---------- */
+.parkinson-error {
+    margin: 25px;
+    padding: 18px;
+    border-radius: 13px;
+    background: #fff5f5;
+    border: 1px solid #fecaca;
+}
+.parkinson-error h3 {
+    margin: 0 0 6px;
+    color: #c53030;
+    font-size: 1rem;
+}
+.parkinson-error p {
+    margin: 0;
+    color: #742a2a;
+    font-size: 0.8rem;
+}
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1100px) {
+    .parkinson-layout {
+        grid-template-columns: 1fr;
+    }
+    .parkinson-result-column {
+        position: static;
+    }
+    .parkinson-empty-result {
+        min-height: 350px;
+    }
+}
+@media (max-width: 700px) {
+    .parkinson-page {
+        padding: 25px 14px 40px !important;
+    }
+    .parkinson-page h1.parkinson-title {
+        font-size: 2.15rem;
+    }
+    .parkinson-title-row {
+        display: block;
+    }
+    .parkinson-feature-groups {
+        grid-template-columns: 1fr;
+    }
+    .parkinson-fields {
+        grid-template-columns: 1fr;
+    }
+    .parkinson-fields .form-group:last-child:nth-child(odd) {
+        grid-column: span 1;
+        max-width: none;
+    }
+    .parkinson-card-header {
+        align-items: flex-start;
+    }
+    .parkinson-feature-count {
+        min-width: 75px;
+    }
+    .parkinson-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   MALARIA DETECTION - MODERN TWO COLUMN UI
+========================================================= */
+
+.malaria-page {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 35px 30px 60px;
+}
+
+/* ---------- HEADER ---------- */
+
+.malaria-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 28px;
+}
+
+.malaria-title-area {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.malaria-title-icon {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 17px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 28px;
+    box-shadow: 0 8px 20px rgba(102,126,234,0.22);
+}
+
+.malaria-title-area h1 {
+    margin: 0;
+    font-size: 42px;
+    line-height: 1.15;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.malaria-title-area p {
+    margin: 8px 0 0;
+    color: #64748b;
+    font-size: 16px;
+}
+
+/* ---------- MODEL BADGE ---------- */
+
+.malaria-badge {
+    padding: 14px 20px;
+    text-align: center;
+    border-radius: 17px;
+    background: rgba(255,255,255,0.8);
+    border: 1px solid #dce3f5;
+    box-shadow: 0 5px 20px rgba(84,103,220,0.08);
+}
+
+.malaria-badge strong {
+    display: block;
+    color: #5c6edb;
+    font-size: 15px;
+}
+
+.malaria-badge span {
+    display: block;
+    margin-top: 4px;
+    color: #718096;
+    font-size: 12px;
+}
+
+/* ---------- MAIN GRID ---------- */
+
+.malaria-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(380px, 0.9fr);
+    gap: 24px;
+    align-items: stretch;
+}
+
+/* ---------- CARD ---------- */
+
+.malaria-card {
+    background: white;
+    border-radius: 22px;
+    padding: 25px;
+    border: 1px solid #e5e9f2;
+    box-shadow: 0 10px 35px rgba(50,70,120,0.10);
+}
+
+/* ---------- CARD HEADER ---------- */
+
+.malaria-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 22px;
+}
+
+.malaria-heading-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    color: white;
+    font-size: 21px;
+}
+
+.malaria-card-heading h2 {
+    margin: 0;
+    color: #263657;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.malaria-card-heading p {
+    margin: 3px 0 0;
+    color: #718096;
+    font-size: 13px;
+}
+
+/* ---------- UPLOAD AREA ---------- */
+
+.malaria-upload-area {
+    border: 2px dashed #cbd5e1;
+    border-radius: 18px;
+    padding: 28px;
+    text-align: center;
+    background: #fafbff;
+    transition: all 0.25s ease;
+}
+
+.malaria-upload-area:hover {
+    border-color: #667eea;
+    background: #f7f5ff;
+}
+
+.malaria-upload-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#eef1ff,#f5efff);
+    color: #667eea;
+    font-size: 32px;
+}
+
+.malaria-upload-area h3 {
+    margin: 0 0 7px;
+    color: #263657;
+    font-size: 18px;
+}
+
+.malaria-upload-area p {
+    margin: 0 0 18px;
+    color: #718096;
+    font-size: 13px;
+}
+
+/* ---------- FILE INPUT ---------- */
+
+.malaria-file-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dce3ef;
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ---------- PREVIEW ---------- */
+
+.malaria-preview-container {
+    margin-top: 20px;
+    display: none;
+}
+
+.malaria-preview-container.active {
+    display: block;
+}
+
+.malaria-preview-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.malaria-preview-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 15px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+}
+
+/* ---------- ANALYZE BUTTON ---------- */
+
+.malaria-submit-btn {
+    width: 100%;
+    height: 55px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 13px;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 750;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(102,126,234,0.22);
+    transition: all 0.2s ease;
+}
+
+.malaria-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(102,126,234,0.30);
+}
+
+/* ---------- RESULT CARD ---------- */
+
+.malaria-result-card {
+    overflow: hidden;
+    padding: 0;
+}
+
+.malaria-result-header {
+    padding: 20px 24px;
+    background: linear-gradient(135deg,#f1f3ff,#faf2ff);
+    border-bottom: 1px solid #e8e8f8;
+}
+
+.malaria-result-header h2 {
+    margin: 0;
+    color: #263657;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.malaria-result-content {
+    padding: 25px;
+}
+
+/* ---------- EMPTY RESULT ---------- */
+
+.malaria-empty {
+    min-height: 430px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.malaria-empty-icon {
+    width: 105px;
+    height: 105px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#f0f2ff,#faf0ff);
+    color: #667eea;
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.malaria-empty h3 {
+    margin: 0 0 8px;
+    color: #263657;
+    font-size: 22px;
+}
+
+.malaria-empty p {
+    max-width: 330px;
+    color: #718096;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* ---------- RESULT STATUS ---------- */
+
+.malaria-status {
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    background: linear-gradient(135deg,#f4f2ff,#faf5ff);
+    margin-bottom: 20px;
+}
+
+.malaria-status-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.malaria-status h3 {
+    margin: 0;
+    color: #263657;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+/* ---------- CONFIDENCE ---------- */
+
+.malaria-confidence {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.malaria-confidence-value {
+    font-size: 42px;
+    line-height: 1;
+    font-weight: 800;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.malaria-confidence-label {
+    display: block;
+    margin-top: 8px;
+    color: #718096;
+    font-size: 12px;
+}
+
+/* ---------- PROGRESS ---------- */
+
+.malaria-progress {
+    width: 100%;
+    height: 10px;
+    background: #e9edf7;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 15px 0 25px;
+}
+
+.malaria-progress-bar {
+    height: 100%;
+    width: 0;
+    border-radius: 20px;
+    background: linear-gradient(90deg,#667eea,#764ba2);
+    transition: width 0.8s ease;
+}
+
+/* ---------- PROBABILITY ROWS ---------- */
+
+.malaria-probability-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 15px;
+    margin-bottom: 9px;
+    border-radius: 11px;
+    background: #f8f9fd;
+    border: 1px solid #edf0f7;
+}
+
+.malaria-probability-row span {
+    color: #59677f;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.malaria-probability-row strong {
+    color: #684cb7;
+    font-size: 16px;
+}
+
+/* ---------- UPLOADED IMAGE ---------- */
+
+.malaria-result-image {
+    width: 100%;
+    max-height: 220px;
+    object-fit: contain;
+    margin-top: 18px;
+    border-radius: 13px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+}
+
+/* ---------- DISCLAIMER ---------- */
+
+.malaria-disclaimer {
+    margin-top: 20px;
+    padding: 15px 18px;
+    border-radius: 13px;
+    background: #fffdf2;
+    border: 1px solid #eadb9c;
+    color: #5a4a18;
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.malaria-disclaimer strong {
+    font-size: 13px;
+}
+
+/* ---------- ERROR ---------- */
+
+.malaria-error {
+    margin-bottom: 18px;
+    padding: 15px;
+    border-radius: 13px;
+    background: #fff4f5;
+    border: 1px solid #f3b7bf;
+    color: #c53030;
+    font-size: 13px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 1000px) {
+
+    .malaria-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .malaria-result-column {
+        position: static;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .malaria-page {
+        padding: 25px 14px 40px;
+    }
+
+    .malaria-header {
+        display: block;
+    }
+
+    .malaria-badge {
+        display: none;
+    }
+
+    .malaria-title-area h1 {
+        font-size: 30px;
+    }
+
+    .malaria-card {
+        padding: 18px;
+        border-radius: 18px;
+    }
+}

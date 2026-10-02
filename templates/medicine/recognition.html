@@ -1,0 +1,265 @@
+{% extends "base.html" %}
+
+{% block title %}OpenHealth - Medicine Recognition{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/medicine.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="oh-med-page">
+
+    <!-- ================= TWO COLUMN ================= -->
+    <div class="oh-med-layout">
+
+        <!-- =============== LEFT SIDE =================== -->
+        <div class="oh-med-left">
+            <h2> Medicine <span>Recognition</span> </h2>
+            <p class="oh-med-left-subtitle"> Search by name or upload an image of your medicine </p>
+
+            <!-- SEARCH / UPLOAD TABS -->
+            <div class="oh-med-tabs">
+                <button type="button" class="oh-med-tab active">
+                    <i class="fas fa-search"></i> Search by Name
+                </button>
+
+                <button type="button" class="oh-med-tab inactive">
+                    <i class="fas fa-upload"></i> Upload Image
+                </button>
+            </div>
+
+            <!-- ================= SEARCH FORM ================= -->
+            <form method="POST" id="medicineSearchForm">
+                <label for="manual_medicine" class="oh-med-label"> Medicine Name </label>
+                <div class="oh-med-input-wrap">
+                    <i class="fas fa-search"></i>
+                    <input type="text" name="manual_medicine" id="manual_medicine" class="oh-med-input" placeholder="e.g., Paracetamol, Crocin, Amoxicillin...">
+                </div>
+                <p class="oh-med-help">Try: Paracetamol, Ibuprofen, Amoxicillin, Metformin, etc.</p>
+                <button type="submit" class="oh-med-search-btn" id="medicineSearchBtn">
+                    <i class="fas fa-search"></i>
+                    Search Medicine
+                </button>
+            </form>
+
+            <!-- ================= OR ================= -->
+            <div class="oh-med-or"> <span>OR</span> </div>
+
+            <!-- =========== MEDICINE IMAGE UPLOAD FORM ================== -->
+            <form method="POST" action="{{ url_for('medicine.recognition') }}" enctype="multipart/form-data" id="medicine-upload-form">
+                <div class="medicine-upload-box">
+
+                    <!-- Upload icon -->
+                    <div class="medicine-upload-icon"> <i class="fas fa-cloud-upload-alt"></i></div>
+
+                    <!-- Heading -->
+                    <h3>Choose a Medicine Image</h3>
+                    <p class="upload-formats">  Supported formats: JPG, JPEG, PNG </p>
+
+                    <!-- File input -->
+                    <div class="medicine-file-wrapper">
+                        <input type="file" name="file" id="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" onchange="previewMedicineImage(event)">
+                    </div>
+
+                    <!-- Selected filename -->
+                    <div id="medicine-selected-name" class="medicine-selected-name">
+                    </div>
+                </div>
+
+                <!-- Help text -->
+                <small class="upload-help-text"> Upload a clear photo of the medicine strip or box </small>
+
+                <!-- IMPORTANT: This button MUST be inside the form -->
+                <button type="submit" class="submit-btn medicine-identify-btn" id="medicine-identify-btn" >
+                    <i class="fas fa-camera"></i>
+                    Identify from Image
+                </button>
+            </form>
+        </div>
+
+        <!-- ============= RIGHT SIDE ======================= -->
+        <div class="oh-med-result">
+            {% if show_result and medicine_result and medicine_result.success %}
+
+            <!-- ================= SUCCESS HEADER ================= -->
+            <div class="oh-med-success">
+                <div class="oh-med-success-left">
+                    <div class="oh-med-check"> <i class="fas fa-check"></i> </div>
+                    <div>
+                        <h2>  Medicine Identified </h2>
+                        <p> AI recognition completed successfully </p>
+                    </div>
+                </div>
+                <div class="oh-med-confidence">
+                    <strong> High Match </strong>
+                    <span> {{ medicine_result.recognition.match_score }}% match </span>
+                </div>
+            </div>
+
+            <!-- ================= MEDICINE INFORMATION ================= -->
+            <div class="oh-med-main-info">
+
+                <!-- IMAGE -->
+                <div class="oh-med-image">
+                    <div class="oh-med-image-placeholder">
+                        <i class="fas fa-pills"></i>
+                        <span> Medicine image </span>
+                    </div>
+                </div>
+
+                <!-- INFORMATION -->
+                <div>
+                    <h2 class="oh-med-name"> {{ medicine_result.medicine.name }} </h2>
+                    <div class="oh-med-category"> {{ medicine_result.medicine.category }} </div>
+
+                    <!-- SUMMARY CARDS -->
+                    <div class="oh-med-summary">
+
+                        <!-- MATCH SCORE -->
+                        <div class="oh-med-summary-card">
+                            <div class="oh-med-summary-label">
+                                <i class="fas fa-bullseye"></i>
+                                Match Score
+                            </div>
+                            <span class="oh-med-summary-value green"> {{ medicine_result.recognition.match_score }}%</span>
+                            <small class="oh-med-summary-small"> Excellent match </small>
+                        </div>
+
+                        <!-- STRENGTH -->
+                        <div class="oh-med-summary-card">
+                            <div class="oh-med-summary-label">
+                                <i class="fas fa-pills"></i>
+                                Strength
+                            </div>
+                            <span class="oh-med-summary-value">
+                                {% if medicine_result.medicine.strength %}
+                                    {{ medicine_result.medicine.strength }}
+                                {% else %}
+                                    Not detected
+                                {% endif %}
+                            </span>
+                            <small class="oh-med-summary-small"> Detected </small>
+                        </div>
+
+                        <!-- METHOD -->
+                        <div class="oh-med-summary-card">
+                            <div class="oh-med-summary-label">
+                                <i class="fas fa-file-medical"></i>
+                                Method
+                            </div>
+                            <span class="oh-med-summary-value">{{ medicine_result.recognition.match_type }}</span>
+                            <small class="oh-med-summary-small"> Text match</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= USES / DOSAGE / SIDE EFFECTS ================= -->
+            <div class="oh-med-info-grid">
+                <div class="oh-med-info-card">
+                    <h4> <i class="fas fa-stethoscope"></i>  Uses </h4>
+                    <p> {{ medicine_result.medicine.uses }} </p>
+                </div>
+                <div class="oh-med-info-card">
+                    <h4><i class="fas fa-capsules"></i> Dosage</h4>
+                    <p>{{ medicine_result.medicine.dosage }} </p>
+                </div>
+                <div class="oh-med-info-card">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Side Effects</h4>
+                    <p>{{ medicine_result.medicine.side_effects }}</p>
+                </div>
+            </div>
+
+            <!-- ================= WARNING / BRANDS ================= -->
+            <div class="oh-med-lower">
+
+                <!-- WARNING -->
+                <div class="oh-med-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div>
+                        <h4>Important Warning</h4>
+                        <p>{{ medicine_result.medicine.warning }}</p>
+                    </div>
+                </div>
+
+                <!-- BRANDS -->
+                <div class="oh-med-brands">
+                    <h4><i class="fas fa-tag"></i> Common Brands</h4>
+                    <div class="oh-med-brand-list">
+                        {% if medicine_result.medicine.brand_names %}
+                            {% for brand in medicine_result.medicine.brand_names %}
+                                <span class="oh-med-brand">{{ brand }}</span>
+                            {% endfor %}
+                        {% else %}
+                            <span class="oh-med-brand">No brands available</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= RECOGNITION / DISCLAIMER ================= -->
+            <div class="oh-med-bottom">
+
+                <!-- RECOGNITION DETAILs -->
+                <div class="oh-med-recognition">
+                    <h4><i class="fas fa-chart-bar"></i>  Recognition Details </h4>
+
+                    <!-- OCR CONFIDENCE -->
+                    <div class="oh-med-ocr-row">
+
+                        <span>OCR Confidence</span>
+                        <div class="oh-med-ocr-bar">
+                            <div class="oh-med-ocr-fill" style="width: {{ medicine_result.recognition.ocr_confidence or 0 }}%;"></div>
+                        </div>
+                        <span class="oh-med-ocr-value">
+                            {{ medicine_result.recognition.ocr_confidence or 0 }}%
+                        </span>
+                    </div>
+
+                    <!-- MATCHED TEXT -->
+                    <div class="oh-med-detail-line">
+                        <span class="label">Matched Text </span>
+                        <span class="value">
+                            {{ medicine_result.recognition.matched_text }}
+                        </span>
+                    </div>
+
+                    <!-- EXTRACTED TEXT -->
+                    <div class="oh-med-detail-line">
+                        <span class="label">Extracted Text</span>
+                        <span class="value">
+                            {{ medicine_result.ocr.extracted_text }}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- DISCLAIMER -->
+                <div class="oh-med-disclaimer">
+                    <h4><i class="fas fa-info-circle"></i>Medical Disclaimer</h4>
+                    <p> This information is for educational purposes only. It does not confirm the identity, safety, dosage, or suitability of a medicine. Always consult a qualified doctor or pharmacist.</p>
+                </div>
+            </div>
+
+            {% elif show_result %}
+            <!-- ================= NO MATCH ================= -->
+            <div class="oh-med-empty">
+                <i class="fas fa-search-minus"></i>
+                <h3> Medicine Not Confidently Identified </h3>
+                <p> The system could not find a reliable medicine match. Please upload a clearer image or enter the medicine name manually.</p>
+            </div>
+
+            {% else %}
+            <!-- ================= INITIAL STATE ================= -->
+            <div class="oh-med-empty">
+                <i class="fas fa-pills"></i>
+                <h3>Ready to identify your medicine </h3>
+                <p> Search for a medicine by name or upload a clear image of its packaging.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/medicine.js') }}"></script>
+{% endblock %}

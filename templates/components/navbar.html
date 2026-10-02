@@ -1,0 +1,165 @@
+<nav class="navbar">
+
+    <!-- LOGO -->
+    <a href="/" class="nav-logo">
+        <i class="fas fa-heartbeat"></i>
+        <span>OpenHealth</span>
+    </a>
+
+
+    <!-- COMMON NAVIGATION -->
+    <div class="nav-links">
+
+        <a href="/services">
+            Services
+        </a>
+
+        <a href="/doctor-appointment">
+            Doctors
+        </a>
+
+        <!--
+        About will be added when we build the
+        common About section/page.
+        -->
+
+
+        <!-- ============================= -->
+        <!-- LOGGED OUT -->
+        <!-- ============================= -->
+
+        <div id="loggedOutNav" class="auth-nav-group">
+
+            <a href="javascript:void(0);"
+               class="nav-signin"
+               onclick="openAuthModal('signin')">
+
+                Sign In
+
+            </a>
+
+
+            <a href="javascript:void(0);"
+               class="nav-signup"
+               onclick="openAuthModal('signup')">
+
+                Sign Up
+
+            </a>
+
+        </div>
+
+
+
+        <!-- ============================= -->
+        <!-- LOGGED IN -->
+        <!-- ============================= -->
+
+        <div id="loggedInNav"
+             class="auth-nav-group"
+             style="display: none;">
+
+
+            <!-- DASHBOARD -->
+            {% if session.get("role") == "patient" %}
+            <a href="/patient/dashboard" class="nav-dashboard">
+                <i class="fas fa-th-large"></i>
+                Dashboard
+            </a>
+        
+            {% elif session.get("role") == "doctor" %}
+                <a href="/doctor/dashboard" class="nav-dashboard">
+                    <i class="fas fa-th-large"></i>
+                    Dashboard
+                </a>
+            {% endif %}
+
+
+            <!-- USER MENU -->
+            <div class="user-menu-wrapper">
+
+                <button
+                    type="button"
+                    id="userMenuButton"
+                    class="user-menu-button">
+
+                    <i class="fas fa-user-circle"></i>
+
+                    <span id="navUserName">
+                        Account
+                    </span>
+
+                    <i class="fas fa-chevron-down user-menu-arrow"></i>
+
+                </button>
+
+
+                <!-- USER DROPDOWN -->
+                <div
+                    id="userDropdown"
+                    class="user-dropdown">
+
+
+                    <!-- USER INFORMATION -->
+
+                    <div class="user-dropdown-header">
+
+                        <i class="fas fa-user-circle"></i>
+
+                        <div>
+
+                            <strong id="dropdownUserName">
+                                Account
+                            </strong>
+
+                            <small id="dropdownUserEmail">
+                                user@email.com
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="user-dropdown-divider"></div>
+
+
+                    <!-- PROFILE -->
+
+                    <a
+                        href="/profile"
+                        class="profile-button">
+
+                        <i class="fas fa-user"></i>
+
+                        Profile
+
+                    </a>
+
+
+                    <div class="user-dropdown-divider"></div>
+
+
+                    <!-- LOGOUT -->
+
+                    <button
+                        type="button"
+                        id="logoutButton"
+                        class="logout-button">
+
+                        <i class="fas fa-sign-out-alt"></i>
+
+                        Logout
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>

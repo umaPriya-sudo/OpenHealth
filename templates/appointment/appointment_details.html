@@ -1,0 +1,286 @@
+{% extends "base.html" %}
+
+{% block title %}
+Appointment Details | OpenHealth
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/appointment_details.css') }}">
+
+<section class="appointment-details-page">
+
+    <!-- HEADER -->
+    <div class="appointment-details-header">
+
+        <div>
+            <span class="appointment-eyebrow">
+                <i class="fas fa-calendar-check"></i>
+                APPOINTMENT DETAILS
+            </span>
+
+            <h1>
+                Confirm Your Appointment Details
+            </h1>
+
+            <p>
+                Review your selected doctor, date and consultation type
+                before continuing.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="appointment-details-layout">
+
+
+        <!-- LEFT: DOCTOR SUMMARY -->
+        <div class="doctor-summary-card" data-doctor-id="{{ doctor.id }}">
+
+            <div class="doctor-summary-top">
+
+                <div class="doctor-summary-avatar">
+
+                    {% if doctor.image %}
+                        <img
+                            src="{{ url_for('static', filename='images/' + doctor.image) }}"
+                            alt="{{ doctor.name }}"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        >
+                    {% endif %}
+
+                    <div class="doctor-summary-fallback">
+                        <i class="fas fa-user-doctor"></i>
+                    </div>
+
+                </div>
+
+                <div class="doctor-summary-info">
+
+                    <span class="doctor-specialty">
+                        {{ doctor.specialty }}
+                    </span>
+
+                    <h2>
+                        {{ doctor.name }}
+                    </h2>
+
+                    <p>
+                        {{ doctor.qualification }}
+                    </p>
+
+                    <div class="doctor-rating">
+
+                        <i class="fas fa-star"></i>
+
+                        <span>
+                            {{ doctor.rating }}
+                        </span>
+
+                        <span class="rating-label">
+                            Rating
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="doctor-summary-divider"></div>
+
+
+            <div class="doctor-summary-details">
+
+                <div class="summary-detail">
+
+                    <i class="fas fa-briefcase-medical"></i>
+
+                    <div>
+                        <span>Experience</span>
+                        <strong>{{ doctor.experience }}</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="summary-detail">
+
+                    <i class="fas fa-hospital"></i>
+
+                    <div>
+                        <span>Clinic</span>
+                        <strong>{{ doctor.clinic }}</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="summary-detail">
+
+                    <i class="fas fa-location-dot"></i>
+
+                    <div>
+                        <span>Location</span>
+                        <strong>{{ doctor.location }}</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RIGHT: APPOINTMENT SUMMARY -->
+        <div class="appointment-summary-card">
+
+            <div class="card-heading">
+
+                <div class="heading-icon">
+                    <i class="fas fa-calendar-days"></i>
+                </div>
+
+                <div>
+                    <h2>Appointment Summary</h2>
+                    <p>Your selected appointment slot</p>
+                </div>
+
+            </div>
+
+
+            <div class="appointment-summary-grid">
+
+                <!-- DATE -->
+                <div class="appointment-summary-item">
+
+                    <div class="summary-item-icon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+
+                    <div>
+                        <span>Date</span>
+
+                        <strong>
+                            {{ appointment_date }}
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <!-- TIME -->
+                <div class="appointment-summary-item">
+
+                    <div class="summary-item-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+
+                    <div>
+                        <span>Time</span>
+
+                        <strong>
+                            {{ appointment_time }}
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <!-- CONSULTATION -->
+                <div class="appointment-summary-item">
+
+                    <div class="summary-item-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+
+                    <div>
+                        <span>Consultation</span>
+
+                        <strong>
+                            {{ consultation_type }}
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- REASON -->
+            <div class="reason-section">
+
+                <label for="reasonForVisit">
+                    Reason for Visit
+                    <span>Optional</span>
+                </label>
+
+                <textarea
+                    id="reasonForVisit"
+                    name="reason"
+                    rows="5"
+                    placeholder="Briefly describe the reason for your appointment..."
+                ></textarea>
+
+                <small>
+                    Please avoid entering sensitive medical information here.
+                </small>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+            <div class="appointment-details-actions">
+
+                <button
+                    type="button"
+                    class="back-details-btn"
+                    onclick="history.back()"
+                >
+                    <i class="fas fa-arrow-left"></i>
+                    Back
+                </button>
+
+
+                <button
+                    type="button"
+                    class="continue-details-btn"
+                    id="continueDetailsBtn"
+                >
+                    Continue
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- NOTE -->
+    <div class="appointment-info-note">
+
+        <i class="fas fa-circle-info"></i>
+
+        <p>
+            Please review your appointment details carefully before
+            continuing. This appointment system is part of the
+            OpenHealth academic/demo project.
+        </p>
+
+    </div>
+
+</section>
+
+
+<script
+    src="{{ url_for('static', filename='js/appointment_details.js') }}?v=3">
+</script>
+
+{% endblock %}

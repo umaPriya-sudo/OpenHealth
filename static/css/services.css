@@ -1,0 +1,77 @@
+/* ================= OPENHEALTH - SERVICES PAGE ========================== */
+
+/* ============= SERVICES PAGE ============== */
+
+.services-page {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ======== SERVICE GRID =============== */
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* ========= SERVICE CARD =========== */
+
+.service-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card i {
+    font-size: 3rem;
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.service-card a {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1.5rem;
+    background: #667eea;
+    color: white;
+    border-radius: 50px;
+    text-decoration: none;
+}
+
+.service-card .accuracy {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.2rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+}
+
+.service-card .accuracy-best {
+    background: #48bb78;
+    color: white;
+}
+
+.service-card .accuracy-good {
+    background: #4299e1;
+    color: white;
+}
+
+.service-card .accuracy-average {
+    background: #ed8936;
+    color: white;
+}
+
+.service-card .coming-soon {
+    background: #a0aec0;
+    color: white;
+}

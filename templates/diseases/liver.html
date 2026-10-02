@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+
+{% block title %} OpenHealth - Heart Disease Prediction {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/diseases.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="liver-dashboard">
+
+    <!-- ================= HEADER ================= -->
+    <div class="liver-header">
+
+        <div class="liver-title-area"> <div class="liver-title-icon"> 🧪 </div>
+            <div>
+                <h1> Liver Disease Risk Assessment </h1>
+                <p> Enter the patient's clinical and liver function test values to assess liver disease risk. </p>
+            </div>
+        </div>
+
+        <div class="liver-badge"> <strong> Early Detection </strong>
+            <span> AI-Powered Assessment </span>
+        </div>
+
+    </div>
+
+    <!-- ================= TWO COLUMN AREA ================= -->
+    <div class="liver-grid">
+
+        <!-- ============== LEFT CARD - PATIENT INPUT ========================= -->
+        <div class="liver-card">
+
+            <div class="liver-card-heading"> <div class="liver-heading-icon"> 📋 </div>
+                <div>
+                    <h2>Patient Information</h2>
+                    <p>Enter the required clinical values below.</p>
+                </div>
+            </div>
+
+            <form method="POST" class="liver-form" id="liverDiseaseForm">
+
+                <!-- AGE -->
+                <div class="liver-field">
+                    <label for="age"> Age </label>
+                    <input type="number" id="age" name="age" placeholder="Enter age" min="1" max="120" step="1" required >
+                </div>
+
+                <!-- GENDER -->
+                <div class="liver-field">                    
+                    <label for="gender"> Gender </label>
+                    <select id="gender" name="gender" required >
+                        <option value=""> Select gender </option>
+                        <option value="0"> Female </option>
+                        <option value="1"> Male </option>
+                    </select>
+                </div>
+
+                <!-- TOTAL BILIRUBIN -->
+                <div class="liver-field">
+                    <label for="tb"> Total Bilirubin (TB)
+                        <span class="unit"> mg/dL </span>
+                    </label>
+                    <input type="number"  id="tb" name="tb" placeholder="e.g. 1.0" min="0" step="0.1" required >
+                </div>
+
+                <!-- DIRECT BILIRUBIN -->
+                <div class="liver-field">
+                    <label for="db"> Direct Bilirubin (DB)
+                        <span class="unit"> mg/dL </span>
+                    </label>
+                    <input type="number"  id="db" name="db" placeholder="e.g. 0.3" min="0" step="0.1" required >
+                </div>
+
+                <!-- ALKALINE PHOSPHATASE -->
+                <div class="liver-field">
+                    <label for="alkphos"> Alkaline Phosphatase 
+                        <span class="unit"> U/L </span>
+                    </label>
+                    <input type="number" id="alkphos" name="alkphos" placeholder="e.g. 200" min="0" step="1" required >
+                </div>
+
+                <!-- SGPT -->
+                <div class="liver-field">
+                    <label for="sgpt"> SGPT / ALT 
+                        <span class="unit"> U/L </span>
+                    </label>
+                    <input type="number" id="sgpt" name="sgpt" placeholder="e.g. 35" min="0" step="1" required >
+                </div>
+
+                <!-- SGOT -->
+                <div class="liver-field">
+                    <label for="sgot"> SGOT / AST
+                        <span class="unit"> U/L </span>
+                    </label>
+                    <input type="number" id="sgot" name="sgot" placeholder="e.g. 40" min="0" step="1" required >
+                </div>
+
+                <!-- TOTAL PROTEINS -->
+                <div class="liver-field">
+                    <label for="tp"> Total Proteins (TP)
+                        <span class="unit"> g/dL </span>
+                    </label>
+                    <input type="number" id="tp" name="tp" placeholder="e.g. 6.8" min="0" step="0.1" required >
+                </div>
+
+                <!-- ALBUMIN -->
+                <div class="liver-field">
+                    <label for="alb"> Albumin (ALB)
+                        <span class="unit"> g/dL </span>
+                    </label>
+                    <input type="number"  id="alb" name="alb" placeholder="e.g. 3.3" min="0" step="0.1" required >
+                </div>
+
+                <!-- A/G RATIO -->
+                <div class="liver-field">                    
+                    <label for="ag_ratio"> Albumin / Globulin Ratio
+                        <span class="unit"> A/G Ratio </span>
+                    </label>
+                    <input type="number" id="ag_ratio" name="ag_ratio" placeholder="e.g. 0.9" min="0" step="0.01" required >
+                </div>
+
+                <!-- ================= BUTTON ================= -->
+                <div class="liver-submit">
+                    <button type="submit" class="liver-predict-btn" id="liverDiseasePredictBtn">
+                        <span> 🧪 </span>
+                        <span> Predict Liver Disease Risk </span>
+                        <span class="liver-arrow"> → </span>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- =========================== RIGHT CARD - RESULT ======================= -->
+        <div class="liver-card liver-result-card">
+
+            <div class="liver-card-heading"> <div class="liver-heading-icon"> 📊 </div>
+                <div>
+                    <h2> Prediction Result</h2>
+                    <p> AI-based liver disease risk assessment. </p>
+                </div>
+            </div>
+
+            <!-- ================== ERROR ======================================== -->
+            {% if error %}
+            <div class="liver-error">
+                <strong>⚠️ Prediction Error </strong>
+                <p> {{ error }} </p>
+            </div>
+            {% endif %}
+
+            <!-- =============== NO RESULT YET =================== -->
+            {% if not show_result %}
+            <div class="liver-empty-result"> <div class="liver-empty-icon"> 📄 </div>
+                <h3> No Prediction Yet </h3>
+                <p> Fill in the patient information </p>
+                <strong> and click "Predict Liver Disease Risk" </strong>
+                <p> to view the assessment here.</p>
+            </div>
+            {% endif %}
+
+            <!-- ======================== PREDICTION RESULT ============================= -->
+            {% if show_result and prediction and not error %}
+            <div class="liver-prediction">
+
+                <!-- ICON -->
+                <div class="liver-result-icon"> 🧪 </div>
+
+                <!-- LABEL -->
+                <div class="liver-result-label"> Liver Disease Assessment </div>
+
+                <!-- MAIN PREDICTION --> 
+                <div class="liver-prediction-status {% if prediction == 'No Liver Disease Detected' %} liver-safe {% else %} liver-risk {% endif %}" > {{ prediction }} </div>
+                
+                <!-- RISK LEVEL -->
+                <div class="liver-result-row">
+                    <span> Risk Level </span>
+                    <strong> {{ risk_level }} </strong>
+                </div>
+               
+                <!-- PROBABILITY -->
+                <div class="liver-result-row">
+                    <span> Liver Disease Probability </span>
+                    <strong> {{ probability }}% </strong>
+                </div>
+                
+                <!-- CONFIDENCE -->
+                <div class="liver-result-row">
+                    <span> Prediction Confidence </span>
+                    <strong> {{ confidence }}% </strong>
+                </div>
+                
+                <!-- THRESHOLD -->
+                <div class="liver-result-row">
+                    <span> Model Decision Threshold </span>
+                    <strong> {{ threshold }}% </strong>
+                </div>
+                
+                <!-- RESULT NOTE -->
+                <div class="liver-result-note"> <div class="liver-result-note-icon"> 💡 </div>
+                    <div>
+                        <strong> Important </strong>
+                        <p> This result is an AI-based risk assessment and should not be considered a medical diagnosis. </p>
+                    </div>
+                </div>
+
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+    <!-- =================== MEDICAL DISCLAIMER ================================= -->
+    {% if show_result %}
+    <div class="liver-disclaimer"> ⚠️
+        <strong> Important Disclaimer </strong>
+        <p> This AI-based prediction is intended for educational and research purposes only. It is not a medical diagnosis and should not replace professional medical advice, examination, or laboratory interpretation. </p>
+        <p> Please consult a qualified healthcare professional for proper evaluation and diagnosis.</p>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}
